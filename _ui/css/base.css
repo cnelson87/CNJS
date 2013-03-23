@@ -1,0 +1,320 @@
+
+/*	-----------------------------------------------
+
+	reset and rebuild base html elements
+
+	----------------------------------------------- */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strike, strong, sub, sup, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+b, i, u, hr, center,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section { 
+    display: block;
+}
+
+body {
+	color: #464646;
+	font-family: Arial, Verdana, sans-serif;
+	/* font-family: Georgia, Times, serif; */
+	font-size: 62.5%; /* 62.5% squashes default type to 10px, multiplier is set on #wrapper */
+	line-height: 1.0em;
+	background: #dedede;
+}
+div#wrapper {
+	font-size: 1.2em; /* 62.5% x 1.2em = 12px base font size */
+}
+
+:focus {
+	outline: 1px dotted #464646; /* dev only */
+}
+
+code, pre {
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 12px;
+}
+
+strong, b {font-weight: bold;}
+em, i {font-style: italic;}
+	em em {font-style: normal;}
+
+a, a:link, a:visited {
+	color: #990000;
+	text-decoration: none;
+	-webkit-transition: color .2s, background-color .2s;
+	-moz-transition: color .2s, background-color .2s;
+	-o-transition: color .2s, background-color .2s;
+	transition: color .2s, background-color .2s;
+}
+a:focus, a:hover, a:visited:hover, a:active {
+	color: #cc0000;
+	text-decoration: underline;
+}
+
+p, ul, ol, dl, table, address {
+	font-size: 12px;
+	line-height: 18px;
+	margin: 0 0 18px 0;
+}
+    li {
+	    margin: 0 0 8px 20px;
+    }
+	dt {
+		font-weight: bold;
+		margin: 0 0 2px 0;
+	}
+	dd {
+		margin: 0 0 8px 0;
+	}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+    th {
+	    font-weight: bold;
+	    text-align: left;
+	    vertical-align: bottom;
+    }
+    td {
+	    vertical-align: top;
+    }
+
+h1 {
+	font-family: 'Droid Sans', Arial, sans-serif;
+	font-size: 32px;
+	font-weight: normal;
+	line-height: 36px;
+	margin: 0 0 18px 0;
+}
+h2, .h2 {
+	font-family: 'Droid Sans', Arial, sans-serif;
+	font-size: 22px;
+	font-weight: normal;
+	line-height: 24px;
+	margin: 0 0 12px 0;
+}
+h3, .h3 {
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 18px;
+	margin: 0 0 8px 0;
+}
+h4, .h4 {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 16px;
+	margin: 0 0 6px 0;
+}
+h5, .h5 {
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 14px;
+	margin: 0 0 4px 0;
+}
+h6, .h6 {
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 14px;
+	margin: 0 0 2px 0;
+}
+
+sup {
+	font-size: 0.833em; /* 10px */
+	margin-left: 0.05em;
+	position: relative;
+	top: -0.5em;
+}
+sub {
+	font-size: 0.833em; /* 10px */
+	margin-left: 0.05em;
+	position: relative;
+	bottom: -0.2em;
+}
+
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+blockquote {
+	/* note: must not leave any whitespace at the beginning of a blockquote in markup - Safari will render it  */
+	color: #a2a2a2;
+	font-size: 1.667em; /* 20px */
+	font-family: Georgia, Times, serif;
+	font-weight: normal;
+	line-height: 1.2em;
+	text-indent: -0.4em; /* negative indent brings the opening quote into the left padding */
+	margin: 0 0 1.0em 0;
+	padding: 0 20px;
+}
+
+
+/********************
+	font-size key
+********************/
+
+/*** 11pt default base ***/
+/*
+body = 10px
+	div#wrapper = 1.1em
+		09px = {font-size: 0.818em;}
+		10px = {font-size: 0.909em;}
+		11px = {font-size: 1.0em;}
+		12px = {font-size: 1.091em;}
+		13px = {font-size: 1.182em;}
+		14px = {font-size: 1.273em;}
+		15px = {font-size: 1.364em;}
+		16px = {font-size: 1.455em;}
+		17px = {font-size: 1.545em;}
+		18px = {font-size: 1.636em;}
+		19px = {font-size: 1.727em;}
+		20px = {font-size: 1.818em;}
+		21px = {font-size: 1.909em;}
+		22px = {font-size: 2.0em;}
+		23px = {font-size: 2.091em;}
+		24px = {font-size: 2.182em;}
+		25px = {font-size: 2.273em;}
+		26px = {font-size: 2.364em;}
+		27px = {font-size: 2.455em;}
+		28px = {font-size: 2.546em;}
+		29px = {font-size: 2.636em;}
+		30px = {font-size: 2.727em;}
+		31px = {font-size: 2.818em;}
+		32px = {font-size: 2.909em;}
+		33px = {font-size: 3.0em;}
+		34px = {font-size: 3.091em;}
+		35px = {font-size: 3.182em;}
+		36px = {font-size: 3.273em;}
+*/
+/*** end 11pt ***/
+
+/*** 12pt default base ***/
+/*
+body = 10px
+	div#wrapper = 1.2em
+		09px = {font-size: 0.75em;}
+		10px = {font-size: 0.833em;}
+		11px = {font-size: 0.917em;}
+		12px = {font-size: 1.0em;}
+		13px = {font-size: 1.083em;}
+		14px = {font-size: 1.167em;}
+		15px = {font-size: 1.250em;}
+		16px = {font-size: 1.333em;}
+		17px = {font-size: 1.417em;}
+		18px = {font-size: 1.50em;}
+		19px = {font-size: 1.583em;}
+		20px = {font-size: 1.667em;}
+		21px = {font-size: 1.750em;}
+		22px = {font-size: 1.833em;}
+		23px = {font-size: 1.917em;}
+		24px = {font-size: 2.0em;}
+		25px = {font-size: 2.083em;}
+		26px = {font-size: 2.167em;}
+		27px = {font-size: 2.250em;}
+		28px = {font-size: 2.333em;}
+		29px = {font-size: 2.417em;}
+		30px = {font-size: 2.50em;}
+		31px = {font-size: 2.583em;}
+		32px = {font-size: 2.667em;}
+		33px = {font-size: 2.750em;}
+		34px = {font-size: 2.833em;}
+		35px = {font-size: 2.917em;}
+		36px = {font-size: 3.0em;}
+*/
+/*** end 12pt ***/
+
+/*** 13pt default base ***/
+/*
+body = 10px
+	div#wrapper = 1.3em
+		09px = {font-size: 0.692em;}
+		10px = {font-size: 0.769em;}
+		11px = {font-size: 0.846em;}
+		12px = {font-size: 0.923em;}
+		13px = {font-size: 1.0em;}
+		14px = {font-size: 1.077em;}
+		15px = {font-size: 1.154em;}
+		16px = {font-size: 1.231em;}
+		17px = {font-size: 1.308em;}
+		18px = {font-size: 1.385em;}
+		19px = {font-size: 1.462em;}
+		20px = {font-size: 1.538em;}
+		21px = {font-size: 1.615em;}
+		22px = {font-size: 1.692em;}
+		23px = {font-size: 1.769em;}
+		24px = {font-size: 1.846em;}
+		25px = {font-size: 1.923em;}
+		26px = {font-size: 2.0em;}
+		27px = {font-size: 2.077em;}
+		28px = {font-size: 2.154em;}
+		29px = {font-size: 2.231em;}
+		30px = {font-size: 2.308em;}
+		31px = {font-size: 2.385em;}
+		32px = {font-size: 2.462em;}
+		33px = {font-size: 2.538em;}
+		34px = {font-size: 2.615em;}
+		35px = {font-size: 2.692em;}
+		36px = {font-size: 2.769em;}
+*/
+/*** end 13pt ***/
+
+/*** 14pt default base ***/
+/*
+body = 10px
+	div#wrapper = 1.4em
+		09px = {font-size: 0.643em;}
+		10px = {font-size: 0.714em;}
+		11px = {font-size: 0.786em;}
+		12px = {font-size: 0.857em;}
+		13px = {font-size: 0.929em;}
+		14px = {font-size: 1.0em;}
+		15px = {font-size: 1.071em;}
+		16px = {font-size: 1.143em;}
+		17px = {font-size: 1.214em;}
+		18px = {font-size: 1.286em;}
+		19px = {font-size: 1.357em;}
+		20px = {font-size: 1.429em;}
+		21px = {font-size: 1.50em;}
+		22px = {font-size: 1.571em;}
+		23px = {font-size: 1.643em;}
+		24px = {font-size: 1.714em;}
+		25px = {font-size: 1.786em;}
+		26px = {font-size: 1.857em;}
+		27px = {font-size: 1.929em;}
+		28px = {font-size: 2.0em;}
+		29px = {font-size: 2.071em;}
+		30px = {font-size: 2.143em;}
+		31px = {font-size: 2.214em;}
+		32px = {font-size: 2.286em;}
+		33px = {font-size: 2.357em;}
+		34px = {font-size: 2.429em;}
+		35px = {font-size: 2.50em;}
+		36px = {font-size: 2.571em;}
+*/
+/*** end 14pt ***/
+
+/***** /font-size key *****/

@@ -1,0 +1,195 @@
+
+/*	-----------------------------------------------
+
+	Custom styles
+
+	----------------------------------------------- */
+
+/**
+*	form example
+**/
+
+fieldset#form_example {}
+	fieldset#form_example div#uxInterestBlock {}
+		fieldset#form_example div#uxInterestBlock fieldset.cb-rb-fields {
+			float: left;
+			display: inline;
+			width: 180px;
+			margin-right: 20px;
+		}
+
+fieldset#yacal_example {}
+	fieldset#yacal_example fieldset.text-fields div.date-input-field {
+		position: relative;
+	}
+	fieldset#yacal_example fieldset.text-fields div.start-date,
+	fieldset#yacal_example fieldset.text-fields div.end-date {
+		float: left;
+		display: inline;
+		margin-right: 20px;
+	}
+		fieldset#yacal_example fieldset.text-fields div.date-input-field img.icon-calendar {
+			width: 16px;
+			height: 16px;
+			padding: 2px;
+			position: relative;
+			left: -24px;
+		}
+
+/*** /form example ***/
+
+
+/**
+*	performance listing & pagination
+**/
+
+ul.contentlist {
+	list-style: none;
+	margin: 0;
+	border-bottom: 1px dotted #999999;
+	/* background: transparent url('../img/hr.gif') repeat-x left bottom; */
+}
+	ul.contentlist li {
+		display: block;
+		margin: 0;
+		padding: 1.5em 0;
+		border-top: 1px dotted #999999;
+		/* background: transparent url('../img/hr.gif') repeat-x left top; */
+	}
+	ul.contentlist div.colA {
+		float: left;
+		display: inline;
+		width: 150px;
+	}
+	ul.contentlist div.colB {
+		float: right;
+		display: inline;
+		width: 510px;
+	}
+	ul.contentlist img.thumb {
+		display: block;
+		background: #efefef;
+	}
+	ul.contentlist p {
+		margin: 0;
+	}
+	ul.contentlist h3 a {
+		text-decoration: none;
+	}
+
+table.contenttable {
+	margin: 0;
+}
+	table.contenttable th {
+		padding: 0.5em 0;
+		background: #efefef;
+	}
+	table.contenttable td {
+		padding: 1.5em 0;
+		border-top: 1px dotted #999999;
+		/* background: transparent url('../img/hr.gif') repeat-x left top; */
+	}
+	table.contenttable tfoot th {
+		border-top: 1px dotted #999999;
+		background: #efefef;
+		/* background: #efefef url('../img/hr.gif') repeat-x left top; */
+	}
+	table.contenttable th.colA,
+	table.contenttable td.colA {
+		width: 150px;
+		padding-left: 5px;
+	}
+	table.contenttable th.colB,
+	table.contenttable td.colB {
+		width: 510px;
+		padding-left: 15px;
+	}
+	table.contenttable img.thumb {
+		display: block;
+		background: #efefef;
+	}
+	table.contenttable p {
+		margin: 0;
+	}
+	table.contenttable h3 a {
+		text-decoration: none;
+	}
+
+table.thumbtable {
+	margin: 0;
+}
+	table.thumbtable th {
+		padding: 0.5em 10px;
+		background: #efefef;
+	}
+	table.thumbtable td {
+		padding: 1.5em 10px;
+		border-top: 1px dotted #999999;
+		/* background: transparent url('../img/hr.gif') repeat-x left top; */
+	}
+	table.thumbtable tfoot th {
+		border-top: 1px dotted #999999;
+		background: #efefef;
+		/* background: #efefef url('../img/hr.gif') repeat-x left top; */
+	}
+	table.thumbtable td {
+		width: 150px;
+	}
+	table.thumbtable img.thumb {
+		display: block;
+		margin: 0 0 0.5em 0;
+		background: #efefef;
+	}
+	table.thumbtable p {
+		margin: 0;
+	}
+	table.thumbtable h3 {
+		font-size: 1.270em; /* 14px */
+		margin: 0 0 0.2em 0;
+	}
+		table.thumbtable h3 a {
+			text-decoration: none;
+		}
+	table.thumbtable h4 {
+		font-size: 1.090em; /* 12px */
+		margin: 0 0 0.2em 0;
+	}
+
+div#upperpaginav {
+	/* background: transparent url('../img/hr.gif') repeat-x left top; */
+}
+div#lowerpaginav {
+	/* background: transparent url('../img/hr.gif') repeat-x left bottom; */
+}
+div.pagi-nav {
+	padding: 0.5em 0;
+	text-align: right;
+}
+	div.pagi-nav p.viewall {
+		display: inline-block;
+		margin: 0 10px;
+		line-height: 1.3em;
+	}
+	div.pagi-nav ul {
+		list-style: none;
+		display: inline-block;
+		margin: 0;
+	}
+		div.pagi-nav ul li {
+			display: inline;
+			margin: 0;
+			padding: 0 4px;
+		}
+			div.pagi-nav ul li a {
+				visibility: visible;
+				font-weight: bold;
+				text-decoration: none;
+			}
+			div.pagi-nav ul li.selected a {
+				color: #999999;
+			}
+			div.pagi-nav ul li.disabled a {
+				visibility: hidden;
+			}
+
+/*** /performance listing & pagination ***/

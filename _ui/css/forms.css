@@ -1,0 +1,327 @@
+
+/*	-----------------------------------------------
+
+	form elements & fieldset styles
+
+	----------------------------------------------- */
+
+/**
+*	basic form elements
+**/
+
+fieldset {
+	display: block;
+	width: auto;
+}
+
+label, span.label {
+	color: #333;
+	font-size: 12px;
+	line-height: 16px;
+}
+label.disabled, span.label.disabled {
+	color: #ccc;
+}
+
+input, select, textarea {
+	color: #333;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+input[type=text], input[type=password], select, textarea {
+	background: #fff;
+	border: 1px solid #ccc;
+	padding: 2px;
+}
+textarea {
+	line-height: 16px;
+}
+input[type=checkbox], input[type=radio] {
+	/* setting exact size removes IE padding, makes uniform cross-browser */
+	width: 15px;
+	height: 15px;
+}
+input[type=submit], input[type=reset], button {
+	cursor: pointer;
+	font-weight: bold;
+	letter-spacing: 1px 5px;
+	text-decoration: none;
+	text-transform: uppercase;
+	background: #ccc;
+	border: 1px solid #333;
+	padding: 2px;
+	overflow: visible; /* IE width fix: set overflow visible, does not affect other browsers */
+}
+
+input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
+	outline: 1px solid #333;
+}
+input[type=text].error, input[type=password].error, select.error, textarea.error {
+	border-color: #a33a3a;
+}
+
+input[type=text][disabled=disabled], input[type=text].disabled,
+input[type=password][disabled=disabled], input[type=password].disabled,
+select[disabled=disabled], select.disabled,
+option[disabled=disabled], option.disabled,
+textarea[disabled=disabled], textarea.disabled {
+	color: #ccc;
+	border-color: #dedede;
+}
+
+input.btn {
+	padding: 1px 18px;
+	background: #990000;
+	color: #ffffff;
+	text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 2px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: color .2s, background-color .2s;
+	-moz-transition: color .2s, background-color .2s;
+	-o-transition: color .2s, background-color .2s;
+	transition: color .2s, background-color .2s;
+}
+input.btn:hover {
+	background: #cc0000;
+}
+
+input.alt-btn {
+	padding: 1px 18px;
+	background: #cccccc;
+	color: #333333;
+	text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 2px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: color .2s, background-color .2s;
+	-moz-transition: color .2s, background-color .2s;
+	-o-transition: color .2s, background-color .2s;
+	transition: color .2s, background-color .2s;
+}
+input.alt-btn:hover {
+	background: #dedede;
+}
+
+input.sm-btn {
+	padding: 0px 10px;
+	background: #990000;
+	color: #ffffff;
+	text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 2px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: color .2s, background-color .2s;
+	-moz-transition: color .2s, background-color .2s;
+	-o-transition: color .2s, background-color .2s;
+	transition: color .2s, background-color .2s;
+}
+input.sm-btn:hover {
+	background: #cc0000;
+}
+
+input.text {
+	width: 180px;
+}
+input.text-short {
+	width: 80px;
+}
+input.text-xshort {
+	width: 40px;
+}
+input.text-long {
+	width: 240px;
+}
+input.text-xlong {
+	width: 360px;
+}
+
+select.select {
+	width: 186px;
+}
+select.select-short {
+	width: 86px;
+}
+select.select-xshort {
+	width: 46px;
+}
+select.select-long {
+	width: 366px;
+}
+select.select-xlong {
+	width: 486px;
+}
+select.select-auto {
+	width: auto;
+}
+
+textarea.textarea {
+	width: 300px;
+	height: 80px; /* 5 lines X 16px line-height */
+}
+textarea.textarea-small {
+	width: 180px;
+	height: 64px; /* 4 lines X 16px line-height */
+}
+textarea.textarea-large {
+	width: 520px;
+	height: 96px; /* 6 lines X 16px line-height */
+}
+
+span.formnote { /* note next to an input field */
+	display: inline-block;
+	color: #666666;
+	font-size: 11px;
+	line-height: 15px;
+	margin: 2px 0 0 10px;
+}
+div.formnote { /* note below an input field */
+	color: #666666;
+	font-size: 11px;
+	line-height: 15px;
+	margin: -10px 0 12px 0;
+	padding-left: 150px; /* matches label+margin width */
+}
+
+p.reqnote {
+	width: 335px; /* width = label + input[text] */
+	margin-bottom: 0.8em;
+	text-align: right;
+}
+
+p.formcopy { /* form instructional copy */
+	margin-bottom: 0.8em;
+}
+
+label.hide {
+	position: absolute;
+	left: -999999px;
+}
+
+/*** /basic form elements ***/
+
+
+/**
+*	fieldset classes
+**/
+
+fieldset.text-fields {
+	margin: 0 0 1.0em 0;
+}
+	fieldset.text-fields br {
+		clear: left;
+	}
+	fieldset.text-fields input,
+	fieldset.text-fields select,
+	fieldset.text-fields textarea {
+		vertical-align: top;
+	}
+	fieldset.text-fields ol {
+		list-style: none;
+		margin: 0;
+	}
+		fieldset.text-fields ol > li {
+			margin: 10px 0 0 0;
+		}
+		fieldset.text-fields ol > li:first-child {
+			margin: 0;
+		}
+		/*
+		fieldset.text-fields ol.inline-fields-list span.label,
+		fieldset.text-fields ol.inline-fields-list label {
+			float: left;
+			clear: left;
+			width: 140px;
+			font-weight: bold;
+			text-align: right;
+			margin: 4px 12px 0 0;
+		}
+		fieldset.text-fields ol.block-fields-list span.label,
+		fieldset.text-fields ol.block-fields-list label {
+			display: block;
+			text-transform: uppercase;
+			margin: 0 0 4px 0;
+		}
+		*/
+	fieldset.text-fields span.label, /* span tag to emulate a label */
+	fieldset.text-fields label {
+		float: left;
+		clear: left;
+		display: inline;
+		width: 140px;
+		margin: 2px 10px 8px 0;
+		line-height: 1.5em;
+		text-align: right;
+	}
+	fieldset.text-fields label.short {
+		width: 80px;
+	}
+	fieldset.text-fields label.auto {
+		width: auto;
+	}
+	fieldset.text-fields label.block { /* stacked label/input */
+		float: none;
+		display: block;
+		width: auto;
+		margin: 0 0 0.2em 0;
+		text-align: left;
+	}
+	fieldset.text-fields div.label-name {
+		margin: 0 0 8px 0;
+	}
+		fieldset.text-fields div.label-name span.label {
+			float: left;
+			display: inline;
+			margin: 2px 10px 0 0;
+			line-height: 1.5em;
+		}
+		fieldset.text-fields div.label-name span.name {
+			float: left;
+			display: inline;
+			margin: 2px 0 0 0;
+			line-height: 1.5em;
+		}
+
+fieldset.cb-rb-fields {
+	margin: 0 0 1.0em 0;
+}
+	fieldset.cb-rb-fields input[type=checkbox],
+	fieldset.cb-rb-fields input[type=radio] {
+		vertical-align: top;
+		margin: 0 0 0.8em 0;
+	}
+	fieldset.cb-rb-fields label {
+		line-height: 1.5em;
+		margin: 0 15px 0 2px;
+	}
+
+fieldset.cb-rb-block-fields {
+	margin: 0 0 1.0em 0;
+}
+	fieldset.cb-rb-block-fields input[type=checkbox],
+	fieldset.cb-rb-block-fields input[type=radio] {
+		float: left;
+		display: inline;
+		vertical-align: top;
+		margin: 2px 0 0 0;
+	}
+	fieldset.cb-rb-block-fields label {
+		display: block;
+		line-height: 1.5em;
+		margin: 0 0 0.5em 20px;
+	}
+
+/* wrapper for form buttons */
+fieldset.form-btns {
+	text-align: right;
+	margin: 0 0 1.0em 0;
+	padding: 0.5em 0;
+	border-top: 1px solid #cccccc;
+}
+
+/*** /fieldset classes ***/

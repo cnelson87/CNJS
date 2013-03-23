@@ -1,0 +1,795 @@
+
+/*	-----------------------------------------------
+
+	JS widgets
+
+	----------------------------------------------- */
+
+
+.template {display: none;}
+
+
+/**
+*	ajax overlay & spinner
+**/
+
+div.overlay {
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	opacity: 0.7;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+div.spinner {
+	width: 100%;
+	height: 100%;
+	background: transparent url('../img/spinner.gif') no-repeat center center;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/*** /ajax overlay & spinner ***/
+
+
+/**
+*	carousel
+**/
+
+div.carousel {
+	width: 640px;
+	height: 105px;
+	margin: 0 0 18px 0;
+	padding: 0 20px;
+	position: relative;
+}
+	div.carousel div.carousel-outer-window {
+		width: 640px;
+		height: 105px;
+		position: relative;
+		overflow: hidden;
+	}
+	div.carousel ul.carousel-inner-track {
+		list-style: none;
+		width: 100000px;
+		height: 105px;
+		margin: 0;
+		position: absolute;
+		overflow: hidden;
+	}
+		div.carousel ul.carousel-inner-track li {
+			float: left;
+			width: 150px;
+			height: 95px;
+			margin: 0;
+			padding: 5px;
+			background: #cdcdcd;
+		}
+		div.carousel ul.carousel-inner-track li:focus {
+			background: #696969;
+		}
+			div.carousel ul.carousel-inner-track li img.thumb {
+				display: block;
+				width: 150px;
+				height: 87px;
+			}
+	div.carousel a.carousel-nav {
+		display: block;
+		width: 20px;
+		height: 100%;
+		background: #808080;
+		position: absolute;
+		top: 0;
+	}
+	div.carousel a.nav-prev {
+		left: 0;
+	}
+	div.carousel a.nav-next {
+		right: 0;
+	}
+	div.carousel a.carousel-nav.disabled {
+		cursor: default;
+	}
+		div.carousel a.carousel-nav span.arrow {
+			display: block;
+			width: 14px;
+			height: 26px;
+			background: transparent url('../img/lnks-prev-next.gif') no-repeat;
+			margin-top: -13px;
+			position: absolute;
+			top: 50%;
+		}
+		div.carousel a.nav-prev span.arrow {
+			background-position: left -10px;
+			left: 3px;
+		}
+		div.carousel a.nav-prev:hover span.arrow {
+			background-position: left -40px;
+		}
+		div.carousel a.nav-prev.disabled span.arrow,
+		div.carousel a.nav-prev.disabled:hover span.arrow {
+			background-position: left -70px;
+		}
+		div.carousel a.nav-next span.arrow {
+			background-position: right -10px;
+			right: 3px;
+		}
+		div.carousel a.nav-next:hover span.arrow {
+			background-position: right -40px;
+		}
+		div.carousel a.nav-next.disabled span.arrow,
+		div.carousel a.nav-next.disabled:hover span.arrow {
+			background-position: right -70px;
+		}
+
+/*** /carousel ***/
+
+
+/*** tab-carousel ***/
+
+div.carousel.tab-carousel {
+	height: 141px;
+}
+	div.carousel.tab-carousel a.carousel-nav {
+		top: 76px;
+	}
+
+/*** /tab-carousel ***/
+
+
+/**
+*	big carousel
+**/
+
+div.fullwidth-carousel {
+	width: 100%;
+	height: 440px;
+	background: rgba(0,0,0,0.3);
+	padding: 20px 0;
+	position: relative;
+}
+	div.fullwidth-carousel div.carousel-outer-window {
+		width: 920px;
+		height: 440px;
+		margin: 0 auto;
+		position: relative;
+		z-index: 1;
+	}
+	div.fullwidth-carousel div.carousel-inner-track {
+		width: 100000px;
+		height: 440px;
+		margin: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+		div.fullwidth-carousel div.carousel-inner-track article {
+			float: left;
+			width: 228px;
+			min-height: 160px;
+			background: #fff;
+			background: rgba(255,255,255,0.9);
+			border-bottom: 1px solid #c00;
+			margin: 0 20px;
+			padding: 24px 16px 5px 16px;
+			position: relative;
+		}
+		div.fullwidth-carousel div.carousel-inner-track article:focus {
+			background: #eee;
+		}
+			div.fullwidth-carousel div.carousel-inner-track article a.thumb,
+			div.fullwidth-carousel div.carousel-inner-track article a.thumb img {
+				display: block;
+				width: 228px;
+				height: 167px;
+			}
+			div.fullwidth-carousel div.carousel-inner-track article .article-body {
+				padding: 20px 5px 20px 15px;
+			}
+			div.fullwidth-carousel div.carousel-inner-track article .article-body .linklist {
+				margin: 0;
+			}
+
+
+	div.fullwidth-carousel a.carousel-nav {
+		display: block;
+		width: 160px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		z-index: 2;
+	}
+	div.fullwidth-carousel a.carousel-nav:focus,
+	div.fullwidth-carousel a.carousel-nav:hover {
+		background: rgba(255,255,255,0.3);
+	}
+	div.fullwidth-carousel a.nav-prev {
+		left: -160px;
+		left: 0;
+	}
+	div.fullwidth-carousel a.nav-next {
+		right: -160px;
+		right: 0;
+	}
+	div.fullwidth-carousel a.carousel-nav.disabled {
+		cursor: default;
+	}
+		div.fullwidth-carousel a.carousel-nav span.visible-btn {
+			display: block;
+			width: 100%;
+			height: 60px;
+			margin-top: -30px;
+			background: #505050;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			-webkit-transition: opacity .2s, background-color .2s;
+			-moz-transition: opacity .2s, background-color .2s;
+			-o-transition: opacity .2s, background-color .2s;
+			transition: opacity .2s, background-color .2s;
+		}
+		div.fullwidth-carousel a.carousel-nav:focus span.visible-btn,
+		div.fullwidth-carousel a.carousel-nav:hover span.visible-btn {
+			opacity: 1;
+		}
+		div.fullwidth-carousel a.carousel-nav.disabled:focus span.visible-btn,
+		div.fullwidth-carousel a.carousel-nav.disabled:hover span.visible-btn {
+			opacity: 0;
+		}
+			div.fullwidth-carousel a.carousel-nav span.arrow {
+				display: block;
+				width: 14px;
+				height: 26px;
+				margin-top: -13px;
+				background: transparent url('../img/lnks-prev-next.gif') no-repeat;
+				position: absolute;
+				top: 50%;
+			}
+			div.fullwidth-carousel a.nav-prev span.arrow {
+				background-position: left -40px;
+				margin-right: -7px;
+				right: 50%;
+			}
+			/*
+			div.fullwidth-carousel a.nav-prev:hover span.arrow {
+				background-position: left -40px;
+			}
+			div.fullwidth-carousel a.nav-prev.disabled span.arrow,
+			div.fullwidth-carousel a.nav-prev.disabled:hover span.arrow {
+				background-position: left -70px;
+			}
+			*/
+			div.fullwidth-carousel a.nav-next span.arrow {
+				background-position: right -40px;
+				margin-left: -7px;
+				left: 50%;
+			}
+			/*
+			div.fullwidth-carousel a.nav-next:hover span.arrow {
+				background-position: right -40px;
+			}
+			div.fullwidth-carousel a.nav-next.disabled span.arrow,
+			div.fullwidth-carousel a.nav-next.disabled:hover span.arrow {
+				background-position: right -70px;
+			}
+			*/
+
+
+/*** /big carousel ***/
+
+
+/**
+*	revealer
+**/
+
+div.revealer-container {
+	width: 680px;
+	margin: 0 0 18px 0;
+	position: relative;
+}
+
+a.revealer-trigger {}
+div.revealer-container.active a.revealer-trigger {
+	color: #666;
+}
+
+div.revealer-target {
+	margin-top: -1px;
+	position: relative;
+}
+	div.revealer-target div.revealer-inner {
+		width: 650px;
+		padding: 15px 15px 5px 15px;
+		border-top: 1px solid #000;
+		border-bottom: 1px solid #000;
+	}
+div.revealer-target:focus {
+	background: #fafafa;
+}
+
+/*** /revealer ***/
+
+
+/**
+*	tabswitcher
+**/
+
+div.tabnav {
+	height: 24px;
+	margin: 0 0 12px 0;
+	overflow: auto;
+}
+	div.tabnav ul {
+		list-style: none;
+		margin: 0;
+	}
+		div.tabnav ul li {
+			float: left;
+			margin: 0 0 0 5px;
+			border-top: 1px solid #000;
+			border-bottom: 1px solid #000;
+			background: #ccc;
+		}
+		div.tabnav ul li:first-child {
+			margin: 0;
+		}
+		div.tabnav ul li.active,
+		div.tabnav ul li:hover {
+			background: #666;
+		}
+			div.tabnav ul li a, div.tabnav ul li a:link, div.tabnav ul li a:visited,
+			div.tabnav ul li a:hover, div.tabnav ul li a:visited:hover, div.tabnav ul li a:active {
+				display: block;
+				padding: 2px 15px;
+				color: #fff;
+				text-decoration: none;
+				text-transform: uppercase;
+			}
+			div.tabnav ul li a:focus {
+				color: #000;
+			}
+
+div.tabpanels {
+	margin: 0 0 1.5em 0;
+	border-bottom: 1px solid #000;
+}
+	div.tabpanels div.panel {
+		padding: 2px 15px;
+		position: relative;
+	}
+	div.tabpanels div.panel:focus {
+		/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
+		background: #fafafa;
+	}
+		div.tabpanels div.panel div.pane {
+			padding-top: 15px;
+			border-top: 1px solid #000;
+		}
+		div.tabpanels div.panel div.pane:first-child {
+			border: 0;
+		}
+			div.tabpanels div.panel div.pane a.btn {
+				float: right;
+				margin: -4px 0 0 0;
+			}
+		div.tabpanels div.panel div.cta-top {}
+		html.js-enabled div.tabpanels div.panel div.cta-top {display: none;}
+		body.js-enabled div.tabpanels div.panel div.cta-top {display: none;}
+		/* nested tabswitchers */
+		div.tabpanels div.panel div.tabpanels {
+			border: 0;
+		}
+			div.tabpanels div.panel div.tabpanels div.panel {
+				padding: 0 0 15px 0;
+			}
+		div.tabpanels div.panel div.tabnav {
+			margin: 0;
+			border-bottom: 1px solid #000;
+		}
+			div.tabpanels div.panel div.tabnav ul {}
+				div.tabpanels div.panel div.tabnav ul li {
+					margin: 0 0 0 2px;
+					border: 1px solid #000;
+					border-bottom: 0;
+				}
+				div.tabpanels div.panel div.tabnav ul li:first-child {
+					margin: 0;
+				}
+					div.tabpanels div.panel div.tabnav ul li a {
+						padding: 2px 8px;
+					}
+
+/*** /tabswitcher ***/
+
+
+/**
+*	accordion
+**/
+
+div#test_accordion {}
+div.accordion {
+	width: 680px;
+	border-bottom: 1px solid #000;
+	position: relative;
+}
+	div.accordion h5.acc-tab {
+		margin: 0;
+		background: #ccc;
+		border-top: 1px solid #000;
+	}
+	div.accordion h5.acc-tab.active,
+	div.accordion h5.acc-tab:hover {
+		background: #666;
+	}
+		div.accordion h5.acc-tab a, div.accordion h5.acc-tab a:link, div.accordion h5.acc-tab a:visited,
+		div.accordion h5.acc-tab a:hover, div.accordion h5.acc-tab a:visited:hover, div.accordion h5.acc-tab a:active {
+			display: block;
+			padding: 5px 15px;
+			color: #fff;
+			text-decoration: none;
+			text-transform: uppercase;
+			position: relative;
+		}
+		div.accordion h5.acc-tab a:focus {
+			color: #000;
+		}
+	div.accordion div.acc-panel {
+		width: 680px;
+		position: relative;
+		overflow: hidden;
+	}
+	div.accordion div.acc-panel:focus {
+		/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
+		background: #fafafa;
+	}
+		div.accordion div.acc-panel-inner {
+			width: 650px;
+			padding: 1.2em 15px 0.2em 15px;
+			border-top: 1px solid #000;
+		}
+
+/*** /accordion ***/
+
+
+/**
+*	hero-carousel
+**/
+
+div#test-hero-carousel {
+	margin: 0 -20px;
+}
+div.hero-carousel {}
+	div.hero-carousel div.hero-carousel-panels {
+		width: 960px;
+		height: 420px;
+	}
+		div.hero-carousel div.hero-carousel-panels > ul {
+			list-style: none;
+			width: 960px;
+			height: 420px;
+			margin: 0;
+			overflow: hidden;
+			position: relative;
+		}
+			div.hero-carousel div.hero-carousel-panels > ul > li {
+				width: 960px;
+				height: 420px;
+				margin: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			div.hero-carousel div.hero-carousel-panels > ul > li:first-child,
+			body.js-enabled div.hero-carousel div.hero-carousel-panels > ul > li {
+				display: block;
+			}
+				div.hero-carousel div.hero-carousel-panels > ul > li > a {
+					display: block;
+					width: 960px;
+					height: 420px;
+					position: absolute;
+				}
+					div.hero-carousel div.hero-carousel-panels > ul > li > a > img {
+						display: block;
+						width: 960px;
+						height: 420px;
+					}
+				div.hero-carousel div.hero-carousel-panels div.hero-item-content {
+					width: 600px;
+					height: 120px;
+					padding: 20px 40px;
+					background: #666;
+					background: rgba(0,0,0,0.4);
+					position: absolute;
+					right: 0px;
+					bottom: 20px;
+				}
+					div.hero-carousel div.hero-carousel-panels div.hero-item-content * {
+						color: #fff;
+						text-align: right;
+					}
+					div.hero-carousel div.hero-carousel-panels div.cta {
+						margin: 0;
+					}
+	div.hero-carousel div.hero-carousel-nav {
+		text-align: right;
+		width: 960px;
+		height: 12px;
+		margin: 4px 0;
+	}
+		div.hero-carousel div.hero-carousel-nav ul {
+			list-style: none;
+			display: inline-block;
+			height: 12px;
+			margin: 0;
+		}
+			div.hero-carousel div.hero-carousel-nav ul li {
+				float: left;
+				width: 28px;
+				height: 12px;
+				margin: 0 0 0 1px;
+			}
+			div.hero-carousel div.hero-carousel-nav ul li:first-child {
+				margin: 0;
+			}
+				div.hero-carousel div.hero-carousel-nav ul li a {
+					display: block;
+					width: 26px;
+					height: 10px;
+					border: 1px solid #999;
+					background: #b6b6b6;
+				}
+				div.hero-carousel div.hero-carousel-nav ul li.active a,
+				div.hero-carousel div.hero-carousel-nav ul li a:hover {
+					border: 1px solid #600;
+					background: #c00;
+				}
+
+	div.hero-carousel div.hero-carousel-nav a.nav-prev {
+		display: inline-block;
+		width: 8px;
+		height: 12px;
+		margin: 0 4px;
+		background: transparent url('../img/arrow_prev.gif') no-repeat center center;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-prev:hover {
+		background-color: #c00;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-prev.disabled,
+	div.hero-carousel div.hero-carousel-nav a.nav-prev.disabled:hover {
+		visibility: hidden;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-next {
+		display: inline-block;
+		width: 8px;
+		height: 12px;
+		margin: 0 4px;
+		background: transparent url('../img/arrow_next.gif') no-repeat center center;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-next:hover {
+		background-color: #c00;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-next.disabled,
+	div.hero-carousel div.hero-carousel-nav a.nav-next.disabled:hover {
+		visibility: hidden;
+	}
+
+/*** /hero-carousel ***/
+
+
+/**
+*	tooltip
+**/
+
+div.tooltip {
+	width: 360px;
+	border: 1px solid #636363;
+	background: #fff;
+	position: absolute;
+	z-index: 10;
+	font-size: 1.2em; /* 62.5% x 1.2em = 12px base font size */
+	/* TEMP
+	left: 50%;
+	top: 50%;
+	/TEMP */
+}
+	div.tooltip div.tooltip-header {
+		width: 280px;
+		height: 8px;
+		background: #ccc;
+	}
+	div.tooltip div.tooltip-footer {
+		width: 280px;
+		height: 4px;
+		background: #ccc;
+	}
+	div.tooltip div.tooltip-arrow {
+		background: transparent url('../img/tooltip-arrow.png') no-repeat left top;
+		position: absolute;
+	}
+	div.tooltip-east div.tooltip-arrow {
+		width: 13px;
+		height: 25px;
+		background-position: left top;
+		left: -13px;
+		top: 16px;
+	}
+	div.tooltip-west div.tooltip-arrow {
+		width: 13px;
+		height: 25px;
+		background-position: right top;
+		right: -13px;
+		top: 16px;
+	}
+	div.tooltip-north div.tooltip-arrow {
+		width: 25px;
+		height: 13px;
+		background-position: left bottom;
+		left: 16px;
+		bottom: -13px;
+	}
+	div.tooltip-south div.tooltip-arrow {
+		width: 25px;
+		height: 13px;
+		background-position: left top;
+		left: 16px;
+		top: -13px;
+	}
+	div.tooltip div.tooltip-content {
+		min-height: 80px;
+		padding: 15px 15px 1px 15px;
+	}
+	div.tooltip:focus {
+		outline: 1px dotted #636363;
+	}
+
+/*** /tooltip ***/
+
+
+
+/**
+*	img-modal
+**/
+
+div.img-popover {
+	width: 670px;
+	height: 390px;
+	border: 2px solid #636363;
+	background: #fff;
+	position: fixed;
+	z-index: 10;
+	font-size: 1.2em; /* 62.5% x 1.2em = 12px base font size */
+}
+	div.img-popover div.img-popover-header {
+		display: none;
+	}
+	div.img-popover div.img-popover-footer {
+		display: none;
+	}
+	div.img-popover div.img-popover-content {
+		width: 640px;
+		height: 360px;
+		padding: 15px;
+	}
+		div.img-popover div.img-popover-content img {
+			display: block;
+			width: 640px;
+			height: 360px;
+		}
+	div.img-popover a.btn-closeX,
+	div.img-popover a.lnk-closeX {
+		position: absolute;
+		right: 3px;
+		top: 3px;
+	}
+		div.img-popover a.btn-closeX span,
+		div.img-popover a.lnk-closeX span {
+			position: fixed;
+			left: -9999px;
+		}
+
+/*** /img-modal ***/
+
+
+/**
+*	modal window
+**/
+
+div.modalspinner {
+	width: 100%;
+	height: 100%;
+	background: transparent url('../img/spinner.gif') no-repeat center center;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 9;
+}
+
+div#modaloverlay {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: 0.7;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 8;
+	display: none;
+}
+div#modaloverlay.active {
+	display: block;
+}
+
+div#spinner {
+	position: absolute;
+	z-index: 9;
+	top: 0px;
+	left: 50%;
+	/*
+	width: 400px;
+	height: 400px;
+	*/
+	background: transparent url('../img/spinner.gif') no-repeat center center;
+	display: none;
+}
+
+div.modalwindow {
+	width: 480px;
+	border: 2px solid #636363;
+	background: #fff;
+	position: fixed;
+	z-index: 10;
+	font-size: 1.2em; /* 62.5% x 1.2em = 12px base font size */
+}
+	div.modalwindow div.modalwindow-header {
+		height: 32px;
+		background: #ccc;
+	}
+	div.modalwindow div.modalwindow-footer {
+		height: 8px;
+		background: #ccc;
+	}
+	div.modalwindow div.modalwindow-content {
+		min-height: 120px;
+		padding: 16px 16px 2px 16px;
+	}
+	div.modalwindow a.btn-closeX,
+	div.modalwindow a.lnk-closeX {
+		position: absolute;
+		right: 3px;
+		top: 3px;
+	}
+
+/*** /modal window ***/
+
+/*** /modal iframe ***/
+
+div.modaliframe {
+	width: 512px;
+	background: #fff;
+	border: 4px solid #333;
+	border-radius: 12px;
+	position: fixed;
+	z-index: 10;
+}
+	div.modaliframe div.modaliframe-content {
+		width: 512px;
+		min-height: 240px;
+	}
+	div.modaliframe div.modaliframe-content iframe {
+		width: 512px;
+		min-height: 240px;
+		background: transparent;
+		border: 0;
+	}
+	div.modaliframe a.btn-closeX,
+	div.modaliframe a.lnk-closeX {
+		position: absolute;
+		right: 16px;
+		top: 8px;
+	}
+
+/*** modal iframe ***/

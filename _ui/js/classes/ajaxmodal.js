@@ -14,7 +14,7 @@
 	DEPENDENCIES:
 		- jQuery 1.8+
 		- class.js
-		- pop.js
+		- cnjs.js
 		- utils.js
 		- loader.js
 

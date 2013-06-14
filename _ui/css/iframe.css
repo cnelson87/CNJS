@@ -32,12 +32,14 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
+/*html, body {height: 100%;}*/
+
 body {
-	color: #464646;
+	color: #010101;
 	font-family: Arial, Verdana, sans-serif;
 	/* font-family: Georgia, Times, serif; */
 	font-size: 62.5%; /* 62.5% squashes default type to 10px, multiplier is set on #wrapper */
-	line-height: 1.0em;
+	line-height: 1.2;
 	background: transparent;
 }
 div#wrapper {
@@ -46,9 +48,8 @@ div#wrapper {
 }
 
 :focus {
-	outline: 0;
+	outline: 1px dotted #464646; /* dev only */
 }
-
 
 code, pre {
 	font-family: monospace;
@@ -61,7 +62,7 @@ em, i {font-style: italic;}
 	em em {font-style: normal;}
 
 a, a:link, a:visited {
-	color: #990000;
+	color: #900;
 	text-decoration: none;
 	-webkit-transition: color .2s, background-color .2s;
 	-moz-transition: color .2s, background-color .2s;
@@ -69,7 +70,7 @@ a, a:link, a:visited {
 	transition: color .2s, background-color .2s;
 }
 a:focus, a:hover, a:visited:hover, a:active {
-	color: #cc0000;
+	color: #c00;
 	text-decoration: underline;
 }
 
@@ -116,14 +117,6 @@ h2, .h2 {
 	line-height: 24px;
 	margin: 0 0 12px 0;
 }
-h2.title-bar {
-	color: #333;
-	background: #cfcfcf;
-	border-bottom: 1px solid #333;
-	border-radius: 8px 8px 0 0;
-	margin: 0 -16px 12px -16px;
-	padding: 8px 16px 4px 16px;
-}
 h3, .h3 {
 	font-size: 16px;
 	font-weight: bold;
@@ -150,13 +143,13 @@ h6, .h6 {
 }
 
 sup {
-	font-size: 0.833em; /* 10px */
+	font-size: 10px;
 	margin-left: 0.05em;
 	position: relative;
 	top: -0.5em;
 }
 sub {
-	font-size: 0.833em; /* 10px */
+	font-size: 10px;
 	margin-left: 0.05em;
 	position: relative;
 	bottom: -0.2em;
@@ -173,11 +166,11 @@ q:before, q:after {
 blockquote {
 	/* note: must not leave any whitespace at the beginning of a blockquote in markup - Safari will render it  */
 	color: #a2a2a2;
-	font-size: 1.667em; /* 20px */
+	font-size: 20px;
 	font-family: Georgia, Times, serif;
 	font-weight: normal;
-	line-height: 1.2em;
+	line-height: 24px;
 	text-indent: -0.4em; /* negative indent brings the opening quote into the left padding */
-	margin: 0 0 1.0em 0;
+	margin: 0 0 24px 0;
 	padding: 0 20px;
 }

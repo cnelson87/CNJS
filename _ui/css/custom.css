@@ -18,25 +18,22 @@ fieldset#form_example {}
 			margin-right: 20px;
 		}
 
-fieldset#yacal_example {}
-	fieldset#yacal_example fieldset.text-fields div.date-input-field {
-		position: relative;
-	}
-	fieldset#yacal_example fieldset.text-fields div.start-date,
-	fieldset#yacal_example fieldset.text-fields div.end-date {
-		float: left;
-		display: inline;
-		margin-right: 20px;
-	}
-		fieldset#yacal_example fieldset.text-fields div.date-input-field img.icon-calendar {
-			width: 16px;
-			height: 16px;
-			padding: 2px;
-			position: relative;
-			left: -24px;
-		}
-
 /*** /form example ***/
+
+
+/**
+*	YouTube embed
+**/
+
+iframe.ytplayer {
+	display: block;
+	width: 812px;
+	height: 456px;
+	border: 0;
+	position: relative;
+}
+
+/*** /YouTube embed ***/
 
 
 /**

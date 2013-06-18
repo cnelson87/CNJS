@@ -52,10 +52,21 @@ textarea:invalid {
 	outline: 0;
 }
 
-::-webkit-input-placeholder,
-::-moz-placeholder,
+::-webkit-input-placeholder {
+	color: #ababab;
+	opacity: 1;
+}
+::-moz-placeholder {
+	color: #ababab;
+	opacity: 1;
+}
 :-ms-input-placeholder {
-	color: #ccc;
+	color: #ababab;
+	opacity: 1;
+}
+::input-placeholder {
+	color: #ababab;
+	opacity: 1;
 }
 
 /* start text inputs, selects, textareas */

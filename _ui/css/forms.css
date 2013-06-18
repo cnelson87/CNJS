@@ -52,6 +52,12 @@ textarea:invalid {
 	outline: 0;
 }
 
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder {
+	color: #ccc;
+}
+
 /* start text inputs, selects, textareas */
 
 input:not([type=checkbox]):not([type=radio]):not([type=submit]),
@@ -266,12 +272,30 @@ ol.inline-fields {
 		text-align: right;
 		margin-right: 5px;
 	}
+	ol.horizontal-fields.label-align-left label,
+	ol.horizontal-fields label.align-left {
+		text-align: left;
+	}
+	ol.horizontal-fields.label-width-short label,
+	ol.horizontal-fields label.width-short {
+		width: 80px;
+	}
+	ol.horizontal-fields.label-width-long label,
+	ol.horizontal-fields label.width-long {
+		width: 160px;
+	}
 	ol.horizontal-fields.label-width-auto label,
 	ol.horizontal-fields label.width-auto {
 		width: auto;
 	}
 	ol.horizontal-fields div.form-message {
 		margin-left: 130px; /* matches label width + margin */
+	}
+	ol.horizontal-fields.label-width-short div.form-message {
+		margin-left: 90px;
+	}
+	ol.horizontal-fields.label-width-long div.form-message {
+		margin-left: 170px;
 	}
 
 	ol.vertical-fields label {

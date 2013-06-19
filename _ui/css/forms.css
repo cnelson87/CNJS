@@ -19,7 +19,7 @@ legend {
 	display: none;
 }
 
-label {
+label, span.label {
 	display: inline-block;
 	color: #333;
 	font-size: 13px;
@@ -165,6 +165,12 @@ input[type=radio] {
 	input[type=radio] + label {
 		padding-top: 0;
 	}
+input[type=checkbox][disabled=disabled],
+input[type=radio][disabled=disabled],
+input[type=checkbox].disabled,
+input[type=radio].disabled {
+	cursor: default;
+}
 	input[type=checkbox][disabled=disabled] + label,
 	input[type=radio][disabled=disabled] + label,
 	input[type=checkbox].disabled + label,
@@ -218,12 +224,15 @@ input.sm-btn:focus, input.sm-btn:hover {
 }
 
 input.alt-btn, input.sm-alt-btn {
-	color: #333;
-	background: #ccc;
+	color: #900;
+	background: #fff;
+	border-color: #900;
 }
 input.alt-btn:focus, input.alt-btn:hover,
 input.sm-alt-btn:focus, input.sm-alt-btn:hover {
-	background: #dedede;
+	color: #333;
+	background: #fff;
+	border-color: #333;
 }
 
 input.sm-btn, input.sm-alt-btn {
@@ -278,26 +287,35 @@ ol.inline-fields {
 		margin: 0 0 8px 0;
 	}
 
-	ol.horizontal-fields label {
+	ol.horizontal-fields > li > label,
+	ol.horizontal-fields > li > span.label {
 		width: 120px;
 		text-align: right;
 		margin-right: 5px;
 	}
-	ol.horizontal-fields.label-align-left label,
-	ol.horizontal-fields label.align-left {
-		text-align: left;
-	}
-	ol.horizontal-fields.label-width-short label,
-	ol.horizontal-fields label.width-short {
+	ol.horizontal-fields.label-width-short > li > label,
+	ol.horizontal-fields.label-width-short > li > span.label,
+	ol.horizontal-fields > li > label.width-short,
+	ol.horizontal-fields > li > span.label.width-short {
 		width: 80px;
 	}
-	ol.horizontal-fields.label-width-long label,
-	ol.horizontal-fields label.width-long {
+	ol.horizontal-fields.label-width-long > li > label,
+	ol.horizontal-fields.label-width-long > li > span.label,
+	ol.horizontal-fields > li > label.width-long,
+	ol.horizontal-fields > li > span.label.width-short {
 		width: 160px;
 	}
-	ol.horizontal-fields.label-width-auto label,
-	ol.horizontal-fields label.width-auto {
+	ol.horizontal-fields.label-width-auto > li > label,
+	ol.horizontal-fields.label-width-auto > li > span.label,
+	ol.horizontal-fields > li > label.width-auto,
+	ol.horizontal-fields > li > span.label.width-short {
 		width: auto;
+	}
+	ol.horizontal-fields.label-align-left > li > label,
+	ol.horizontal-fields.label-align-left > li > span.label,
+	ol.horizontal-fields > li > label.align-left,
+	ol.horizontal-fields > li > span.label.align-left {
+		text-align: left;
 	}
 	ol.horizontal-fields div.form-message {
 		margin-left: 130px; /* matches label width + margin */
@@ -308,8 +326,14 @@ ol.inline-fields {
 	ol.horizontal-fields.label-width-long div.form-message {
 		margin-left: 170px;
 	}
+	ol.horizontal-fields ol.cb-rb-fields {
+		display: inline-block;
+		vertical-align: top;
+		margin: 2px 0 -8px 0;
+	}
 
-	ol.vertical-fields label {
+	ol.vertical-fields > li > label,
+	ol.vertical-fields > li > span.label {
 		display: block;
 		margin: 0 0 2px 0;
 	}
@@ -322,7 +346,8 @@ ol.inline-fields {
 		display: block;
 		margin-right: 0;
 	}
-	ol.inline-fields label {
+	ol.inline-fields > li > label,
+	ol.inline-fields > li > span.label {
 		margin-right: 5px;
 	}
 
@@ -341,12 +366,12 @@ ol.cb-rb-fields {
 	ol.cb-rb-fields input[type=radio] {
 		float: left;
 	}
-	ol.cb-rb-fields label {
+	ol.cb-rb-fields > li > label {
 		display: block;
 		margin: 0 0 0 20px;
 	}
 
-	ol.vertical-fields.cb-rb-fields label {
+	ol.vertical-fields.cb-rb-fields > li > label {
 		margin: 0 0 8px 20px;
 	}
 

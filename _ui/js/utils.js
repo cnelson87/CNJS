@@ -17,7 +17,7 @@ CNJS.UTILS = CNJS.UTILS || {};
 
 
 /**
-*	reate, read, destroy cookies
+*	create, read, destroy cookies
 **/
 CNJS.UTILS.Cookie = {
 

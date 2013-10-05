@@ -10,26 +10,28 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, samp,
 small, strike, strong, sub, sup, var,
+b, i, u, center, hr,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-b, i, u, hr, center,
-article, aside, canvas, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, summary,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	outline: 0;
-	font-family: inherit;
 	font-size: 100%;
-	font-style: inherit;
-	font-weight: inherit;
+	font: inherit;
 	vertical-align: baseline;
 }
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section { 
-    display: block;
+footer, header, hgroup, menu, nav, section, summary {
+	display: block;
+}
+audio, canvas, video {
+	display: inline-block;
 }
 
 /*html, body {height: 100%;}*/
@@ -37,14 +39,12 @@ footer, header, hgroup, menu, nav, section {
 body {
 	color: #010101;
 	font-family: Arial, Verdana, sans-serif;
-	/* font-family: Georgia, Times, serif; */
-	font-size: 62.5%; /* 62.5% squashes default type to 10px, multiplier is set on #wrapper */
-	line-height: 1.2;
+	/* font-size: 100%; /* 16px default type */
+	/* font-size: 87.5%; /* 14px */
+	font-size: 75.0%; /* 12px */
+	/* font-size: 62.5%; /* 10px */
+	line-height: 1.0;
 	background: #efefef;
-}
-div#wrapper {
-	font-size: 1.2em; /* 62.5% x 1.2em = 12px base font size */
-	/*font-size: 1.3em;*/ /* 62.5% x 1.3em = 13px base font size */
 }
 
 /*:focus {
@@ -79,9 +79,9 @@ p, ul, ol, dl, table, address {
 	line-height: 18px;
 	margin: 0 0 18px 0;
 }
-    li {
-	    margin: 0 0 8px 20px;
-    }
+	li {
+		margin: 0 0 8px 20px;
+	}
 	dt {
 		font-weight: bold;
 		margin: 0 0 2px 0;
@@ -94,14 +94,14 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-    th {
-	    font-weight: bold;
-	    text-align: left;
-	    vertical-align: bottom;
-    }
-    td {
-	    vertical-align: top;
-    }
+	th {
+		font-weight: bold;
+		text-align: left;
+		vertical-align: bottom;
+	}
+	td {
+		vertical-align: top;
+	}
 
 h1 {
 	color: #464646;

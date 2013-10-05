@@ -590,7 +590,6 @@ div.tooltip {
 	background: #fff;
 	position: absolute;
 	z-index: 10;
-	font-size: 1.2em; /* 62.5% x 1.2em = 12px base font size */
 	/* TEMP
 	left: 50%;
 	top: 50%;
@@ -661,7 +660,6 @@ div.img-popover {
 	background: #fff;
 	position: fixed;
 	z-index: 10;
-	font-size: 1.2em; /* 62.5% x 1.2em = 12px base font size */
 }
 	div.img-popover div.img-popover-header {
 		display: none;
@@ -742,7 +740,6 @@ div.modalwindow {
 	background: #fff;
 	position: fixed;
 	z-index: 10;
-	font-size: 1.2em; /* 62.5% x 1.2em = 12px base font size */
 }
 	div.modalwindow div.modalwindow-header {
 		height: 32px;

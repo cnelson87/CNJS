@@ -1,13 +1,11 @@
 /*
 	TITLE: AjaxModal
 
-	DESCRIPTION: 
+	DESCRIPTION: ModalWindow subclass injects Ajax content
 
 	USAGE: new CNJS.UI.AjaxModal('Elements', 'Options')
 		@param {jQuery Object}
 		@param {Object}
-
-	VERSION: 0.1.0
 
 	AUTHORS: CN
 
@@ -17,16 +15,12 @@
 		- cnjs.js
 		- utils.js
 		- loader.js
-
-	CHANGE LOG
-	--------------------------
-	10/05/12 - CN: Inception
-	--------------------------
+		- modalwindow.js
 
 */
 
 CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
-    init: function($elements, objOptions) {
+	init: function($elements, objOptions) {
 		var self = this;
 
 		// defaults
@@ -50,7 +44,8 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 
 		this._super(this.elTriggers, this.options);
 
-        delete this.init;
+		this.modalContentLoader = new CNJS.UI.Loader(this.elModalContent);
+
 	},
 
 /**
@@ -64,7 +59,8 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 	__clickTrigger: function(e) {
 		var self = this;
 		this.ajaxUrl = this.elCurrentTrigger.data('ajaxurl') || this.elCurrentTrigger.attr('href');
-		this._super(e);
+		this.currentIndex = this.elTriggers.index(this.elCurrentTrigger);
+		this.openModal();
 	},
 
 /**
@@ -78,9 +74,8 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 			this.setContent();
 
 		} else {
-			this.modalContentLoader = new CNJS.UI.Loader(this.elModalContent);
-			this.modalContentLoader.addLoader();
 
+			this.modalContentLoader.addLoader();
 			$.when(self.getAjaxContent(self.ajaxUrl)).done(function(response) {
 				self.modalContentLoader.removeLoader();
 				if (self.options.cacheAjaxResponse) {
@@ -97,16 +92,7 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 
 		}
 
-	}//,
-
-/*
-	setContent: function() {
-		var self = this;
-
-		this.elModalContent.html(this.contentHTML);
-
 	}
-*/
 
 });
 // end AjaxModal

@@ -1,13 +1,11 @@
 /*
 	TITLE: ModalWindow
 
-	DESCRIPTION: 
+	DESCRIPTION: Base class to create modal windows
 
 	USAGE: new CNJS.UI.ModalWindow('Elements', 'Options')
 		@param {jQuery Object}
 		@param {Object}
-
-	VERSION: 0.1.0
 
 	AUTHORS: CN
 
@@ -16,15 +14,10 @@
 		- class.js
 		- cnjs.js
 
-	CHANGE LOG
-	--------------------------
-	10/05/12 - CN: Inception
-	--------------------------
-
 */
 
 CNJS.UI.ModalWindow = Class.extend({
-    init: function($elements, objOptions) {
+	init: function($elements, objOptions) {
 		var self = this;
 
 		// defaults
@@ -38,7 +31,7 @@ CNJS.UI.ModalWindow = Class.extend({
 			modalClass: 'modalwindow',
 			modalOverlayID: 'modaloverlay',
 			closeBtnClass: 'btn-closeX',
-			closeBtnInnerHTML: '<span>X</span>',//ex: '<span class="offscreen">close window</span>'
+			closeBtnInnerHTML: '<span>X</span>', //ex: '<span class="offscreen">close window</span>'
 			activeClass: 'active',
 			leftOffset: 0,
 			topOffset: 0,
@@ -56,13 +49,14 @@ CNJS.UI.ModalWindow = Class.extend({
 
 		// setup & properties
 		this.isModalActivated = false;
-		this.isPosAbs = false;			//position:absolute;
+		this.isPosAbs = false; //position:absolute;
 		this.contentHTML = null;
 		this.currentIndex = null;
 
 		this._initDisplay();
 
-        delete this.init;
+		this._bindEvents();
+
 	},
 
 /**
@@ -86,9 +80,7 @@ CNJS.UI.ModalWindow = Class.extend({
 				'id': this.options.modalID,
 				'class': this.options.modalClass,
 				'role': 'dialog',
-				'tabindex': '-1',
-				'aria-expanded': 'false',
-				'aria-hidden': 'true'
+				'tabindex': '-1'
 			});
 		}
 
@@ -109,15 +101,12 @@ CNJS.UI.ModalWindow = Class.extend({
 				'title': 'close window'
 			}).html(this.options.closeBtnInnerHTML).appendTo(this.elModal);
 		}
-		
+
 		//insert into DOM
 		this.elModal.insertAfter(this.elModalOverlay).hide();
-		//this.setPosition();
 
-		//top pos assumes position:fixed by defalt, if position:absolute the top pos gets trickier.
-		this.isPosAbs = (this.elModal.css('position') == 'absolute') ? true : false;
-
-		this._bindEvents();
+		//top pos assumes position:fixed by defalt, if position:absolute then top pos gets trickier.
+		this.isPosAbs = (this.elModal.css('position') === 'absolute') ? true : false;
 
 	},
 
@@ -145,16 +134,16 @@ CNJS.UI.ModalWindow = Class.extend({
 			}
 		});
 
-		this.$document.bind('focusin', function(e) {
+		this.$document.on('focusin', function(e) {
 			if (self.isModalActivated && !self.elModal.get(0).contains(e.target)) {
 				self.elModal.focus();
-			}	
+			}
 		});
 
-		this.$document.bind('keydown', function(e) {
+		this.$document.on('keydown', function(e) {
 			if (self.isModalActivated && e.keyCode == 27) {
 				self.closeModal();
-			}	
+			}
 		});
 
 		this.$window.on('resize', function(e) {
@@ -178,27 +167,30 @@ CNJS.UI.ModalWindow = Class.extend({
 	setPosition: function() {
 		var docWidth = this.$document.width();
 		var winHeight = this.$window.height();
+		var winScrollTop = this.$window.scrollTop();
 		var modalWidth = this.elModal.outerWidth();
 		var modalHeight = this.elModal.outerHeight();
 		if (this.isIPhone) {winHeight = window.innerHeight;}
 		var leftPos = (((docWidth - modalWidth) / 2) + this.options.leftOffset);
 		var topPos = (((winHeight - modalHeight) / 2) + this.options.topOffset);
+		var minTopSpacing = this.options.minTopSpacing;
 
 		if (this.isPosAbs) {
-			topPos = topPos + this.$window.scrollTop();
-			if (topPos < this.options.minTopSpacing) {
-				topPos = this.options.minTopSpacing;
+			topPos += winScrollTop;
+			if (topPos < winScrollTop + minTopSpacing) {
+				topPos = winScrollTop + minTopSpacing;
 			}
-		}
-
-		if (topPos < this.options.minTopSpacing && !this.isPosAbs) {
-			topPos = this.options.minTopSpacing;
+		} else {
+			if (topPos < minTopSpacing) {
+				topPos = minTopSpacing;
+			}
 		}
 
 		this.elModal.css({left: leftPos + 'px', top: topPos + 'px'});
 
 	},
 
+	// extend or override getContent in subclass to create custom modal
 	getContent: function() {
 		var self = this;
 		var targetID = this.elCurrentTrigger.data('targetid') || this.elCurrentTrigger.attr('href').replace('#','');
@@ -210,20 +202,11 @@ CNJS.UI.ModalWindow = Class.extend({
 
 	},
 
+	// extend or override setContent in subclass to create custom modal
 	setContent: function() {
 		var self = this;
-		var winHeight = this.$window.height();
-		var modalHeight;
-		var modalTop;
 
 		this.elModalContent.html(this.contentHTML);
-
-		modalHeight = this.elModal.outerHeight();
-		modalTop = this.elModal.position().top;
-
-		//if (modalHeight + modalTop > winHeight) {
-			this.setPosition();
-		//}
 
 	},
 

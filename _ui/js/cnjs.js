@@ -26,6 +26,7 @@ $(function () {
 	CNJS.Config.hasCssAnimations = Modernizr.cssanimations;
 	CNJS.Config.hasCssTransitions = Modernizr.csstransitions;
 	CNJS.Config.hasCssTransforms = Modernizr.csstransforms;
+	CNJS.Config.hasPointerEvents = Modernizr.pointerevents;
 	CNJS.Config.hasMediaQueries = Modernizr.mq('only all');
 	CNJS.Config.hasTouch = Modernizr.touch;
 	//CNJS.Config.hasFlash = swfobject.hasFlashPlayerVersion('9.0');

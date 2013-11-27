@@ -4,7 +4,7 @@
 **/
 var CNJS = CNJS || {};
 CNJS.Config = {
-	siteRoot: 'http://localhost:8888/webdev/html-forms',
+	siteRoot: 'http://localhost:8888/cnjs/',
 	isIE:  !!(navigator.userAgent.indexOf('MSIE') >= 0),
 	isIE7: !!(navigator.userAgent.indexOf('MSIE 7') >= 0),
 	isIE8: !!(navigator.userAgent.indexOf('MSIE 8') >= 0),

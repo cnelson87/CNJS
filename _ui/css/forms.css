@@ -71,7 +71,7 @@ textarea:invalid {
 
 /* start text inputs, selects, textareas */
 
-input:not([type=checkbox]):not([type=radio]):not([type=submit]),
+input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=submit]),
 select,
 textarea {
 	width: 140px;
@@ -91,17 +91,17 @@ textarea {
 	line-height: 16px;
 }
 
-input:not([type=checkbox]):not([type=radio]):not([type=submit]):focus,
+input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=submit]):focus,
 select:focus,
 textarea:focus {
 	border-color: #333;
 	outline: none;
 }
 
-input:not([type=checkbox]):not([type=radio]):not([type=submit])[disabled=disabled],
-input:not([type=checkbox]):not([type=radio]):not([type=submit]).disabled,
-select[disabled=disabled], select.disabled,
-textarea[disabled=disabled], textarea.disabled {
+input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=submit])[disabled],
+input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=submit]).disabled,
+select[disabled], select.disabled,
+textarea[disabled], textarea.disabled {
 	color: #ccc;
 	border-color: #dedede;
 }
@@ -156,8 +156,8 @@ textarea.textarea-lrg {
 input[type=checkbox],
 input[type=radio] {
 	/* setting exact size removes IE padding, makes uniform cross-browser */
-	width: 15px;
-	height: 15px;
+	width: 16px;
+	height: 16px;
 	cursor: pointer;
 	vertical-align: middle;
 }
@@ -165,20 +165,34 @@ input[type=radio] {
 	input[type=radio] + label {
 		padding-top: 0;
 	}
-input[type=checkbox][disabled=disabled],
-input[type=radio][disabled=disabled],
+input[type=checkbox][disabled],
+input[type=radio][disabled],
 input[type=checkbox].disabled,
 input[type=radio].disabled {
 	cursor: default;
 }
-	input[type=checkbox][disabled=disabled] + label,
-	input[type=radio][disabled=disabled] + label,
+	input[type=checkbox][disabled] + label,
+	input[type=radio][disabled] + label,
 	input[type=checkbox].disabled + label,
 	input[type=radio].disabled + label {
 		color: #ccc;
 	}
 
 /* end checkbox & radio inputs */
+
+/* start range input */
+
+input[type=range] {
+	width: 140px;
+	height: 24px;
+	cursor: pointer;
+}
+	input[type=range][disabled],
+	input[type=range].disabled {
+		cursor: default;
+	}
+
+/* end range input */
 
 /* start buttons */
 
@@ -199,7 +213,7 @@ button {
 	border: 1px solid #333;
 	border-radius: 3px;
 	padding: 4px 12px;
-	overflow: visible; /* IE width fix, does not affect other browsers */
+	overflow: visible; /* old IE width fix, does not affect other browsers */
 	-webkit-transition: color .2s, background-color .2s;
 	-moz-transition: color .2s, background-color .2s;
 	-ms-transition: color .2s, background-color .2s;
@@ -272,115 +286,134 @@ textarea + input, textarea + select, textarea + textarea {
 *	fieldset - list classes
 **/
 
-/* text inputs, selects, textareas */
+/*** text inputs, selects, textareas ***/
 
-ol.horizontal-fields,
-ol.vertical-fields,
-ol.inline-fields {
+ol.horizontal-fields, ul.horizontal-fields,
+ol.vertical-fields, ul.vertical-fields,
+ol.inline-fields, ul.inline-fields {
 	list-style: none;
 	margin: 0;
 }
-	ol.horizontal-fields > li,
-	ol.vertical-fields > li,
-	ol.inline-fields > li {
+	.horizontal-fields > li,
+	.vertical-fields > li,
+	.inline-fields > li {
 		min-height: 24px; /* matches input height */
 		margin: 0 0 8px 0;
 	}
 
-	ol.horizontal-fields > li > label,
-	ol.horizontal-fields > li > span.label {
+	/* side-by-side label / input */
+	.horizontal-fields > li > label,
+	.horizontal-fields > li > span.label {
 		width: 120px;
 		text-align: right;
 		margin-right: 5px;
 	}
-	ol.horizontal-fields.label-width-short > li > label,
-	ol.horizontal-fields.label-width-short > li > span.label,
-	ol.horizontal-fields > li > label.width-short,
-	ol.horizontal-fields > li > span.label.width-short {
+	.horizontal-fields.label-width-short > li > label,
+	.horizontal-fields.label-width-short > li > span.label,
+	.horizontal-fields > li > label.width-short,
+	.horizontal-fields > li > span.label.width-short {
 		width: 80px;
 	}
-	ol.horizontal-fields.label-width-long > li > label,
-	ol.horizontal-fields.label-width-long > li > span.label,
-	ol.horizontal-fields > li > label.width-long,
-	ol.horizontal-fields > li > span.label.width-short {
+	.horizontal-fields.label-width-long > li > label,
+	.horizontal-fields.label-width-long > li > span.label,
+	.horizontal-fields > li > label.width-long,
+	.horizontal-fields > li > span.label.width-short {
 		width: 160px;
 	}
-	ol.horizontal-fields.label-width-auto > li > label,
-	ol.horizontal-fields.label-width-auto > li > span.label,
-	ol.horizontal-fields > li > label.width-auto,
-	ol.horizontal-fields > li > span.label.width-short {
+	.horizontal-fields.label-width-auto > li > label,
+	.horizontal-fields.label-width-auto > li > span.label,
+	.horizontal-fields > li > label.width-auto,
+	.horizontal-fields > li > span.label.width-short {
 		width: auto;
 	}
-	ol.horizontal-fields.label-align-left > li > label,
-	ol.horizontal-fields.label-align-left > li > span.label,
-	ol.horizontal-fields > li > label.align-left,
-	ol.horizontal-fields > li > span.label.align-left {
+	.horizontal-fields.label-align-left > li > label,
+	.horizontal-fields.label-align-left > li > span.label,
+	.horizontal-fields > li > label.align-left,
+	.horizontal-fields > li > span.label.align-left {
 		text-align: left;
 	}
-	ol.horizontal-fields div.form-message {
-		margin-left: 130px; /* matches label width + margin */
+
+	/* line-up .form-message with text inputs (matches label width + margin) */
+	.horizontal-fields div.form-message {
+		margin-left: 132px;
 	}
-	ol.horizontal-fields.label-width-short div.form-message {
-		margin-left: 90px;
+	.horizontal-fields.label-width-short div.form-message {
+		margin-left: 92px;
 	}
-	ol.horizontal-fields.label-width-long div.form-message {
-		margin-left: 170px;
-	}
-	ol.horizontal-fields ol.cb-rb-fields {
-		display: inline-block;
-		vertical-align: top;
-		margin: 2px 0 -8px 0;
+	.horizontal-fields.label-width-long div.form-message {
+		margin-left: 172px;
 	}
 
-	ol.vertical-fields > li > label,
-	ol.vertical-fields > li > span.label {
+	/* stacked label / input */
+	.vertical-fields > li > label,
+	.vertical-fields > li > span.label {
 		display: block;
 		margin: 0 0 2px 0;
 	}
 
-	ol.inline-fields > li {
+	/* label / input side-by-side */
+	.inline-fields > li {
 		display: inline-block;
 		margin-right: 10px;
 	}
-	ol.inline-fields > li.full-width {
+	.inline-fields > li.full-width {
 		display: block;
 		margin-right: 0;
 	}
-	ol.inline-fields > li > label,
-	ol.inline-fields > li > span.label {
+	.inline-fields > li > label,
+	.inline-fields > li > span.label {
 		margin-right: 5px;
 	}
 
-/* checkbox and radio inputs */
+/*** checkbox and radio inputs ***/
 
 /* use with .vertical-fields or .inline-fields */
-ol.cb-rb-fields {
+ol.cb-rb-fields, ul.cb-rb-fields {
 	list-style: none;
 	margin: 0;
 }
-	ol.cb-rb-fields > li {
+	.cb-rb-fields > li {
 		min-height: auto;
 		margin: 0 0 8px 0;
 	}
-	ol.cb-rb-fields input[type=checkbox],
-	ol.cb-rb-fields input[type=radio] {
+	.cb-rb-fields input[type=checkbox],
+	.cb-rb-fields input[type=radio] {
 		float: left;
 	}
-	ol.cb-rb-fields > li > label {
+	.cb-rb-fields > li > label {
 		display: block;
 		margin: 0 0 0 20px;
 	}
 
-	ol.vertical-fields.cb-rb-fields > li > label {
+	.vertical-fields.cb-rb-fields > li > label {
 		margin: 0 0 8px 20px;
 	}
 
-	ol.inline-fields.cb-rb-fields > li {
+	.inline-fields.cb-rb-fields > li {
 		display: inline-block;
 		margin-right: 10px;
 	}
 
-/* fieldset/div wrapper for form buttons */
+	/* line-up nested .cb-rb-fields with text inputs (matches label width + margin) */
+
+	.horizontal-fields .cb-rb-fields,
+	.horizontal-fields .cb-rb-fields {
+		display: inline-block;
+		vertical-align: top;
+		margin: 2px 0 -8px 0;
+	}
+ 
+	.horizontal-fields > li > .cb-rb-fields:first-child {
+		margin-left: 128px;
+	}
+	.horizontal-fields.label-width-short > li > .cb-rb-fields:first-child {
+		margin-left: 88px;
+	}
+	.horizontal-fields.label-width-long > li > .cb-rb-fields:first-child {
+		margin-left: 168px;
+	}
+
+/*** fieldset/div wrapper for form buttons ***/
 .form-btns {
 	padding-top: 8px;
 	border-top: 1px solid #ccc;

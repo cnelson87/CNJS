@@ -31,6 +31,15 @@ label.disabled {
 	color: #ccc;
 }
 
+output {
+	display: inline-block;
+	color: #333;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 18px;
+	padding-top: 2px; /* matches input padding-top for vertical alignment */
+}
+
 input, select, textarea {
 	color: #333;
 	font-family: Arial, sans-serif;
@@ -260,22 +269,22 @@ input.sm-btn, input.sm-alt-btn {
 
 .form-note { /* note next to an input field */
 	display: inline-block;
-	color: #666;
+	color: #999;
 	font-size: 11px;
 	line-height: 15px;
 	margin: 5px 0 0 5px;
 }
 .form-message { /* message below an input field */
 	display: block;
-	color: #666;
+	color: #999;
 	font-size: 11px;
 	line-height: 15px;
 	margin-top: 5px;
 }
 
-input + input, input + select, input + textarea,
-select + input, select + select, select + textarea,
-textarea + input, textarea + select, textarea + textarea {
+input + input, input + select, input + textarea, input + output,
+select + input, select + select, select + textarea, select + output,
+textarea + input, textarea + select, textarea + textarea, textarea + output {
 	margin-left: 5px;
 }
 

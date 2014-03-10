@@ -299,13 +299,15 @@ textarea + input, textarea + select, textarea + textarea, textarea + output {
 
 ol.horizontal-fields, ul.horizontal-fields,
 ol.vertical-fields, ul.vertical-fields,
-ol.inline-fields, ul.inline-fields {
+ol.inline-fields, ul.inline-fields,
+ol.column-fields, ul.column-fields {
 	list-style: none;
 	margin: 0;
 }
 	.horizontal-fields > li,
 	.vertical-fields > li,
-	.inline-fields > li {
+	.inline-fields > li,
+	.column-fields > li {
 		min-height: 24px; /* matches input height */
 		margin: 0 0 8px 0;
 	}
@@ -374,6 +376,25 @@ ol.inline-fields, ul.inline-fields {
 		margin-right: 5px;
 	}
 
+	/* label / input in pseudo columns */
+	.column-fields > li {
+		width: 50%;
+		padding-right: 1em;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing:border-box;
+		-o-box-sizing:border-box;
+		box-sizing: border-box;
+	}
+	.column-fields > li:nth-child(odd) {
+		float: left;
+		clear: left;
+	}
+	.column-fields > li:nth-child(even) {
+		float: right;
+		clear: right;
+	}
+
 /*** checkbox and radio inputs ***/
 
 /* use with .vertical-fields or .inline-fields */
@@ -382,7 +403,7 @@ ol.cb-rb-fields, ul.cb-rb-fields {
 	margin: 0;
 }
 	.cb-rb-fields > li {
-		min-height: auto;
+		min-height: 18px;
 		margin: 0 0 8px 0;
 	}
 	.cb-rb-fields input[type=checkbox],
@@ -404,14 +425,12 @@ ol.cb-rb-fields, ul.cb-rb-fields {
 	}
 
 	/* line-up nested .cb-rb-fields with text inputs (matches label width + margin) */
-
-	.horizontal-fields .cb-rb-fields,
 	.horizontal-fields .cb-rb-fields {
 		display: inline-block;
 		vertical-align: top;
 		margin: 2px 0 -8px 0;
 	}
- 
+
 	.horizontal-fields > li > .cb-rb-fields:first-child {
 		margin-left: 128px;
 	}

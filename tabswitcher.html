@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+
+	<title>Tab Switcher :: CNJS</title>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Fjalla+One" />
+	<link rel="stylesheet" href="_ui/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="_ui/css/base.css" />
+	<link rel="stylesheet" href="_ui/css/utility.css" />
+	<link rel="stylesheet" href="_ui/css/forms.css" />
+	<link rel="stylesheet" href="_ui/css/layout.css" />
+	<link rel="stylesheet" href="_ui/css/widgets.css" />
+	<link rel="stylesheet" href="_ui/css/custom.css" />
+	<!--[if IE 9]><link rel="stylesheet" href="_ui/css/ie9.css" /><![endif]-->
+
+	<script src="_ui/js/lib/modernizr.custom.min.js"></script>
+	<script src="_ui/js/lib/jquery.min.js"></script>
+	<script src="_ui/js/lib/jquery-ui.min.js"></script>
+	<script src="_ui/js/lib/underscore.min.js"></script>
+	<script src="_ui/js/lib/backbone.min.js"></script>
+	<script src="_ui/js/lib/backbone-super.min.js"></script>
+	<script src="_ui/js/lib/class.js"></script>
+	<script src="_ui/js/cnjs.js"></script>
+	<script src="_ui/js/utils.js"></script>
+
+	<script src="_ui/js/classes/tabswitcher.js"></script>
+
+	<script>
+        CNJS.PageControl = {
+			init: function() {
+
+				this.elTabSwitcher = $('#tabswitcher-container');
+
+				this.tabSwitcher = new CNJS.UI.TabSwitcher(
+					this.elTabSwitcher, {}
+				);
+
+			}
+		};
+		$(function() {
+			CNJS.PageControl.init();
+		});
+    </script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+
+	<header id="header">
+		<div class="header-inner">
+
+		</div>
+	</header>
+
+
+	<div id="main" class="twocols">
+		<div class="main-inner">
+
+			<div id="content">
+
+				<h1>Tab Switcher</h1>
+
+				<div class="hr"><hr /></div>
+
+				<div id="tabswitcher-container" class="tabswitcher-container">
+
+					<div class="tabnav">
+						<ul>
+							<li><a href="#tabpanel-one">tab one</a></li>
+							<li><a href="#tabpanel-two">tab two</a></li>
+							<li><a href="#tabpanel-three">tab three</a></li>
+							<li><a href="#tabpanel-four">tab four</a></li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+
+					<div class="tabpanels">
+						<div id="tabpanel-one" class="panel">
+
+							<h2>Panel One</h2>
+
+							<p>
+								Tab One content. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+							</p>
+
+							<p>
+								Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+							</p>
+
+						</div>
+						<div id="tabpanel-two" class="panel">
+
+							<h2>Panel Two</h2>
+
+							<p>
+								Tab Two content. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+							</p>
+
+							<dl>
+								<dt>lorem ipsum dolor sit amet</dt>
+								<dd>consectetuer adipiscing elit</dd>
+								<dt>cras vitae ante</dt>
+								<dd>cras accumsan augue sit amet velit</dd>
+								<dt>morbi ac enim at</dt>
+								<dd>libero sollicitudin varius.</dd>
+								<dt>vivamus dignissim</dt>
+								<dd>sagittis lectus.</dd>
+							</dl>
+
+						</div>
+						<div id="tabpanel-three" class="panel">
+
+							<h2>Panel Three</h2>
+
+							<p>
+								Tab Three content. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+							</p>
+
+							<ol>
+								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+								<li>Cras vitae ante. Cras accumsan augue sit amet velit.</li>
+								<li>Morbi ac enim at libero sollicitudin varius.</li>
+								<li>Vivamus dignissim sagittis lectus.</li>
+							</ol>
+
+						</div>
+						<div id="tabpanel-four" class="panel">
+
+							<h2>Panel Four</h2>
+
+							<p>
+								Tab Four content. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+							</p>
+
+							<table>
+								<thead>
+									<tr>
+										<th>Lorem ipsum</th>
+										<th>Dolor sit amet</th>
+										<th>Consectetuer adipiscing elit</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Lorem ipsum</th>
+										<th>Dolor sit amet</th>
+										<th>Consectetuer adipiscing elit</th>
+									</tr>
+								</tfoot>
+								<tbody>
+									<tr>
+										<td>Cras vitae ante</td>
+										<td>Cras accumsan augue</td>
+										<td>Sit amet velit</td>
+									</tr>
+									<tr>
+										<td>Morbi ac enim</td>
+										<td>At libero</td>
+										<td>Sollicitudin varius</td>
+									</tr>
+									<tr>
+										<td>Vivamus dignissim</td>
+										<td>Sagittis lectus</td>
+										<td>Sagittis lectus</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+
+				</div>
+		
+			</div>
+
+			<aside id="subcol">
+
+				<div class="callout">
+					<h3>Aside Callout</h3>
+					<p>
+						Mustache vegan VHS ullamco helvetica, esse cupidatat sapiente. Literally actually Carles blog banh mi, YOLO asymmetrical wolf tote bag selfies american apparel Williamsburg vero Odd Future. <!-- Tofu before they sold out fugiat keffiyeh, odio photo booth keytar laboris velit pour-over nulla Truffaut plaid esse disrupt. Seitan blog meh church-key. Eu pour-over pug retro. Sartorial hoodie readymade, elit craft beer voluptate magna. Fashion axe delectus exercitation, excepteur synth blog Marfa mollit gentrify placeat culpa cupidatat. -->
+					</p>
+				</div>
+
+			</aside>
+
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+	<footer id="footer">
+		<div class="footer-inner">
+
+		</div>
+	</footer>
+
+
+</div>
+
+</body>
+</html>

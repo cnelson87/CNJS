@@ -25,17 +25,17 @@
 
 CNJS.UI.TabSwitcher = Class.extend({
     init: function($element, objOptions) {
-		var self = this;
 
 		// defaults
 		this.$window = CNJS.$window;
 		this.elContainer = $element;
 		this.options = $.extend({
 			initialIndex: 0,
-			selectorTabs: 'a.tab',
-			selectorPanels: 'div.panel',
+			selectorTabs: '.tabnav a',
+			selectorPanels: '.tabpanels .panel',
 			activeClass: 'active',
 			useFadeEffect: true,
+			setEqualHeight: false,
 			animDuration: 400,
 			customEventPrfx: 'CNJS:UI:TabSwitcher'
 	    }, objOptions || {});
@@ -76,7 +76,6 @@ CNJS.UI.TabSwitcher = Class.extend({
 *	Private Methods
 **/
 	_initDisplay: function() {
-		var self = this;
 		var elTab;
 		var elPanel;
 		var index = this.currentIndex;
@@ -119,9 +118,11 @@ CNJS.UI.TabSwitcher = Class.extend({
 
 	},
 
+
 /**
 *	Event Handlers
 **/
+
 	__clickTab: function(e) {
 		var index = this.elTabs.index(e.currentTarget);
 		$.event.trigger(this.options.customEventPrfx + ':tabClicked', [index]);
@@ -134,11 +135,12 @@ CNJS.UI.TabSwitcher = Class.extend({
 		}
 	},
 
+
 /**
 *	Public Methods
 **/
+
 	switchPanel: function() {
-		var self = this;
 		var prevTab = $(this.elTabs[this.prevIndex]);
 		var prevPanel = $(this.elPanels[this.prevIndex]);
 		var elCurrentTab = $(this.elTabs[this.currentIndex]);

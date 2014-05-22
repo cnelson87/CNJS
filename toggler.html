@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+
+	<title>Toggler :: CNJS</title>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Fjalla+One" />
+	<link rel="stylesheet" href="_ui/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="_ui/css/base.css" />
+	<link rel="stylesheet" href="_ui/css/utility.css" />
+	<link rel="stylesheet" href="_ui/css/forms.css" />
+	<link rel="stylesheet" href="_ui/css/layout.css" />
+	<link rel="stylesheet" href="_ui/css/widgets.css" />
+	<link rel="stylesheet" href="_ui/css/custom.css" />
+	<!--[if IE 9]><link rel="stylesheet" href="_ui/css/ie9.css" /><![endif]-->
+
+	<script src="_ui/js/lib/modernizr.custom.min.js"></script>
+	<script src="_ui/js/lib/jquery.min.js"></script>
+	<script src="_ui/js/lib/jquery-ui.min.js"></script>
+	<script src="_ui/js/lib/underscore.min.js"></script>
+	<script src="_ui/js/lib/backbone.min.js"></script>
+	<script src="_ui/js/lib/backbone-super.min.js"></script>
+	<script src="_ui/js/lib/class.js"></script>
+	<script src="_ui/js/cnjs.js"></script>
+	<script src="_ui/js/utils.js"></script>
+
+	<script src="_ui/js/classes/toggler.js"></script>
+
+	<script>
+        CNJS.PageControl = {
+			init: function() {
+
+				this.elToggler1 = $('#toggler-container-1');
+				this.elToggler2 = $('#toggler-container-2');
+
+				this.toggler1 = new CNJS.UI.Toggler(this.elToggler1);
+				this.toggler2 = new CNJS.UI.Toggler(this.elToggler2);
+
+			}
+		};
+		$(function() {
+			CNJS.PageControl.init();
+		});
+    </script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+
+	<header id="header">
+		<div class="header-inner">
+
+		</div>
+	</header>
+
+
+	<div id="main" class="twocols">
+		<div class="main-inner">
+
+			<div id="content">
+
+				<h1>Toggler</h1>
+
+				<p>
+					A toggle function to show/hide between short/long content areas.
+				</p>
+
+				<div class="hr"><hr /></div>
+
+				<div id="toggler-container-1" class="toggler-container">
+					<div id="short-content-1" class="short-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse malesuada mi vel risus. Nulla ipsum risus, malesuada gravida, dapibus et, dapibus rhoncus, orci. Quisque suscipit.
+						</p>
+					</div>
+					<div id="long-content-1" class="long-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse malesuada mi vel risus. Nulla ipsum risus, malesuada gravida, dapibus et, dapibus rhoncus, orci. Quisque suscipit. Praesent sed tellus facilisis lectus ultrices laoreet. Donec eu orci in metus egestas hendrerit. In hac habitasse platea dictumst. Integer blandit ultricies erat. Nunc viverra blandit velit. Maecenas tristique tortor non ante. In pharetra mi quis metus. Cras urna dolor, volutpat et, tincidunt quis, accumsan a, erat. Donec et dolor at elit congue molestie. In mi sapien, porta ut, cursus placerat, sodales in, libero. Aliquam tempus vestibulum ipsum. Suspendisse ligula orci, dignissim eu, laoreet ut, interdum sit amet, tortor. Vestibulum est lacus, sagittis faucibus, sollicitudin fringilla, pretium non, ipsum. Quisque enim. Nullam tortor mi, posuere et, pellentesque ut, laoreet quis, lectus. Mauris euismod aliquet mi. Pellentesque eu pede vitae nibh imperdiet convallis.
+						</p>
+					</div>
+					<a class="toggler-trigger" href="#long-content-1" data-activeText="Show Less">Show More</a>
+				</div>
+
+				<br /><br /><br /><br />
+
+				<div id="toggler-container-2" class="toggler-container">
+					<div id="short-content-2" class="short-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse malesuada mi vel risus. Nulla ipsum risus, malesuada gravida, dapibus et, dapibus rhoncus, orci. Quisque suscipit.
+							&nbsp;
+							<a class="toggler-trigger" href="#long-content-2" data-activeText="Show Less">Show More</a>
+						</p>
+					</div>
+					<div id="long-content-2" class="long-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Suspendisse malesuada mi vel risus. Nulla ipsum risus, malesuada gravida, dapibus et, dapibus rhoncus, orci. Quisque suscipit. Praesent sed tellus facilisis lectus ultrices laoreet. Donec eu orci in metus egestas hendrerit. In hac habitasse platea dictumst. Integer blandit ultricies erat. Nunc viverra blandit velit. Maecenas tristique tortor non ante. In pharetra mi quis metus. Cras urna dolor, volutpat et, tincidunt quis, accumsan a, erat. Donec et dolor at elit congue molestie. In mi sapien, porta ut, cursus placerat, sodales in, libero. Aliquam tempus vestibulum ipsum. Suspendisse ligula orci, dignissim eu, laoreet ut, interdum sit amet, tortor. Vestibulum est lacus, sagittis faucibus, sollicitudin fringilla, pretium non, ipsum. Quisque enim. Nullam tortor mi, posuere et, pellentesque ut, laoreet quis, lectus. Mauris euismod aliquet mi. Pellentesque eu pede vitae nibh imperdiet convallis.
+							&nbsp;
+							<a class="toggler-trigger" href="#long-content-2" data-activeText="Show Less">Show More</a>
+						</p>
+					</div>
+					
+				</div>
+
+			</div>
+
+			<aside id="subcol">
+
+				<div class="callout">
+					<h3>Aside Callout</h3>
+					<p>
+						Mustache vegan VHS ullamco helvetica, esse cupidatat sapiente. Literally actually Carles blog banh mi, YOLO asymmetrical wolf tote bag selfies american apparel Williamsburg vero Odd Future. <!-- Tofu before they sold out fugiat keffiyeh, odio photo booth keytar laboris velit pour-over nulla Truffaut plaid esse disrupt. Seitan blog meh church-key. Eu pour-over pug retro. Sartorial hoodie readymade, elit craft beer voluptate magna. Fashion axe delectus exercitation, excepteur synth blog Marfa mollit gentrify placeat culpa cupidatat. -->
+					</p>
+				</div>
+
+			</aside>
+
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+	<footer id="footer">
+		<div class="footer-inner">
+
+		</div>
+	</footer>
+
+
+</div>
+
+</body>
+</html>

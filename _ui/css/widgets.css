@@ -285,7 +285,7 @@ div.fullwidth-carousel {
 **/
 
 div.revealer-container {
-	width: 680px;
+	width: 100%;
 	margin: 0 0 18px 0;
 	position: relative;
 }
@@ -300,7 +300,6 @@ div.revealer-target {
 	position: relative;
 }
 	div.revealer-target div.revealer-inner {
-		width: 650px;
 		padding: 15px 15px 5px 15px;
 		border-top: 1px solid #000;
 		border-bottom: 1px solid #000;
@@ -363,43 +362,6 @@ div.tabpanels {
 		/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
 		background: #fafafa;
 	}
-		div.tabpanels div.panel div.pane {
-			padding-top: 15px;
-			border-top: 1px solid #000;
-		}
-		div.tabpanels div.panel div.pane:first-child {
-			border: 0;
-		}
-			div.tabpanels div.panel div.pane a.btn {
-				float: right;
-				margin: -4px 0 0 0;
-			}
-		div.tabpanels div.panel div.cta-top {}
-		html.js-enabled div.tabpanels div.panel div.cta-top {display: none;}
-		body.js-enabled div.tabpanels div.panel div.cta-top {display: none;}
-		/* nested tabswitchers */
-		div.tabpanels div.panel div.tabpanels {
-			border: 0;
-		}
-			div.tabpanels div.panel div.tabpanels div.panel {
-				padding: 0 0 15px 0;
-			}
-		div.tabpanels div.panel div.tabnav {
-			margin: 0;
-			border-bottom: 1px solid #000;
-		}
-			div.tabpanels div.panel div.tabnav ul {}
-				div.tabpanels div.panel div.tabnav ul li {
-					margin: 0 0 0 2px;
-					border: 1px solid #000;
-					border-bottom: 0;
-				}
-				div.tabpanels div.panel div.tabnav ul li:first-child {
-					margin: 0;
-				}
-					div.tabpanels div.panel div.tabnav ul li a {
-						padding: 2px 8px;
-					}
 
 /*** /tabswitcher ***/
 
@@ -408,23 +370,22 @@ div.tabpanels {
 *	accordion
 **/
 
-div#test_accordion {}
 div.accordion {
-	width: 680px;
+	width: 100%;
 	border-bottom: 1px solid #000;
 	position: relative;
 }
-	div.accordion h5.acc-tab {
+	div.accordion h5.tab {
 		margin: 0;
 		background: #ccc;
 		border-top: 1px solid #000;
 	}
-	div.accordion h5.acc-tab.active,
-	div.accordion h5.acc-tab:hover {
+	div.accordion h5.tab.active,
+	div.accordion h5.tab:hover {
 		background: #666;
 	}
-		div.accordion h5.acc-tab a, div.accordion h5.acc-tab a:link, div.accordion h5.acc-tab a:visited,
-		div.accordion h5.acc-tab a:hover, div.accordion h5.acc-tab a:visited:hover, div.accordion h5.acc-tab a:active {
+		div.accordion h5.tab a, div.accordion h5.tab a:link, div.accordion h5.tab a:visited,
+		div.accordion h5.tab a:hover, div.accordion h5.tab a:visited:hover, div.accordion h5.tab a:active {
 			display: block;
 			padding: 5px 15px;
 			color: #fff;
@@ -432,20 +393,18 @@ div.accordion {
 			text-transform: uppercase;
 			position: relative;
 		}
-		div.accordion h5.acc-tab a:focus {
+		div.accordion h5.tab a:focus {
 			color: #000;
 		}
-	div.accordion div.acc-panel {
-		width: 680px;
+	div.accordion div.panel {
 		position: relative;
 		overflow: hidden;
 	}
-	div.accordion div.acc-panel:focus {
+	div.accordion div.panel:focus {
 		/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
 		background: #fafafa;
 	}
-		div.accordion div.acc-panel-inner {
-			width: 650px;
+		div.accordion div.panel-inner {
 			padding: 1.2em 15px 0.2em 15px;
 			border-top: 1px solid #000;
 		}

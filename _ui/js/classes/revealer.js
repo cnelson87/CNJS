@@ -45,7 +45,7 @@ CNJS.UI.Revealer = Class.extend({
 		this.activeTriggerText = this.$elTrigger.attr('data-activeText') || this.options.activeTriggerText || false;
 		this._isRevealed = this.$elTarget.attr('data-initRevealed') === 'true' || this.options.initRevealed ? true : false;
 
-		// check url hash to override currentIndex
+		// check url hash to override _isRevealed
 		this.focusOnInit = false;
 		this.urlHash = window.location.hash.replace('#','') || false;
 		if (this.urlHash && this.urlHash === this.$elTarget.attr('id')) {
@@ -190,7 +190,7 @@ CNJS.UI.Revealer = Class.extend({
 
 // start MultiRevealerController
 CNJS.UI.MultiRevealerController = Class.extend({
-    init: function($els, objOptions) {
+	init: function($els, objOptions) {
 		var $els = $els;
 		var len = $els.length;
 		var $el;

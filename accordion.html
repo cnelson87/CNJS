@@ -34,15 +34,13 @@
 				this.elAccordion = $('#accordion-container');
 
 				this.accordion = new CNJS.UI.Accordion(
-					this.elAccordion, {
-						setEqualHeight: true,
-						selfClosing: true
-					}
+					this.elAccordion, {}
 				);
 
 			}
 		}
 		$(function() {
+			CNJS.UTILS.resizeEndEvent();
 			CNJS.PageControl.init();
 		});
     </script>
@@ -69,7 +67,7 @@
 
 				<div class="hr"><hr /></div>
 
-				<div id="accordion-container" class="accordion">
+				<div id="accordion-container" class="accordion-container">
 
 					<h5 class="tab"><a href="#panel-one">Lorem ipsum dolor sit amet</a></h5>
 					<div id="panel-one" class="panel">

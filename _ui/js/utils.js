@@ -78,13 +78,13 @@ CNJS.UTILS.Cookie = {
 *	create pseudo 'resizeEnd' event
 **/
 CNJS.UTILS.resizeEndEvent = function() {
-	var timer = false;
+	var resizeTimer;
 	CNJS.$window.on('resize', function(e) {
-		clearTimeout(timer);
-		timer = setTimeout(function() {
-			//console.log('resizeEnd');
+		//$.event.trigger('resize');
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(function() {
 			$.event.trigger('resizeEnd');
-		},200);
+		},100);
 	});
 };
 //$(function() {
@@ -96,13 +96,13 @@ CNJS.UTILS.resizeEndEvent = function() {
 *	create pseudo 'scrollEnd' event
 **/
 CNJS.UTILS.scrollEndEvent = function() {
-	var timer = false;
+	var scrollTimer;
 	CNJS.$window.on('scroll', function(e) {
-		clearTimeout(timer);
-		timer = setTimeout(function() {
-			//console.log("scrollEnd");
+		//$.event.trigger('scroll');
+		clearTimeout(scrollTimer);
+		scrollTimer = setTimeout(function() {
 			$.event.trigger('scrollEnd');
-		},200);
+		},100);
 	});
 };
 //$(function() {
@@ -133,8 +133,8 @@ CNJS.UTILS.SubmitForm = function($element, objOptions) {
 *	Print Page
 **/
 CNJS.UTILS.PrintPage = function($links) {
-	$links.bind('click', function(event) {
-		event.preventDefault();
+	$links.bind('click', function(e) {
+		e.preventDefault();
 		window.print();
 	});
 };
@@ -234,9 +234,14 @@ CNJS.UTILS.getTagName = function($el) {
 /**
 *	returns true/false, is element in viewport? element is required, top/bot offsets are optional
 **/
-CNJS.UTILS.isElemInView = function($el, topOffset, botOffset) {
-	if (!topOffset) {topOffset = 0}
-	if (!botOffset) {botOffset = 0}
+CNJS.UTILS.isElemInView = function($el, objOptions) {
+	var $el = $el;
+	var options = $.extend({
+		topOffset: 0,
+		botOffset: 0
+	}, objOptions || {});
+	var topOffset = options.topOffset;
+	var botOffset = options.botOffset;
 	var viewTop = CNJS.$window.scrollTop() + topOffset;
 	var viewBot = viewTop + CNJS.$window.height() - topOffset;
 	var elemTop = $el.offset().top;
@@ -276,28 +281,46 @@ CNJS.UTILS.AjaxLoader.prototype = {
 /**
 *	Sets equal height on a collection of DOM els
 **/
-CNJS.UTILS.HeightAdjuster = function($items, objOptions) {
-	var self = this;
-	this.items = $items;
-	this._len = this.items.size();
-	if (this._len <= 1) {return;}
+CNJS.UTILS.HeightEqualizer = function($items, objOptions) {
+	this.$items = $items;
 	this.options = $.extend({
-		elParent: false		// set height on parent element, defaults to false, or pass in $extended parent element
+		setParentHeight: false
 	}, objOptions || {});
-	this.heightArr = [];
+
+	this.$elParent = this.options.setParentHeight ? this.$items.first().parent() : false;
+
+	this._len = this.$items.length;
+	if (this._len <= 1) {return;}
+
+	this.arrHeights = [];
 	this.maxHeight = 0;
-	this.getSetHeight();
+
+	this.getHeight();
+	this.setHeight();
+
 };
-CNJS.UTILS.HeightAdjuster.prototype = {
-	getSetHeight: function() {
+CNJS.UTILS.HeightEqualizer.prototype = {
+	getHeight: function() {
 		for (var i=0; i<this._len; i++) {
-			this.heightArr.push($(this.items[i]).height());
-			this.maxHeight = (this.heightArr[i] > this.maxHeight) ? this.heightArr[i] : this.maxHeight;
+			this.arrHeights.push($(this.$items[i]).height());
+			this.maxHeight = (this.arrHeights[i] > this.maxHeight) ? this.arrHeights[i] : this.maxHeight;
 		}
-		this.items.css({height: this.maxHeight});
-		if (this.options.elParent) {
-			this.options.elParent.css({height: this.maxHeight});
+	},
+	setHeight: function() {
+		this.$items.css({height: this.maxHeight});
+		if (this.options.setParentHeight) {
+			this.$elParent.css({height: this.maxHeight});
 		}
+	},
+	resetHeight: function() {
+		this.arrHeights.length = 0;
+		this.maxHeight = 0;
+		this.$items.css({height: 'auto'});
+		if (this.options.setParentHeight) {
+			this.$elParent.css({height: 'auto'});
+		}
+		this.getHeight();
+		this.setHeight();
 	}
 };
 /*** /HeightAdjuster ***/

@@ -315,53 +315,55 @@ div.revealer-target:focus {
 *	tabswitcher
 **/
 
-div.tabnav {
-	height: 24px;
-	margin: 0 0 12px 0;
-	overflow: auto;
+div.tabswitcher-container {
+	width: 100%;
+	border-bottom: 1px solid #000;
+	margin: 0 0 18px 0;
+	position: relative;
 }
-	div.tabnav ul {
-		list-style: none;
-		margin: 0;
+
+	div.tabswitcher-container div.tabnav {
+		height: 24px;
+		overflow: auto;
 	}
-		div.tabnav ul li {
-			float: left;
-			margin: 0 0 0 5px;
-			border-top: 1px solid #000;
-			border-bottom: 1px solid #000;
-			background: #ccc;
-		}
-		div.tabnav ul li:first-child {
+		div.tabswitcher-container div.tabnav ul {
+			list-style: none;
 			margin: 0;
 		}
-		div.tabnav ul li.active,
-		div.tabnav ul li:hover {
-			background: #666;
-		}
-			div.tabnav ul li a, div.tabnav ul li a:link, div.tabnav ul li a:visited,
-			div.tabnav ul li a:hover, div.tabnav ul li a:visited:hover, div.tabnav ul li a:active {
-				display: block;
-				padding: 2px 15px;
-				color: #fff;
-				text-decoration: none;
-				text-transform: uppercase;
+			div.tabswitcher-container div.tabnav ul > li {
+				float: left;
+				margin: 0 0 0 5px;
+				border-top: 1px solid #000;
+				border-bottom: 1px solid #000;
 			}
-			div.tabnav ul li a:focus {
-				color: #000;
+			div.tabswitcher-container div.tabnav ul > li:first-child {
+				margin: 0;
 			}
+				div.tabswitcher-container div.tabnav ul > li > a {
+					display: block;
+					background: #ccc;
+					padding: 2px 15px;
+					color: #fff;
+					text-decoration: none;
+					text-transform: uppercase;
+				}
+				div.tabswitcher-container div.tabnav ul > li > a.active,
+				div.tabswitcher-container div.tabnav ul > li > a:hover {
+					background: #666;
+				}
+				div.tabswitcher-container div.tabnav ul > li > a:focus {
+					color: #000;
+				}
 
-div.tabpanels {
-	margin: 0 0 1.5em 0;
-	border-bottom: 1px solid #000;
-}
-	div.tabpanels div.panel {
-		padding: 2px 15px;
-		position: relative;
-	}
-	div.tabpanels div.panel:focus {
-		/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
-		background: #fafafa;
-	}
+	div.tabswitcher-container div.tabpanels {}
+		div.tabswitcher-container div.tabpanels div.panel {
+			padding: 18px 15px 2px 15px;
+			position: relative;
+		}
+		div.tabswitcher-container div.tabpanels div.panel:focus {
+			/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
+			background: #fafafa;
+		}
 
 /*** /tabswitcher ***/
 
@@ -370,42 +372,42 @@ div.tabpanels {
 *	accordion
 **/
 
-div.accordion {
+div.accordion-container {
 	width: 100%;
 	border-bottom: 1px solid #000;
+	margin: 0 0 18px 0;
 	position: relative;
 }
-	div.accordion h5.tab {
+	div.accordion-container h5.tab {
 		margin: 0;
-		background: #ccc;
 		border-top: 1px solid #000;
 	}
-	div.accordion h5.tab.active,
-	div.accordion h5.tab:hover {
-		background: #666;
-	}
-		div.accordion h5.tab a, div.accordion h5.tab a:link, div.accordion h5.tab a:visited,
-		div.accordion h5.tab a:hover, div.accordion h5.tab a:visited:hover, div.accordion h5.tab a:active {
+		div.accordion-container h5.tab > a {
 			display: block;
+			background: #ccc;
 			padding: 5px 15px;
 			color: #fff;
 			text-decoration: none;
 			text-transform: uppercase;
 			position: relative;
 		}
-		div.accordion h5.tab a:focus {
+		div.accordion-container h5.tab > a.active,
+		div.accordion-container h5.tab > a:hover {
+			background: #666;
+		}
+		div.accordion-container h5.tab a:focus {
 			color: #000;
 		}
-	div.accordion div.panel {
+	div.accordion-container div.panel {
 		position: relative;
 		overflow: hidden;
 	}
-	div.accordion div.panel:focus {
+	div.accordion-container div.panel:focus {
 		/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
 		background: #fafafa;
 	}
-		div.accordion div.panel-inner {
-			padding: 1.2em 15px 0.2em 15px;
+		div.accordion-container div.panel-inner {
+			padding: 18px 15px 2px 15px;
 			border-top: 1px solid #000;
 		}
 

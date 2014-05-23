@@ -16,50 +16,42 @@
 		- class.js
 		- cnjs.js
 
-	CHANGE LOG
-	--------------------------
-	8/20/12 - CN: Inception
-	--------------------------
-
 */
 
 CNJS.UI.TabSwitcher = Class.extend({
-    init: function($element, objOptions) {
+	init: function($el, objOptions) {
 
 		// defaults
-		this.$window = CNJS.$window;
-		this.elContainer = $element;
+		this.$el = $el;
 		this.options = $.extend({
 			initialIndex: 0,
 			selectorTabs: '.tabnav a',
 			selectorPanels: '.tabpanels .panel',
 			activeClass: 'active',
+			equalizeHeight: true,
 			useFadeEffect: true,
-			setEqualHeight: false,
 			animDuration: 400,
 			customEventPrfx: 'CNJS:UI:TabSwitcher'
-	    }, objOptions || {});
+		}, objOptions || {});
 
 		// element references
-		this.elTabs = this.elContainer.find(this.options.selectorTabs);
-		this.elPanels = this.elContainer.find(this.options.selectorPanels);
-
-		if (!this.elTabs.length || !this.elPanels.length) {return;}
+		this.$elTabs = this.$el.find(this.options.selectorTabs);
+		this.$elPanels = this.$el.find(this.options.selectorPanels);
 
 		// setup & properties
-		this.containerID = this.elContainer.attr('id');
 		this._isInitialized = false;
-		this._len = this.elTabs.length;
+		this._isAnimating = false;
+		this._len = this.$elPanels.length;
 		if (this.options.initialIndex >= this._len) {this.options.initialIndex = 0;}
 		this.currentIndex = this.options.initialIndex;
 		this.prevIndex = false;
 
-		// check urlHash
+		// check url hash to override currentIndex
 		this.focusOnInit = false;
 		this.urlHash = window.location.hash.replace('#','') || false;
 		if (this.urlHash) {
 			for (var i=0; i<this._len; i++) {
-				if (this.elPanels[i].id === this.urlHash) {
+				if (this.$elPanels[i].id === this.urlHash) {
 					this.currentIndex = i;
 					this.focusOnInit = true;
 					break;
@@ -69,52 +61,55 @@ CNJS.UI.TabSwitcher = Class.extend({
 
 		this._initDisplay();
 
-        delete this.init;
-    },
+		this._bindEvents();
+
+	},
+
 
 /**
 *	Private Methods
 **/
-	_initDisplay: function() {
-		var elTab;
-		var elPanel;
-		var index = this.currentIndex;
-		var elCurrentTab = $(this.elTabs[index]);
-		var elCurrentPanel = $(this.elPanels[index]);
 
-		// add aria attributes
-		this.elContainer.attr({'role':'tablist', 'aria-multiselectable':'false'});
-		for (var i=0; i<this._len; i++) {
-			elTab = $(this.elTabs[i]);
-			elPanel = $(this.elPanels[i]);
-			elTab.attr({'role':'tab', 'aria-selected':'false', 'aria-controls': elPanel.attr('id')});
-			elPanel.attr({'role':'tabpanel', 'tabindex':'-1', 'aria-expanded':'false', 'aria-hidden':'true'}).hide();
+	_initDisplay: function() {
+		var $elActiveTab = $(this.$elTabs[this.currentIndex]);
+		var $elActivePanel = $(this.$elPanels[this.currentIndex]);
+
+		if (this.options.equalizeHeight) {
+			this.heightEqualizer = new CNJS.UTILS.HeightEqualizer(this.$elPanels);
 		}
-		elCurrentTab.attr('aria-selected', 'true').parent().addClass(this.options.activeClass);
-		elCurrentPanel.attr({'aria-expanded': 'true', 'aria-hidden': 'false'}).show();
+
+		this.$el.attr({'role':'tablist'});
+		this.$elTabs.attr({'role':'tab'});
+		this.$elPanels.attr({'role':'tabpanel', 'tabindex':'-1'}).hide();
+
+		$elActiveTab.addClass(this.options.activeClass);
+		$elActivePanel.show();
 
 		if (this.focusOnInit) {
-			$(window).load(function() {
+			CNJS.$window.load(function() {
 				$('html, body').animate({scrollTop:0}, 1);
-				elCurrentPanel.focus();
+				$elActivePanel.focus();
 			});
 		}
 
 		this._isInitialized = true;
 
-		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.elContainer]);
-
-		this._bindEvents();
+		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
 	_bindEvents: function() {
-		var self = this;
 
-		this.elTabs.on('click', function(e) {
+		CNJS.$window.on('resizeEnd', function(e) {
+			this.__onWindowResizeEnd(e);
+		}.bind(this));
+
+		this.$elTabs.on('click', function(e) {
 			e.preventDefault();
-			self.__clickTab(e);
-		});
+			if (!this._isAnimating) {
+				this.__clickTab(e);
+			}
+		}.bind(this));
 
 	},
 
@@ -123,15 +118,21 @@ CNJS.UI.TabSwitcher = Class.extend({
 *	Event Handlers
 **/
 
+	__onWindowResizeEnd: function(e) {
+		if (this.options.equalizeHeight) {
+			this.heightEqualizer.resetHeight();
+		}
+	},
+
 	__clickTab: function(e) {
-		var index = this.elTabs.index(e.currentTarget);
-		$.event.trigger(this.options.customEventPrfx + ':tabClicked', [index]);
+		var index = this.$elTabs.index(e.currentTarget);
+
 		if (this.currentIndex === index) {
-			this.elPanels[index].focus();
+			this.$elPanels[index].focus();
 		} else {
 			this.prevIndex = this.currentIndex;
 			this.currentIndex = index;
-			this.switchPanel();
+			this.switchPanel(e);
 		}
 	},
 
@@ -140,26 +141,26 @@ CNJS.UI.TabSwitcher = Class.extend({
 *	Public Methods
 **/
 
-	switchPanel: function() {
-		var prevTab = $(this.elTabs[this.prevIndex]);
-		var prevPanel = $(this.elPanels[this.prevIndex]);
-		var elCurrentTab = $(this.elTabs[this.currentIndex]);
-		var elCurrentPanel = $(this.elPanels[this.currentIndex]);
+	switchPanel: function(e) {
+		var $elInactiveTab = $(this.$elTabs[this.prevIndex]);
+		var $elInactivePanel = $(this.$elPanels[this.prevIndex]);
+		var $elActiveTab = $(this.$elTabs[this.currentIndex]);
+		var $elActivePanel = $(this.$elPanels[this.currentIndex]);
+		var isEvent = !!e;
 
-		//update prev tab/panel
-		prevTab.attr({'aria-selected':'false'}).parent().removeClass(this.options.activeClass);
-		prevPanel.attr({'aria-expanded':'false', 'aria-hidden':'true'}).hide();
+		//update tabs
+		$elInactiveTab.removeClass(this.options.activeClass);
+		$elActiveTab.addClass(this.options.activeClass);
 
-		//update current tab/panel
-		elCurrentTab.attr({'aria-selected':'true'}).parent().addClass(this.options.activeClass);
-		elCurrentPanel.attr({'aria-expanded':'true', 'aria-hidden':'false'});
-
+		//update panels
+		$elInactivePanel.hide();
 		if (this.options.useFadeEffect) {
-			elCurrentPanel.fadeIn(this.options.animDuration, 'swing', function () {
-				elCurrentPanel.focus();
+			$elActivePanel.fadeIn(this.options.animDuration, 'swing', function() {
+				if (isEvent) {$elActivePanel.focus();}
 			});
 		} else {
-			elCurrentPanel.show().focus();
+			$elActivePanel.show();
+			if (isEvent) {$elActivePanel.focus();}
 		}
 
 		$.event.trigger(this.options.customEventPrfx + ':panelSwitched', [this.currentIndex]);
@@ -169,16 +170,16 @@ CNJS.UI.TabSwitcher = Class.extend({
 });
 // end TabSwitcher
 
+
 // start MultiTabSwitcherController
 CNJS.UI.MultiTabSwitcherController = Class.extend({
-    init: function($elements, objOptions) {
-		this.elContainers = $elements;
-		this.options = objOptions;
-		this.arrTabSwitchers = [];
-		var elContainer;
-		for (var i=0, len = this.elContainers.length; i<len; i++) {
-			elContainer = $(this.elContainers[i]);
-			this.arrTabSwitchers[i] = new CNJS.UI.TabSwitcher(elContainer, this.options);
+	init: function($els, objOptions) {
+		var $els = $els;
+		var len = $els.length;
+		var $el;
+		for (var i=0; i<len; i++) {
+			$el = $($els[i]);
+			new CNJS.UI.TabSwitcher($el, objOptions);
 		}
 	}
 });

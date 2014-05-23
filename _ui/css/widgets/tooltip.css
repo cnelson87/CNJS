@@ -1,0 +1,67 @@
+
+/**
+*	tooltip
+**/
+
+div.tooltip {
+	width: 360px;
+	border: 1px solid #636363;
+	background: #fff;
+	position: absolute;
+	z-index: 10;
+	/* TEMP
+	left: 50%;
+	top: 50%;
+	/TEMP */
+}
+	div.tooltip div.tooltip-header {
+		width: 280px;
+		height: 8px;
+		background: #ccc;
+	}
+	div.tooltip div.tooltip-footer {
+		width: 280px;
+		height: 4px;
+		background: #ccc;
+	}
+	div.tooltip div.tooltip-arrow {
+		background: transparent url('../img/tooltip-arrow.png') no-repeat left top;
+		position: absolute;
+	}
+	div.tooltip-east div.tooltip-arrow {
+		width: 13px;
+		height: 25px;
+		background-position: left top;
+		left: -13px;
+		top: 16px;
+	}
+	div.tooltip-west div.tooltip-arrow {
+		width: 13px;
+		height: 25px;
+		background-position: right top;
+		right: -13px;
+		top: 16px;
+	}
+	div.tooltip-north div.tooltip-arrow {
+		width: 25px;
+		height: 13px;
+		background-position: left bottom;
+		left: 16px;
+		bottom: -13px;
+	}
+	div.tooltip-south div.tooltip-arrow {
+		width: 25px;
+		height: 13px;
+		background-position: left top;
+		left: 16px;
+		top: -13px;
+	}
+	div.tooltip div.tooltip-content {
+		min-height: 80px;
+		padding: 15px 15px 1px 15px;
+	}
+	div.tooltip:focus {
+		outline: 1px dotted #636363;
+	}
+
+/*** /tooltip ***/

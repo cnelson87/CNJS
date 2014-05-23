@@ -25,10 +25,11 @@
 	<script src="_ui/js/cnjs.js"></script>
 	<script src="_ui/js/utils.js"></script>
 
+	<link rel="stylesheet" href="_ui/css/widgets/toggler.css" />
 	<script src="_ui/js/classes/toggler.js"></script>
 
 	<script>
-        CNJS.PageControl = {
+		CNJS.PageControl = {
 			init: function() {
 
 				this.elToggler1 = $('#toggler-container-1');
@@ -40,9 +41,10 @@
 			}
 		};
 		$(function() {
+			CNJS.UTILS.resizeEndEvent();
 			CNJS.PageControl.init();
 		});
-    </script>
+	</script>
 
 </head>
 <body>

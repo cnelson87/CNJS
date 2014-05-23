@@ -1,0 +1,30 @@
+
+/**
+*	revealer
+**/
+
+div.revealer-container {
+	width: 100%;
+	margin: 0 0 18px 0;
+	position: relative;
+}
+
+a.revealer-trigger {}
+div.revealer-container.active a.revealer-trigger {
+	color: #666;
+}
+
+div.revealer-target {
+	margin-top: -1px;
+	position: relative;
+}
+	div.revealer-target div.revealer-inner {
+		padding: 15px 15px 5px 15px;
+		border-top: 1px solid #000;
+		border-bottom: 1px solid #000;
+	}
+div.revealer-target:focus {
+	background: #fafafa;
+}
+
+/*** /revealer ***/

@@ -1,0 +1,56 @@
+
+/**
+*	tabswitcher
+**/
+
+div.tabswitcher-container {
+	width: 100%;
+	border-bottom: 1px solid #000;
+	margin: 0 0 18px 0;
+	position: relative;
+}
+
+	div.tabswitcher-container div.tabnav {
+		height: 24px;
+		overflow: auto;
+	}
+		div.tabswitcher-container div.tabnav ul {
+			list-style: none;
+			margin: 0;
+		}
+			div.tabswitcher-container div.tabnav ul > li {
+				float: left;
+				margin: 0 0 0 5px;
+				border-top: 1px solid #000;
+				border-bottom: 1px solid #000;
+			}
+			div.tabswitcher-container div.tabnav ul > li:first-child {
+				margin: 0;
+			}
+				div.tabswitcher-container div.tabnav ul > li > a {
+					display: block;
+					background: #ccc;
+					padding: 2px 15px;
+					color: #fff;
+					text-decoration: none;
+					text-transform: uppercase;
+				}
+				div.tabswitcher-container div.tabnav ul > li > a.active,
+				div.tabswitcher-container div.tabnav ul > li > a:hover {
+					background: #666;
+				}
+				div.tabswitcher-container div.tabnav ul > li > a:focus {
+					color: #000;
+				}
+
+	div.tabswitcher-container div.tabpanels {}
+		div.tabswitcher-container div.tabpanels div.panel {
+			padding: 18px 15px 2px 15px;
+			position: relative;
+		}
+		div.tabswitcher-container div.tabpanels div.panel:focus {
+			/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
+			background: #fafafa;
+		}
+
+/*** /tabswitcher ***/

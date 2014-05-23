@@ -1,0 +1,45 @@
+
+/**
+*	accordion
+**/
+
+div.accordion-container {
+	width: 100%;
+	border-bottom: 1px solid #000;
+	margin: 0 0 18px 0;
+	position: relative;
+}
+	div.accordion-container h5.tab {
+		margin: 0;
+		border-top: 1px solid #000;
+	}
+		div.accordion-container h5.tab > a {
+			display: block;
+			background: #ccc;
+			padding: 5px 15px;
+			color: #fff;
+			text-decoration: none;
+			text-transform: uppercase;
+			position: relative;
+		}
+		div.accordion-container h5.tab > a.active,
+		div.accordion-container h5.tab > a:hover {
+			background: #666;
+		}
+		div.accordion-container h5.tab a:focus {
+			color: #000;
+		}
+	div.accordion-container div.panel {
+		position: relative;
+		overflow: hidden;
+	}
+	div.accordion-container div.panel:focus {
+		/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
+		background: #fafafa;
+	}
+		div.accordion-container div.panel-inner {
+			padding: 18px 15px 2px 15px;
+			border-top: 1px solid #000;
+		}
+
+/*** /accordion ***/

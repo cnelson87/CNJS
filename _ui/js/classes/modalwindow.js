@@ -25,7 +25,7 @@ CNJS.UI.ModalWindow = Class.extend({
 		this.$body = CNJS.$body;
 		this.$elTriggers = $triggers;
 		this.options = $.extend({
-			//selectorTriggers: 'a.trigger-modal',
+			//selectorTriggers: 'a.modal-trigger',
 			modalID: 'modalwindow',
 			modalClass: 'modalwindow',
 			overlayID: 'modaloverlay',
@@ -50,7 +50,6 @@ CNJS.UI.ModalWindow = Class.extend({
 		this.isModalActivated = false;
 		this.isPosAbs = false; //position:absolute;
 		this.contentHTML = null;
-		//this.currentIndex = null;
 
 		this.initDisplay();
 
@@ -64,10 +63,10 @@ CNJS.UI.ModalWindow = Class.extend({
 	initDisplay: function() {
 
 		//create overlay
-		this.$elOverlay = $('#' + this.options.modalOverlayID);
+		this.$elOverlay = $('#' + this.options.overlayID);
 		if (!this.$elOverlay.length) {
 			this.$elOverlay = $('<div></div>',{
-				'id': this.options.modalOverlayID
+				'id': this.options.overlayID
 			}).appendTo(this.$body).hide();
 		}
 
@@ -156,7 +155,6 @@ CNJS.UI.ModalWindow = Class.extend({
 **/
 
 	__clickTrigger: function(e) {
-		//this.currentIndex = this.$elTriggers.index(this.$elActiveTrigger);
 		this.openModal();
 	},
 
@@ -174,6 +172,12 @@ CNJS.UI.ModalWindow = Class.extend({
 		var leftPos = (((docWidth - modalWidth) / 2) + this.options.leftOffset);
 		var topPos = (((winHeight - modalHeight) / 2) + this.options.topOffset);
 		var minTopSpacing = this.options.minTopSpacing;
+
+		console.log('docWidth', docWidth);
+		console.log('winHeight', winHeight);
+		console.log('winScrollTop', winScrollTop);
+		console.log('modalWidth', modalWidth);
+		console.log('modalHeight', modalHeight);
 
 		if (this.isPosAbs) {
 			topPos += winScrollTop;

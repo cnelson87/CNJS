@@ -1,0 +1,379 @@
+
+/*	-----------------------------------------------
+
+	ALL CAROUSELS
+
+	----------------------------------------------- */
+
+
+/**
+*	carousel
+**/
+
+div.carousel {
+	width: 640px;
+	height: 105px;
+	margin: 0 0 18px 0;
+	padding: 0 20px;
+	position: relative;
+}
+	div.carousel div.carousel-outer-window {
+		width: 640px;
+		height: 105px;
+		position: relative;
+		overflow: hidden;
+	}
+	div.carousel ul.carousel-inner-track {
+		list-style: none;
+		width: 100000px;
+		height: 105px;
+		margin: 0;
+		position: absolute;
+		overflow: hidden;
+	}
+		div.carousel ul.carousel-inner-track li {
+			float: left;
+			width: 150px;
+			height: 95px;
+			margin: 0;
+			padding: 5px;
+			background: #cdcdcd;
+		}
+		div.carousel ul.carousel-inner-track li:focus {
+			background: #696969;
+		}
+			div.carousel ul.carousel-inner-track li img.thumb {
+				display: block;
+				width: 150px;
+				height: 87px;
+			}
+	div.carousel a.carousel-nav {
+		display: block;
+		width: 20px;
+		height: 100%;
+		background: #808080;
+		position: absolute;
+		top: 0;
+	}
+	div.carousel a.nav-prev {
+		left: 0;
+	}
+	div.carousel a.nav-next {
+		right: 0;
+	}
+	div.carousel a.carousel-nav.disabled {
+		cursor: default;
+	}
+		div.carousel a.carousel-nav span.arrow {
+			display: block;
+			width: 14px;
+			height: 26px;
+			background: transparent url('../img/lnks-prev-next.gif') no-repeat;
+			margin-top: -13px;
+			position: absolute;
+			top: 50%;
+		}
+		div.carousel a.nav-prev span.arrow {
+			background-position: left -10px;
+			left: 3px;
+		}
+		div.carousel a.nav-prev:hover span.arrow {
+			background-position: left -40px;
+		}
+		div.carousel a.nav-prev.disabled span.arrow,
+		div.carousel a.nav-prev.disabled:hover span.arrow {
+			background-position: left -70px;
+		}
+		div.carousel a.nav-next span.arrow {
+			background-position: right -10px;
+			right: 3px;
+		}
+		div.carousel a.nav-next:hover span.arrow {
+			background-position: right -40px;
+		}
+		div.carousel a.nav-next.disabled span.arrow,
+		div.carousel a.nav-next.disabled:hover span.arrow {
+			background-position: right -70px;
+		}
+
+/*** /carousel ***/
+
+
+/*** tab-carousel ***/
+
+div.carousel.tab-carousel {
+	height: 141px;
+}
+	div.carousel.tab-carousel a.carousel-nav {
+		top: 76px;
+	}
+
+/*** /tab-carousel ***/
+
+
+/**
+*	big carousel
+**/
+
+div.fullwidth-carousel {
+	width: 100%;
+	height: 440px;
+	background: rgba(0,0,0,0.3);
+	padding: 20px 0;
+	position: relative;
+}
+	div.fullwidth-carousel div.carousel-outer-window {
+		width: 920px;
+		height: 440px;
+		margin: 0 auto;
+		position: relative;
+		z-index: 1;
+	}
+	div.fullwidth-carousel div.carousel-inner-track {
+		width: 100000px;
+		height: 440px;
+		margin: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+		div.fullwidth-carousel div.carousel-inner-track article {
+			float: left;
+			width: 228px;
+			min-height: 160px;
+			background: #fff;
+			background: rgba(255,255,255,0.9);
+			border-bottom: 1px solid #c00;
+			margin: 0 20px;
+			padding: 24px 16px 5px 16px;
+			position: relative;
+		}
+		div.fullwidth-carousel div.carousel-inner-track article:focus {
+			background: #eee;
+		}
+			div.fullwidth-carousel div.carousel-inner-track article a.thumb,
+			div.fullwidth-carousel div.carousel-inner-track article a.thumb img {
+				display: block;
+				width: 228px;
+				height: 167px;
+			}
+			div.fullwidth-carousel div.carousel-inner-track article .article-body {
+				padding: 20px 5px 20px 15px;
+			}
+			div.fullwidth-carousel div.carousel-inner-track article .article-body .linklist {
+				margin: 0;
+			}
+
+
+	div.fullwidth-carousel a.carousel-nav {
+		display: block;
+		width: 160px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		z-index: 2;
+	}
+	div.fullwidth-carousel a.carousel-nav:focus,
+	div.fullwidth-carousel a.carousel-nav:hover {
+		background: rgba(255,255,255,0.3);
+	}
+	div.fullwidth-carousel a.nav-prev {
+		left: -160px;
+		left: 0;
+	}
+	div.fullwidth-carousel a.nav-next {
+		right: -160px;
+		right: 0;
+	}
+	div.fullwidth-carousel a.carousel-nav.disabled {
+		cursor: default;
+	}
+		div.fullwidth-carousel a.carousel-nav span.visible-btn {
+			display: block;
+			width: 100%;
+			height: 60px;
+			margin-top: -30px;
+			background: #505050;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			-webkit-transition: opacity .2s, background-color .2s;
+			-moz-transition: opacity .2s, background-color .2s;
+			-o-transition: opacity .2s, background-color .2s;
+			transition: opacity .2s, background-color .2s;
+		}
+		div.fullwidth-carousel a.carousel-nav:focus span.visible-btn,
+		div.fullwidth-carousel a.carousel-nav:hover span.visible-btn {
+			opacity: 1;
+		}
+		div.fullwidth-carousel a.carousel-nav.disabled:focus span.visible-btn,
+		div.fullwidth-carousel a.carousel-nav.disabled:hover span.visible-btn {
+			opacity: 0;
+		}
+			div.fullwidth-carousel a.carousel-nav span.arrow {
+				display: block;
+				width: 14px;
+				height: 26px;
+				margin-top: -13px;
+				background: transparent url('../img/lnks-prev-next.gif') no-repeat;
+				position: absolute;
+				top: 50%;
+			}
+			div.fullwidth-carousel a.nav-prev span.arrow {
+				background-position: left -40px;
+				margin-right: -7px;
+				right: 50%;
+			}
+			/*
+			div.fullwidth-carousel a.nav-prev:hover span.arrow {
+				background-position: left -40px;
+			}
+			div.fullwidth-carousel a.nav-prev.disabled span.arrow,
+			div.fullwidth-carousel a.nav-prev.disabled:hover span.arrow {
+				background-position: left -70px;
+			}
+			*/
+			div.fullwidth-carousel a.nav-next span.arrow {
+				background-position: right -40px;
+				margin-left: -7px;
+				left: 50%;
+			}
+			/*
+			div.fullwidth-carousel a.nav-next:hover span.arrow {
+				background-position: right -40px;
+			}
+			div.fullwidth-carousel a.nav-next.disabled span.arrow,
+			div.fullwidth-carousel a.nav-next.disabled:hover span.arrow {
+				background-position: right -70px;
+			}
+			*/
+
+
+/*** /big carousel ***/
+
+
+/**
+*	hero-carousel
+**/
+
+div#test-hero-carousel {
+	margin: 0 -20px;
+}
+div.hero-carousel {}
+	div.hero-carousel div.hero-carousel-panels {
+		width: 960px;
+		height: 420px;
+	}
+		div.hero-carousel div.hero-carousel-panels > ul {
+			list-style: none;
+			width: 960px;
+			height: 420px;
+			margin: 0;
+			overflow: hidden;
+			position: relative;
+		}
+			div.hero-carousel div.hero-carousel-panels > ul > li {
+				width: 960px;
+				height: 420px;
+				margin: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			div.hero-carousel div.hero-carousel-panels > ul > li:first-child,
+			body.js-enabled div.hero-carousel div.hero-carousel-panels > ul > li {
+				display: block;
+			}
+				div.hero-carousel div.hero-carousel-panels > ul > li > a {
+					display: block;
+					width: 960px;
+					height: 420px;
+					position: absolute;
+				}
+					div.hero-carousel div.hero-carousel-panels > ul > li > a > img {
+						display: block;
+						width: 960px;
+						height: 420px;
+					}
+				div.hero-carousel div.hero-carousel-panels div.hero-item-content {
+					width: 600px;
+					height: 120px;
+					padding: 20px 40px;
+					background: #666;
+					background: rgba(0,0,0,0.4);
+					position: absolute;
+					right: 0px;
+					bottom: 20px;
+				}
+					div.hero-carousel div.hero-carousel-panels div.hero-item-content * {
+						color: #fff;
+						text-align: right;
+					}
+					div.hero-carousel div.hero-carousel-panels div.cta {
+						margin: 0;
+					}
+	div.hero-carousel div.hero-carousel-nav {
+		text-align: right;
+		width: 960px;
+		height: 12px;
+		margin: 4px 0;
+	}
+		div.hero-carousel div.hero-carousel-nav ul {
+			list-style: none;
+			display: inline-block;
+			height: 12px;
+			margin: 0;
+		}
+			div.hero-carousel div.hero-carousel-nav ul li {
+				float: left;
+				width: 28px;
+				height: 12px;
+				margin: 0 0 0 1px;
+			}
+			div.hero-carousel div.hero-carousel-nav ul li:first-child {
+				margin: 0;
+			}
+				div.hero-carousel div.hero-carousel-nav ul li a {
+					display: block;
+					width: 26px;
+					height: 10px;
+					border: 1px solid #999;
+					background: #b6b6b6;
+				}
+				div.hero-carousel div.hero-carousel-nav ul li.active a,
+				div.hero-carousel div.hero-carousel-nav ul li a:hover {
+					border: 1px solid #600;
+					background: #c00;
+				}
+
+	div.hero-carousel div.hero-carousel-nav a.nav-prev {
+		display: inline-block;
+		width: 8px;
+		height: 12px;
+		margin: 0 4px;
+		background: transparent url('../img/arrow_prev.gif') no-repeat center center;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-prev:hover {
+		background-color: #c00;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-prev.disabled,
+	div.hero-carousel div.hero-carousel-nav a.nav-prev.disabled:hover {
+		visibility: hidden;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-next {
+		display: inline-block;
+		width: 8px;
+		height: 12px;
+		margin: 0 4px;
+		background: transparent url('../img/arrow_next.gif') no-repeat center center;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-next:hover {
+		background-color: #c00;
+	}
+	div.hero-carousel div.hero-carousel-nav a.nav-next.disabled,
+	div.hero-carousel div.hero-carousel-nav a.nav-next.disabled:hover {
+		visibility: hidden;
+	}
+
+/*** /hero-carousel ***/

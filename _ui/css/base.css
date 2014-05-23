@@ -34,8 +34,6 @@ audio, canvas, video {
 	display: inline-block;
 }
 
-/*html, body {height: 100%;}*/
-
 body {
 	color: #010101;
 	font-family: Arial, Verdana, sans-serif;

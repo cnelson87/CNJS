@@ -10,26 +10,25 @@
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
+		- jQuery 1.10+
 		- class.js
 		- cnjs.js
 
 */
 
 CNJS.UI.ModalWindow = Class.extend({
-	init: function($elements, objOptions) {
-		var self = this;
+	init: function($triggers, objOptions) {
 
 		// defaults
 		this.$window = CNJS.$window;
 		this.$document = CNJS.$document;
 		this.$body = CNJS.$body;
-		this.isIPhone = CNJS.Config.isIPhone;
-		this.elTriggers = $elements;
+		this.$elTriggers = $triggers;
 		this.options = $.extend({
+			//selectorTriggers: 'a.trigger-modal',
 			modalID: 'modalwindow',
 			modalClass: 'modalwindow',
-			modalOverlayID: 'modaloverlay',
+			overlayID: 'modaloverlay',
 			closeBtnClass: 'btn-closeX',
 			closeBtnInnerHTML: '<span>X</span>', //ex: '<span class="offscreen">close window</span>'
 			activeClass: 'active',
@@ -41,42 +40,41 @@ CNJS.UI.ModalWindow = Class.extend({
 		}, objOptions || {});
 
 		// element references
-		this.elCurrentTrigger = null;
-		this.elModal = null;
-		this.elModalContent = null;
-		this.elModalOverlay = null;
-		this.btnClose = null;
+		this.$elActiveTrigger = null;
+		this.$elOverlay = null;
+		this.$elModal = null;
+		this.$elContent = null;
+		this.$btnClose = null;
 
 		// setup & properties
 		this.isModalActivated = false;
 		this.isPosAbs = false; //position:absolute;
 		this.contentHTML = null;
-		this.currentIndex = null;
+		//this.currentIndex = null;
 
-		this._initDisplay();
+		this.initDisplay();
 
-		this._bindEvents();
+		this.bindEvents();
 
 	},
 
 /**
 *	Private Methods
 **/
-	_initDisplay: function() {
-		var self = this;
+	initDisplay: function() {
 
 		//create overlay
-		this.elModalOverlay = $('#' + this.options.modalOverlayID);
-		if (!this.elModalOverlay.length) {
-			this.elModalOverlay = $('<div></div>',{
+		this.$elOverlay = $('#' + this.options.modalOverlayID);
+		if (!this.$elOverlay.length) {
+			this.$elOverlay = $('<div></div>',{
 				'id': this.options.modalOverlayID
 			}).appendTo(this.$body).hide();
 		}
 
 		//create modal
-		this.elModal = $('#' + this.options.modalID);
-		if (!this.elModal.length) {
-			this.elModal = $('<div></div>', {
+		this.$elModal = $('#' + this.options.modalID);
+		if (!this.$elModal.length) {
+			this.$elModal = $('<div></div>', {
 				'id': this.options.modalID,
 				'class': this.options.modalClass,
 				'role': 'dialog',
@@ -85,58 +83,58 @@ CNJS.UI.ModalWindow = Class.extend({
 		}
 
 		//create modal content
-		this.elModalContent = this.elModal.find('.' + this.options.modalClass + '-content');
-		if (!this.elModalContent.length) {
-			this.elModalContent = $('<div></div>', {
+		this.$elContent = this.$elModal.find('.' + this.options.modalClass + '-content');
+		if (!this.$elContent.length) {
+			this.$elContent = $('<div></div>', {
 				'class': this.options.modalClass + '-content'
-			}).appendTo(this.elModal);
+			}).appendTo(this.$elModal);
 		}
 
 		//insert close button
-		this.btnClose = this.elModal.find('.' + this.options.closeBtnClass);
-		if (!this.btnClose.length) {
-			this.btnClose = $('<a></a>', {
+		this.$btnClose = this.$elModal.find('.' + this.options.closeBtnClass);
+		if (!this.$btnClose.length) {
+			this.$btnClose = $('<a></a>', {
 				'class': this.options.closeBtnClass,
 				'href': '#close',
 				'title': 'close window'
-			}).html(this.options.closeBtnInnerHTML).appendTo(this.elModal);
+			}).html(this.options.closeBtnInnerHTML).appendTo(this.$elModal);
 		}
 
 		//insert into DOM
-		this.elModal.insertAfter(this.elModalOverlay).hide();
+		this.$elModal.insertAfter(this.$elOverlay).hide();
 
 		//top pos assumes position:fixed by defalt, if position:absolute then top pos gets trickier.
-		this.isPosAbs = (this.elModal.css('position') === 'absolute') ? true : false;
+		this.isPosAbs = (this.$elModal.css('position') === 'absolute') ? true : false;
 
 	},
 
-	_bindEvents: function() {
+	bindEvents: function() {
 		var self = this;
 
-		this.elTriggers.on('click', function(e) {
+		this.$elTriggers.on('click', function(e) {
 			e.preventDefault();
 			if (!self.isModalActivated) {
-				self.elCurrentTrigger = $(this);
+				self.$elActiveTrigger = $(this);
 				self.__clickTrigger(e);
 			}
 		});
 
-		this.btnClose.on('click', function(e) {
+		this.$btnClose.on('click', function(e) {
 			e.preventDefault();
 			if (self.isModalActivated) {
 				self.closeModal();
 			}
 		});
 
-		this.elModalOverlay.on('click', function(e) {
+		this.$elOverlay.on('click', function(e) {
 			if (self.isModalActivated) {
 				self.closeModal();
 			}
 		});
 
 		this.$document.on('focusin', function(e) {
-			if (self.isModalActivated && !self.elModal.get(0).contains(e.target)) {
-				self.elModal.focus();
+			if (self.isModalActivated && !self.$elModal.get(0).contains(e.target)) {
+				self.$elModal.focus();
 			}
 		});
 
@@ -152,25 +150,27 @@ CNJS.UI.ModalWindow = Class.extend({
 
 	},
 
+
 /**
 *	Event Handlers
 **/
+
 	__clickTrigger: function(e) {
-		var self = this;
-		this.currentIndex = this.elTriggers.index(this.elCurrentTrigger);
+		//this.currentIndex = this.$elTriggers.index(this.$elActiveTrigger);
 		this.openModal();
 	},
+
 
 /**
 *	Public Methods
 **/
+
 	setPosition: function() {
 		var docWidth = this.$document.width();
 		var winHeight = this.$window.height();
 		var winScrollTop = this.$window.scrollTop();
-		var modalWidth = this.elModal.outerWidth();
-		var modalHeight = this.elModal.outerHeight();
-		if (this.isIPhone) {winHeight = window.innerHeight;}
+		var modalWidth = this.$elModal.outerWidth();
+		var modalHeight = this.$elModal.outerHeight();
 		var leftPos = (((docWidth - modalWidth) / 2) + this.options.leftOffset);
 		var topPos = (((winHeight - modalHeight) / 2) + this.options.topOffset);
 		var minTopSpacing = this.options.minTopSpacing;
@@ -186,14 +186,13 @@ CNJS.UI.ModalWindow = Class.extend({
 			}
 		}
 
-		this.elModal.css({left: leftPos + 'px', top: topPos + 'px'});
+		this.$elModal.css({left: leftPos + 'px', top: topPos + 'px'});
 
 	},
 
 	// extend or override getContent in subclass to create custom modal
 	getContent: function() {
-		var self = this;
-		var targetID = this.elCurrentTrigger.data('targetid') || this.elCurrentTrigger.attr('href').replace('#','');
+		var targetID = this.$elActiveTrigger.data('targetid') || this.$elActiveTrigger.attr('href').replace('#','');
 		var targetEl = $('#' + targetID);
 
 		this.contentHTML = targetEl.html();
@@ -204,27 +203,22 @@ CNJS.UI.ModalWindow = Class.extend({
 
 	// extend or override setContent in subclass to create custom modal
 	setContent: function() {
-		var self = this;
-
-		this.elModalContent.html(this.contentHTML);
-
+		this.$elContent.html(this.contentHTML);
 	},
 
 	openModal: function() {
 		var self = this;
 
-		$.event.trigger(this.options.customEventPrfx + ':preOpenModal', [this.options.modalID]);
-
 		this.isModalActivated = true;
 
 		this.setPosition();
 
-		this.elModalOverlay.fadeIn(this.options.fadeInOutSpeed, 'linear', function() {
-			self.elModal.fadeIn(self.options.fadeInOutSpeed, 'linear', function() {
+		this.$elOverlay.fadeIn(this.options.fadeInOutSpeed, 'linear', function() {
+			self.$elModal.fadeIn(self.options.fadeInOutSpeed, 'linear', function() {
 
-				self.elModal.addClass(self.options.activeClass).attr({'aria-expanded': 'true', 'aria-hidden': 'false'});
+				self.$elModal.addClass(self.options.activeClass);
 
-				self.elModal.focus();
+				self.$elModal.focus();
 
 				self.getContent();
 
@@ -238,17 +232,15 @@ CNJS.UI.ModalWindow = Class.extend({
 	closeModal: function() {
 		var self = this;
 
-		$.event.trigger(this.options.customEventPrfx + ':preCloseModal', [this.options.modalID]);
+		this.$elModal.fadeOut(this.options.fadeInOutSpeed, 'linear', function() {
+			self.$elModal.removeClass(self.options.activeClass);
 
-		this.elModal.fadeOut(this.options.fadeInOutSpeed, 'linear', function() {
-			self.elModal.removeClass(self.options.activeClass).attr({'aria-expanded': 'false', 'aria-hidden': 'true'});
-
-			self.elModalContent.empty();
+			self.$elContent.empty();
 			self.contentHTML = '';
 
-			self.elModalOverlay.fadeOut(self.options.fadeInOutSpeed, 'linear');
+			self.$elOverlay.fadeOut(self.options.fadeInOutSpeed, 'linear');
 
-			self.elCurrentTrigger.focus();
+			self.$elActiveTrigger.focus();
 
 			self.isModalActivated = false;
 

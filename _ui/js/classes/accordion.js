@@ -39,8 +39,8 @@ CNJS.UI.Accordion = Class.extend({
 		this.$elPanels = this.$el.find(this.options.selectorPanels);
 
 		// setup & properties
-		this._isInitialized = false;
-		this._isAnimating = false;
+		this.isInitialized = false;
+		this.isAnimating = false;
 		this._len = this.$elPanels.length;
 		if (this.options.initialIndex >= this._len) {this.options.initialIndex = 0;}
 		this.currentIndex = this.options.initialIndex;
@@ -59,9 +59,9 @@ CNJS.UI.Accordion = Class.extend({
 			}
 		}
 
-		this._initDisplay();
+		this.initDisplay();
 
-		this._bindEvents();
+		this.bindEvents();
 
 	},
 
@@ -70,7 +70,7 @@ CNJS.UI.Accordion = Class.extend({
 *	Private Methods
 **/
 
-	_initDisplay: function() {
+	initDisplay: function() {
 		var $elActiveTab = $(this.$elTabs[this.currentIndex]);
 		var $elActivePanel = $(this.$elPanels[this.currentIndex]);
 
@@ -92,13 +92,13 @@ CNJS.UI.Accordion = Class.extend({
 			});
 		}
 
-		this._isInitialized = true;
+		this.isInitialized = true;
 
 		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
-	_bindEvents: function() {
+	bindEvents: function() {
 
 		CNJS.$window.on('resizeEnd', function(e) {
 			this.__onWindowResizeEnd(e);
@@ -106,7 +106,7 @@ CNJS.UI.Accordion = Class.extend({
 
 		this.$elTabs.on('click', function(e) {
 			e.preventDefault();
-			if (!this._isAnimating) {
+			if (!this.isAnimating) {
 				this.__clickTab(e);
 			}
 		}.bind(this));

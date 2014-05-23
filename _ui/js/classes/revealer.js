@@ -7,12 +7,10 @@
 		@param {jQuery Object}
 		@param {Object}
 
-	VERSION: 0.1.0
-
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
+		- jQuery 1.10+
 		- class.js
 		- cnjs.js
 
@@ -39,23 +37,23 @@ CNJS.UI.Revealer = Class.extend({
 		this.$elTarget = this.$el.find(this.options.selectorTarget);
 
 		// setup & properties
-		this._isInitialized = false;
-		this._isAnimating = false;
+		this.isInitialized = false;
+		this.isAnimating = false;
 		this.inactiveTriggerText = this.$elTrigger.text();
 		this.activeTriggerText = this.$elTrigger.attr('data-activeText') || this.options.activeTriggerText || false;
-		this._isRevealed = this.$elTarget.attr('data-initRevealed') === 'true' || this.options.initRevealed ? true : false;
+		this.isRevealed = this.$elTarget.attr('data-initRevealed') === 'true' || this.options.initRevealed ? true : false;
 
-		// check url hash to override _isRevealed
+		// check url hash to override isRevealed
 		this.focusOnInit = false;
 		this.urlHash = window.location.hash.replace('#','') || false;
 		if (this.urlHash && this.urlHash === this.$elTarget.attr('id')) {
-			this._isRevealed = true;
+			this.isRevealed = true;
 			this.focusOnInit = true;
 		}
 
-		this._initDisplay();
+		this.initDisplay();
 
-		this._bindEvents();
+		this.bindEvents();
 
 	},
 
@@ -64,14 +62,14 @@ CNJS.UI.Revealer = Class.extend({
 *	Private Methods
 **/
 
-	_initDisplay: function() {
+	initDisplay: function() {
 		var self = this;
 
 		this.$el.attr({'role':'tablist'});
 		this.$elTrigger.attr({'role':'tab'});
 		this.$elTarget.attr({'role':'tabpanel', 'tabindex':'-1'});
 
-		if (this._isRevealed) {
+		if (this.isRevealed) {
 			this.$el.addClass(this.options.activeClass);
 			if (this.activeTriggerText) {
 				this.$elTrigger.html(this.activeTriggerText);
@@ -87,17 +85,17 @@ CNJS.UI.Revealer = Class.extend({
 			});
 		}
 
-		this._isInitialized = true;
+		this.isInitialized = true;
 
 		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
-	_bindEvents: function() {
+	bindEvents: function() {
 
 		this.$elTrigger.on('click', function(e) {
 			e.preventDefault();
-			if (!this._isAnimating) {
+			if (!this.isAnimating) {
 				this.__clickTrigger(e);
 			}
 		}.bind(this));
@@ -110,7 +108,7 @@ CNJS.UI.Revealer = Class.extend({
 **/
 
 	__clickTrigger: function(e) {
-		if (this._isRevealed) {
+		if (this.isRevealed) {
 			this.collapseContent();
 		} else {
 			this.revealContent();
@@ -127,7 +125,7 @@ CNJS.UI.Revealer = Class.extend({
 
 		var contentRevealed = function() {
 			self.$elTarget.focus();
-			self._isRevealed = true;
+			self.isRevealed = true;
 			self.$el.addClass(self.options.activeClass);
 			$.event.trigger(self.options.customEventPrfx + ':contentRevealed', [self.$el]);
 		};
@@ -140,9 +138,9 @@ CNJS.UI.Revealer = Class.extend({
 		//update target
 		if (this.options.useSlideEffect) {
 
-			this._isAnimating = true;
+			this.isAnimating = true;
 			this.$elTarget.slideDown(self.options.animDuration, 'swing', function() {
-				self._isAnimating = false;
+				self.isAnimating = false;
 				contentRevealed();
 			});
 
@@ -157,7 +155,7 @@ CNJS.UI.Revealer = Class.extend({
 		var self = this;
 
 		var contentCollapsed = function() {
-			self._isRevealed = false;
+			self.isRevealed = false;
 			self.$el.removeClass(self.options.activeClass);
 			$.event.trigger(self.options.customEventPrfx + ':contentCollapsed', [self.$el]);
 		};
@@ -171,9 +169,9 @@ CNJS.UI.Revealer = Class.extend({
 		//update target
 		if (this.options.useSlideEffect) {
 
-			this._isAnimating = true;
+			this.isAnimating = true;
 			this.$elTarget.slideUp(self.options.animDuration, 'swing', function() {
-				self._isAnimating = false;
+				self.isAnimating = false;
 				contentCollapsed();
 			});
 

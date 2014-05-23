@@ -169,15 +169,9 @@ CNJS.UI.ModalWindow = Class.extend({
 		var winScrollTop = this.$window.scrollTop();
 		var modalWidth = this.$elModal.outerWidth();
 		var modalHeight = this.$elModal.outerHeight();
+		var minTopSpacing = this.options.minTopSpacing;
 		var leftPos = (((docWidth - modalWidth) / 2) + this.options.leftOffset);
 		var topPos = (((winHeight - modalHeight) / 2) + this.options.topOffset);
-		var minTopSpacing = this.options.minTopSpacing;
-
-		console.log('docWidth', docWidth);
-		console.log('winHeight', winHeight);
-		console.log('winScrollTop', winScrollTop);
-		console.log('modalWidth', modalWidth);
-		console.log('modalHeight', modalHeight);
 
 		if (this.isPosAbs) {
 			topPos += winScrollTop;
@@ -198,11 +192,7 @@ CNJS.UI.ModalWindow = Class.extend({
 	getContent: function() {
 		var targetID = this.$elActiveTrigger.data('targetid') || this.$elActiveTrigger.attr('href').replace('#','');
 		var targetEl = $('#' + targetID);
-
 		this.contentHTML = targetEl.html();
-
-		this.setContent();
-
 	},
 
 	// extend or override setContent in subclass to create custom modal
@@ -215,6 +205,10 @@ CNJS.UI.ModalWindow = Class.extend({
 
 		this.isModalActivated = true;
 
+		self.getContent();
+
+		this.setContent();
+
 		this.setPosition();
 
 		this.$elOverlay.fadeIn(this.options.fadeInOutSpeed, 'linear', function() {
@@ -223,8 +217,6 @@ CNJS.UI.ModalWindow = Class.extend({
 				self.$elModal.addClass(self.options.activeClass);
 
 				self.$elModal.focus();
-
-				self.getContent();
 
 				$.event.trigger(self.options.customEventPrfx + ':modalOpened', [self.options.modalID]);
 

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+
+	<title>Ajax Modal :: CNJS</title>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Fjalla+One" />
+	<link rel="stylesheet" href="_ui/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="_ui/css/base.css" />
+	<link rel="stylesheet" href="_ui/css/utility.css" />
+	<link rel="stylesheet" href="_ui/css/forms.css" />
+	<link rel="stylesheet" href="_ui/css/layout.css" />
+	<link rel="stylesheet" href="_ui/css/widgets.css" />
+	<link rel="stylesheet" href="_ui/css/custom.css" />
+	<!--[if IE 9]><link rel="stylesheet" href="_ui/css/ie9.css" /><![endif]-->
+
+	<script src="_ui/js/lib/modernizr.custom.min.js"></script>
+	<script src="_ui/js/lib/jquery.min.js"></script>
+	<script src="_ui/js/lib/jquery-ui.min.js"></script>
+	<script src="_ui/js/lib/underscore.min.js"></script>
+	<script src="_ui/js/lib/backbone.min.js"></script>
+	<script src="_ui/js/lib/backbone-super.min.js"></script>
+	<script src="_ui/js/lib/class.js"></script>
+	<script src="_ui/js/cnjs.js"></script>
+	<script src="_ui/js/utils.js"></script>
+
+	<link rel="stylesheet" href="_ui/css/widgets/ajaxmodal.css" />
+	<script src="_ui/js/classes/AjaxModal.js"></script>
+
+	<script>
+		POP.PageControl = {
+			init: function() {
+
+				this.elModalTriggers = $('a.ajax-modal-trigger');
+
+				this.ajaxModal = new CNJS.UI.AjaxModal(
+					this.elModalTriggers, {}
+				);
+
+			}
+		}
+		$(function() {
+			CNJS.UTILS.resizeEndEvent();
+			CNJS.PageControl.init();
+		});
+	</script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+
+	<header id="header">
+		<div class="header-inner">
+
+		</div>
+	</header>
+
+
+	<div id="main" class="twocols">
+		<div class="main-inner">
+
+			<div id="content">
+
+				<h1>Ajax Modal</h1>
+
+				<div class="hr"><hr /></div>
+
+				<p>
+					Examples using the Class default options:
+					&nbsp;
+					<a class="ajax-modal-trigger" href="ajax-content/ajax-popover-0.html#ajax-content-container" data-ajaxUrl="ajax-content/ajax-popover-0.html#ajax-content-container">Open Ajax Modal Zero</a>
+					&nbsp;
+					<a class="ajax-modal-trigger" href="ajax-content/ajax-popover-1.html" data-ajaxUrl="ajax-content/ajax-popover-1.html">Open Ajax Modal One</a>
+					&nbsp;
+					<a class="ajax-modal-trigger" href="ajax-content/ajax-popover-2.html" data-ajaxUrl="ajax-content/ajax-popover-2.html">Open Ajax Modal Two</a>
+				</p>
+
+			</div>
+
+			<aside id="subcol">
+
+				<br />
+
+			</aside>
+
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+	<footer id="footer">
+		<div class="footer-inner">
+
+		</div>
+	</footer>
+
+
+</div>
+
+</body>
+</html>

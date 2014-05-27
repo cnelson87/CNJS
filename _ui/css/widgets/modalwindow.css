@@ -50,13 +50,13 @@ div.modalwindow {
 }
 	div.modalwindow div.modalwindow-content {
 		min-height: 160px;
-		padding: 24px 16px 2px 16px;
+		padding: 32px 16px 8px 16px;
 	}
 	div.modalwindow a.btn-closeX,
 	div.modalwindow a.lnk-closeX {
 		position: absolute;
-		right: 3px;
-		top: 3px;
+		right: 6px;
+		top: 6px;
 	}
 
 /*** /modal window ***/

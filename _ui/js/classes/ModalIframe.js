@@ -7,24 +7,21 @@
 		@param {jQuery Object}
 		@param {Object}
 
-	VERSION: 0.1.0
-
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
+		- jQuery 1.10+
 		- class.js
 		- cnjs.js
-		- modalwindow.js
+		- ModalWindow.js
 
 */
 
 CNJS.UI.ModalIframe = CNJS.UI.ModalWindow.extend({
-    init: function($elements, objOptions) {
-		var self = this;
+	init: function($triggers, objOptions) {
 
 		// defaults
-		this.elTriggers = $elements;
+		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			modalID: 'modaliframe',
 			modalClass: 'modaliframe',
@@ -34,9 +31,8 @@ CNJS.UI.ModalIframe = CNJS.UI.ModalWindow.extend({
 		// setup & properties
 		this.iframeSrc = null;
 
-		this._super(this.elTriggers, this.options);
+		this._super(this.$elTriggers, this.options);
 
-        delete this.init;
 	},
 
 /**
@@ -49,25 +45,23 @@ CNJS.UI.ModalIframe = CNJS.UI.ModalWindow.extend({
 
 	},*/
 
+
 /**
 *	Event Handlers
 **/
+
 	__clickTrigger: function(e) {
-		var self = this;
-		this.iframeSrc = this.elCurrentTrigger.data('iframesrc') || this.elCurrentTrigger.attr('href');
+		this.iframeSrc = this.$elActiveTrigger.data('iframesrc') || this.$elActiveTrigger.attr('href');
 		this._super(e);
 	},
+
 
 /**
 *	Public Methods
 **/
+
 	getContent: function() {
-		var self = this;
-
 		this.contentHTML = '<iframe src="' + this.iframeSrc + '" frameborder="0" scrolling="no"></iframe>';
-
-		this.setContent();
-
 	}
 
 });

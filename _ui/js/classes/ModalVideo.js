@@ -7,24 +7,21 @@
 		@param {jQuery Object}
 		@param {Object}
 
-	VERSION: 0.1.0
-
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
+		- jQuery 1.10+
 		- class.js
 		- cnjs.js
-		- modalwindow.js
+		- ModalWindow.js
 
 */
 
 CNJS.UI.ModalVideo = CNJS.UI.ModalWindow.extend({
-    init: function($elements, objOptions) {
-		var self = this;
+	init: function($triggers, objOptions) {
 
 		// defaults
-		this.elTriggers = $elements;
+		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			modalID: 'modalvideo',
 			modalClass: 'modal-video',
@@ -36,14 +33,15 @@ CNJS.UI.ModalVideo = CNJS.UI.ModalWindow.extend({
 		// setup & properties
 		this.videoID = null;
 
-		this._super(this.elTriggers, this.options);
+		this._super(this.$elTriggers, this.options);
 
-        delete this.init;
 	},
+
 
 /**
 *	Private Methods
 **/
+
 /*	_bindEvents: function() {
 		var self = this;
 
@@ -51,26 +49,24 @@ CNJS.UI.ModalVideo = CNJS.UI.ModalWindow.extend({
 
 	},*/
 
+
 /**
 *	Event Handlers
 **/
+
 	__clickTrigger: function(e) {
-		var self = this;
-		this.videoID = this.elCurrentTrigger.data('videoid') || this.elCurrentTrigger.attr('href');
+		this.videoID = this.$elActiveTrigger.data('videoid') || this.$elActiveTrigger.attr('href');
 		this._super(e);
 	},
+
 
 /**
 *	Public Methods
 **/
+
 	getContent: function() {
-		var self = this;
 		var iframeSrc = '//www.youtube.com/embed/' + this.videoID;
-
 		this.contentHTML = '<iframe id="' + this.options.iframeID + '" class="' + this.options.iframeClass + '" src="' + iframeSrc + '" frameborder="0" scrolling="no"></iframe>';
-
-		this.setContent();
-
 	}
 
 });

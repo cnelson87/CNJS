@@ -7,24 +7,21 @@
 		@param {jQuery Object}
 		@param {Object}
 
-	VERSION: 0.1.0
-
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
+		- jQuery 1.10+
 		- class.js
 		- cnjs.js
-		- modalwindow.js
+		- ModalWindow.js
 
 */
 
 CNJS.UI.ModalImage = CNJS.UI.ModalWindow.extend({
-    init: function($elements, objOptions) {
-		var self = this;
+	init: function($triggers, objOptions) {
 
 		// defaults
-		this.elTriggers = $elements;
+		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			modalID: 'modalimage',
 			modalClass: 'modal-image',
@@ -34,14 +31,15 @@ CNJS.UI.ModalImage = CNJS.UI.ModalWindow.extend({
 		// setup & properties
 		this.imageSrc = null;
 
-		this._super(this.elTriggers, this.options);
+		this._super(this.$elTriggers, this.options);
 
-        delete this.init;
 	},
+
 
 /**
 *	Private Methods
 **/
+
 /*	_bindEvents: function() {
 		var self = this;
 
@@ -49,25 +47,23 @@ CNJS.UI.ModalImage = CNJS.UI.ModalWindow.extend({
 
 	},*/
 
+
 /**
 *	Event Handlers
 **/
+
 	__clickTrigger: function(e) {
-		var self = this;
-		this.imageSrc = this.elCurrentTrigger.data('imagesrc') || this.elCurrentTrigger.attr('href');
+		this.imageSrc = this.$elActiveTrigger.data('imagesrc') || this.$elActiveTrigger.attr('href');
 		this._super(e);
 	},
+
 
 /**
 *	Public Methods
 **/
+
 	getContent: function() {
-		var self = this;
-
 		this.contentHTML = '<img src="' + this.imageSrc + '" alt="" />';
-
-		this.setContent();
-
 	}
 
 });

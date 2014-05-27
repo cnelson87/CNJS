@@ -1,7 +1,7 @@
 /*
 	TITLE: AjaxModal
 
-	DESCRIPTION: ModalWindow subclass injects Ajax content
+	DESCRIPTION: AjaxModal subclass of ModalWindow retrieves & injects Ajax content
 
 	USAGE: new CNJS.UI.AjaxModal('Elements', 'Options')
 		@param {jQuery Object}
@@ -15,7 +15,7 @@
 		- cnjs.js
 		- utils.js
 		- loader.js
-		- modalwindow.js
+		- ModalWindow.js
 
 */
 

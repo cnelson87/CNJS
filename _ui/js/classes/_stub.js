@@ -7,28 +7,20 @@
 		@param {jQuery Object}
 		@param {Object}
 
-	VERSION: 0.1.0
-
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
+		- jQuery 1.10+
 		- class.js
 		- cnjs.js
-
-	CHANGE LOG
-	--------------------------
-	8/20/12 - CN: Inception
-	--------------------------
 
 */
 
 CNJS.UI.Widget = Class.extend({
-    init: function($element, objOptions) {
-		var self = this;
+	init: function($el, objOptions) {
 
 		// defaults
-		this.elContainer = $element;
+		this.$el = $el;
 		this.options = $.extend({
 			option1: '',
 			option2: '',
@@ -43,19 +35,21 @@ CNJS.UI.Widget = Class.extend({
 
 
 		//if this is an inherited class
-		//this._super(this.elContainer, this.options);
+		//this._super(this.$el, this.options);
 
 
-		this._initDisplay();
+		this.initDisplay();
 
-        delete this.init;
-    },
+		this.bindEvents();
+
+	},
+
 
 /**
 *	'Private' Methods
 **/
-	_initDisplay: function() {
-		var self = this;
+
+	initDisplay: function() {
 
 
 
@@ -63,29 +57,31 @@ CNJS.UI.Widget = Class.extend({
 
 		this._isInitialized = true;
 
-		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.elContainer]);
-
-		this._bindEvents();
+		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
-	_bindEvents: function() {
+	bindEvents: function() {
 		var self = this;
 
 
 
 	},
 
+
 /**
 *	Event Handlers
 **/
+
 	__onEvent: function() {
 		
 	},
 
+
 /**
 *	Public Methods
 **/
+
 	doSomething: function() {
 		
 	}

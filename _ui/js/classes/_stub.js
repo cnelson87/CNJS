@@ -31,7 +31,7 @@ CNJS.UI.Widget = Class.extend({
 
 
 		// setup & properties
-		this._isInitialized = false;
+		this.isInitialized = false;
 
 
 		//if this is an inherited class
@@ -55,7 +55,7 @@ CNJS.UI.Widget = Class.extend({
 
 
 
-		this._isInitialized = true;
+		this.isInitialized = true;
 
 		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 

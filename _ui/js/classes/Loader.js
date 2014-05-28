@@ -7,52 +7,46 @@
 		@param {jQuery Object}
 		@param {Object}
 
-	VERSION: 0.1.0
-
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
+		- jQuery 1.10+
 		- class.js
 		- cnjs.js
-
-	CHANGE LOG
-	--------------------------
-	8/20/12 - CN: Inception
-	--------------------------
 
 */
 
 CNJS.UI.Loader = Class.extend({
-    init: function($element, objOptions) {
-		var self = this;
+	init: function($el, objOptions) {
 
 		// defaults
-		this.elContainer = $element;
+		this.$el = $el;
 		this.options = $.extend({
 			overlayTemplate: '<div class="loader-overlay"></div>',
 			spinnerTemplate: '<div class="loader-spinner"></div>'
 	    }, objOptions || {});
 
-		this.elOverlay = $(this.options.overlayTemplate);
-		this.elSpinner = $(this.options.spinnerTemplate);
+		this.$elOverlay = $(this.options.overlayTemplate);
+		this.$elSpinner = $(this.options.spinnerTemplate);
 
-        delete this.init;
-    },
+	},
+
 
 /**
 *	Public Methods
 **/
+
 	addLoader: function() {
 		var self = this;
-		this.elContainer.append(this.elOverlay, this.elSpinner);
+		this.$el.append(this.$elOverlay, this.$elSpinner);
 		setTimeout(function() {
-			self.elSpinner.click(); //spinner gif gets 'stuck' and needs a click
+			self.$elSpinner.click(); //spinner gif gets 'stuck' and needs a click
 		}, 10);
 	},
+
 	removeLoader: function() {
-		this.elOverlay.remove();
-		this.elSpinner.remove();
+		this.$elOverlay.remove();
+		this.$elSpinner.remove();
 	}
 
 });

@@ -7,41 +7,34 @@
 		@param {jQuery Object}
 		@param {Object}
 
-	VERSION: 0.1.0
-
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
+		- jQuery 1.10+
 		- class.js
 		- cnjs.js
-
-	CHANGE LOG
-	--------------------------
-	12/05/12 - CN: Inception
-	--------------------------
 
 */
 
 CNJS.UI.Tooltip = Class.extend({
-    init: function($elements, objOptions) {
-		var self = this;
+	init: function($triggers, objOptions) {
 
 		// defaults
 		this.$body = CNJS.$body;
-		this.elTriggers = $elements;
+		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			tooltipID: 'tooltip',
 			tooltipClass: 'tooltip',
 			tooltipArrowClass: 'tooltip-arrow',
-			defaultPosition: 'east',			// str: tooltip is positioned 'west', 'north', 'south', or 'east' of the trigger
+			defaultPosition: 'east',	// str: tooltip is positioned 'west', 'north', 'south', or 'east' of the trigger
 			leftOffset: 0,
 			topOffset: 0,
 			useAppearEffect: true,
 			fadeInOutSpeed: 200,
 			hoverDelay: 200,
 			customEventPrfx: 'CNJS:UI:Tooltip'
-	    }, objOptions || {});
+		}, objOptions || {});
+
 		// ensure position is 'west', 'north', 'south', or 'east'
 		if ((this.options.defaultPosition != 'west') &&
 			(this.options.defaultPosition != 'north') &&
@@ -50,7 +43,7 @@ CNJS.UI.Tooltip = Class.extend({
 		}
 
 		// setup & properties
-		this._len = this.elTriggers.size();
+		this._len = this.$elTriggers.size();
 		this.isActivated = false;
 		this.enterTimeout = false;
 		this.leaveTimeout = false;
@@ -64,20 +57,22 @@ CNJS.UI.Tooltip = Class.extend({
 		this.elTargets = [];
 		this.tooltipID = this.options.tooltipID;
 
-		this._initDisplay();
+		this.initDisplay();
 
-        delete this.init;
-    },
+		this.bindEvents();
+
+	},
+
 
 /**
 *	'Private' Methods
 **/
-	_initDisplay: function() {
-		var self = this;
+
+	initDisplay: function() {
 		var elTrigger = false;
 
 		for (var i=0; i<this._len; i++) {
-			elTrigger = $(this.elTriggers[i]);
+			elTrigger = $(this.$elTriggers[i]);
 			this.arTargetIDs[i] = elTrigger.attr('data-targetID');
 			this.elTargets[i] = $('#' + this.arTargetIDs[i]);
 			this.elTargets[i].hide();
@@ -101,10 +96,10 @@ CNJS.UI.Tooltip = Class.extend({
 
 	},
 
-	_bindEvents: function() {
+	bindEvents: function() {
 		var self = this;
 
-		this.elTriggers.bind({
+		this.$elTriggers.bind({
 			click: function(event) {
 				event.preventDefault();
 				if (!self._isActivated) {
@@ -112,7 +107,7 @@ CNJS.UI.Tooltip = Class.extend({
 				}
 			},
 			mouseenter: function(event) {
-				self.currentIndex = self.elTriggers.index(event.currentTarget);
+				self.currentIndex = self.$elTriggers.index(event.currentTarget);
 				self.__triggerMouseenter();
 			},
 			mouseleave: function() {
@@ -131,9 +126,11 @@ CNJS.UI.Tooltip = Class.extend({
 
 	},
 
+
 /**
 *	Event Handlers
 **/
+
 	__triggerMouseenter: function() {
 		var self = this;
 		clearTimeout(this.leaveTimeout);
@@ -160,9 +157,11 @@ CNJS.UI.Tooltip = Class.extend({
 		}, self.options.hoverDelay);
 	},
 
+
 /**
 *	Public Methods
 **/
+
 	openTooltip: function() {
 		var self = this;
 
@@ -184,6 +183,7 @@ CNJS.UI.Tooltip = Class.extend({
 		}
 
 	},
+
 	closeTooltip: function() {
 		var self = this;
 
@@ -198,26 +198,26 @@ CNJS.UI.Tooltip = Class.extend({
 			this._isActivated = false;
 			$.event.trigger(this.options.customEventPrfx + ':tooltipClosed');
 		}
-		this.elTriggers[this.currentIndex].focus();
-		//this.elTriggers[this.currentIndex].blur();
+		this.$elTriggers[this.currentIndex].focus();
+		//this.$elTriggers[this.currentIndex].blur();
 
 	},
+
 	positionTooltip: function() {
-		var self = this,
-			index = this.currentIndex,
-			elTrigger = $(this.elTriggers[index]),
-			triggerW = elTrigger.outerWidth(),
-			triggerH = elTrigger.outerHeight(),
-			tooltipW = this.elTooltip.outerWidth(),
-			tooltipH = this.elTooltip.outerHeight();
-			offset = elTrigger.offset(),
-			triggerT = offset.top,
-			triggerL = offset.left,
-			xOffset = this.options.leftOffset,
-			yOffset = this.options.topOffset,
-			posLeft = 0,
-			posTop = 0,
-			pos = this.options.defaultPosition;
+		var index = this.currentIndex;
+		var elTrigger = $(this.$elTriggers[index]);
+		var triggerW = elTrigger.outerWidth();
+		var triggerH = elTrigger.outerHeight();
+		var tooltipW = this.elTooltip.outerWidth();
+		var tooltipH = this.elTooltip.outerHeight();
+		var offset = elTrigger.offset();
+		var triggerT = offset.top;
+		var triggerL = offset.left;
+		var xOffset = this.options.leftOffset;
+		var yOffset = this.options.topOffset;
+		var posLeft = 0;
+		var posTop = 0;
+		var pos = this.options.defaultPosition;
 
 		if (pos === 'west') {
 			posLeft = triggerL - (xOffset + tooltipW);
@@ -236,4 +236,6 @@ CNJS.UI.Tooltip = Class.extend({
 		this.elTooltip.css({left: posLeft + 'px', top: posTop + 'px'});
 
 	}
+
 });
+

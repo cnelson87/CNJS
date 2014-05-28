@@ -22,8 +22,8 @@ CNJS.UI.Loader = Class.extend({
 		// defaults
 		this.$el = $el;
 		this.options = $.extend({
-			overlayTemplate: '<div class="loader-overlay"></div>',
-			spinnerTemplate: '<div class="loader-spinner"></div>'
+			overlayTemplate: '<div class="overlay"></div>',
+			spinnerTemplate: '<div class="spinner"></div>'
 	    }, objOptions || {});
 
 		this.$elOverlay = $(this.options.overlayTemplate);

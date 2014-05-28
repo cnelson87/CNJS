@@ -31,6 +31,7 @@ CNJS.UI.TabCarousel = CNJS.UI.Carousel.extend({
 			numItemsPerGroup: 1,	//do not change
 			numVisibleItems: 1,		//do not change
 			selectorTabs: '.tabnav a',
+			selectorInnerTrack: 'hero-carousel-panels > ul',
 			customEventPrfx: 'CNJS:UI:TabCarousel'
 		}, objOptions || {});
 

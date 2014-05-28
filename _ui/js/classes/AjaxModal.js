@@ -26,31 +26,26 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			ajaxErrorMsg: CNJS.Config.defaultAjaxErrorMessage,
+			loaderDelay: 400,
 			customEventPrfx: 'CNJS:UI:AjaxModal'
 		}, objOptions || {});
 
 		// setup & properties
 		this.getAjaxContent = CNJS.UTILS.getAjaxContent; //shortcut to getAjaxContent utility
-		this.loader = null;
-		this.ajaxUrl = null;
-		this.currentIndex = null;
-		this.arrAjaxContent = null;
+		this.ajaxLoader = null;
 
 		this._super(this.$elTriggers, this.options);
-
-		this.loader = new CNJS.UI.Loader(this.$elContent);
 
 	},
 
 
 /**
-*	Event Handlers
+*	Private Methods
 **/
 
-	__clickTrigger: function(e) {
-		this.ajaxUrl = this.$elActiveTrigger.data('ajaxurl') || this.$elActiveTrigger.attr('href');
-		this.currentIndex = this.$elTriggers.index(this.$elActiveTrigger);
-		this.openModal();
+	initDisplay: function() {
+		this._super();
+		this.ajaxLoader = new CNJS.UI.Loader(this.$elContent);
 	},
 
 
@@ -60,21 +55,44 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 
 	getContent: function() {
 		var self = this;
+		var ajaxUrl = this.$elActiveTrigger.data('ajaxurl') || this.$elActiveTrigger.attr('href');
+		var targetID = ajaxUrl.split('#')[1] || false;
+		var targetEl;
 
-		this.loader.addLoader();
+		this.ajaxLoader.addLoader();
 
-		$.when(self.getAjaxContent(self.ajaxUrl)).done(function(response) {
-
-			self.loader.removeLoader();
-			self.contentHTML = response;
-			self.setContent();
+		$.when(self.getAjaxContent(ajaxUrl, 'html')).done(function(response) {
 			//console.log(response);
 
-		}).fail(function() {
+			if (targetID) {
+				targetEl = $(response).find('#' + targetID);
+				if (targetEl.length) {
+					self.contentHTML = $(response).find('#' + targetID).html();
+				} else {
+					self.contentHTML = $(response).html();
+				}
+				
+			} else {
+				self.contentHTML = response;
+			}
 
-			self.loader.removeLoader();
+			//add a small delay to show spinner
+			setTimeout(function() {
+				self.ajaxLoader.removeLoader();
+				self.setContent();
+				self.setPosition();
+			}, self.options.loaderDelay);
+
+		}).fail(function() {
+			//console.log(response);
 			self.contentHTML = '';
-			self.$elContent.html(self.options.ajaxErrorMsg);
+
+			//add a small delay to show spinner
+			setTimeout(function() {
+				self.ajaxLoader.removeLoader();
+				self.$elContent.html(self.options.ajaxErrorMsg);
+				self.setPosition();
+			}, self.options.loaderDelay);
 
 		});
 

@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="_ui/css/utility.css" />
 	<link rel="stylesheet" href="_ui/css/forms.css" />
 	<link rel="stylesheet" href="_ui/css/layout.css" />
-	<link rel="stylesheet" href="_ui/css/widgets.css" />
 	<link rel="stylesheet" href="_ui/css/custom.css" />
 	<!--[if IE 9]><link rel="stylesheet" href="_ui/css/ie9.css" /><![endif]-->
 
@@ -25,18 +24,18 @@
 	<script src="_ui/js/cnjs.js"></script>
 	<script src="_ui/js/utils.js"></script>
 
-	<link rel="stylesheet" href="_ui/css/widgets/ajaxmodal.css" />
+	<link rel="stylesheet" href="_ui/css/widgets/modalwindow.css" />
+	<script src="_ui/js/classes/Loader.js"></script>
+	<script src="_ui/js/classes/ModalWindow.js"></script>
 	<script src="_ui/js/classes/AjaxModal.js"></script>
 
 	<script>
-		POP.PageControl = {
+		CNJS.PageControl = {
 			init: function() {
 
 				this.elModalTriggers = $('a.ajax-modal-trigger');
 
-				this.ajaxModal = new CNJS.UI.AjaxModal(
-					this.elModalTriggers, {}
-				);
+				this.ajaxModal = new CNJS.UI.AjaxModal(this.elModalTriggers, {});
 
 			}
 		}
@@ -71,11 +70,11 @@
 				<p>
 					Examples using the Class default options:
 					&nbsp;
-					<a class="ajax-modal-trigger" href="ajax-content/ajax-popover-0.html#ajax-content-container" data-ajaxUrl="ajax-content/ajax-popover-0.html#ajax-content-container">Open Ajax Modal Zero</a>
+					<a class="ajax-modal-trigger" href="ajax-content/ajax-content-0.html#ajax-content-container" data-ajaxUrl="ajax-content/ajax-content-0.html#ajax-content-container">Open Ajax Modal Zero</a>
 					&nbsp;
-					<a class="ajax-modal-trigger" href="ajax-content/ajax-popover-1.html" data-ajaxUrl="ajax-content/ajax-popover-1.html">Open Ajax Modal One</a>
+					<a class="ajax-modal-trigger" href="ajax-content/ajax-content-1.html" data-ajaxUrl="ajax-content/ajax-content-1.html">Open Ajax Modal One</a>
 					&nbsp;
-					<a class="ajax-modal-trigger" href="ajax-content/ajax-popover-2.html" data-ajaxUrl="ajax-content/ajax-popover-2.html">Open Ajax Modal Two</a>
+					<a class="ajax-modal-trigger" href="ajax-content/ajax-content-2.html" data-ajaxUrl="ajax-content/ajax-content-2.html">Open Ajax Modal Two</a>
 				</p>
 
 			</div>

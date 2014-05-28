@@ -68,7 +68,7 @@ div.carousel {
 			display: block;
 			width: 14px;
 			height: 26px;
-			background: transparent url('../img/lnks-prev-next.gif') no-repeat;
+			background: transparent url('../../img/btns-prev-next.png') no-repeat;
 			margin-top: -13px;
 			position: absolute;
 			top: 50%;
@@ -99,20 +99,8 @@ div.carousel {
 /*** /carousel ***/
 
 
-/*** tab-carousel ***/
-
-div.carousel.tab-carousel {
-	height: 141px;
-}
-	div.carousel.tab-carousel a.carousel-nav {
-		top: 76px;
-	}
-
-/*** /tab-carousel ***/
-
-
 /**
-*	big carousel
+*	fullwidth-carousel
 **/
 
 div.fullwidth-carousel {
@@ -249,17 +237,18 @@ div.fullwidth-carousel {
 			*/
 
 
-/*** /big carousel ***/
+/*** /fullwidth-carousel ***/
 
 
 /**
 *	hero-carousel
 **/
 
-div#test-hero-carousel {
+div.hero-carousel {
+	width: 960px;
 	margin: 0 -20px;
+	padding: 0;
 }
-div.hero-carousel {}
 	div.hero-carousel div.hero-carousel-panels {
 		width: 960px;
 		height: 420px;

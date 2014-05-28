@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+
+	<title>Tab Carousel :: CNJS</title>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Fjalla+One" />
+	<link rel="stylesheet" href="_ui/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="_ui/css/base.css" />
+	<link rel="stylesheet" href="_ui/css/utility.css" />
+	<link rel="stylesheet" href="_ui/css/forms.css" />
+	<link rel="stylesheet" href="_ui/css/layout.css" />
+	<link rel="stylesheet" href="_ui/css/custom.css" />
+	<!--[if IE 9]><link rel="stylesheet" href="_ui/css/ie9.css" /><![endif]-->
+
+	<script src="_ui/js/lib/modernizr.custom.min.js"></script>
+	<script src="_ui/js/lib/jquery.min.js"></script>
+	<script src="_ui/js/lib/jquery-ui.min.js"></script>
+	<script src="_ui/js/lib/underscore.min.js"></script>
+	<script src="_ui/js/lib/backbone.min.js"></script>
+	<script src="_ui/js/lib/backbone-super.min.js"></script>
+	<script src="_ui/js/lib/class.js"></script>
+	<script src="_ui/js/cnjs.js"></script>
+	<script src="_ui/js/utils.js"></script>
+
+	<link rel="stylesheet" href="_ui/css/widgets/carousel.css" />
+	<link rel="stylesheet" href="_ui/css/widgets/tabswitcher.css" />
+	<script src="_ui/js/classes/Carousel.js"></script>
+	<script src="_ui/js/classes/TabCarousel.js"></script>
+
+	<script>
+		CNJS.PageControl = {
+			init: function () {
+				var self = this;
+
+				this.elTabCarousel = $('#carousel-container');
+
+				this.tabCarousel = new CNJS.UI.TabCarousel(this.elTabCarousel, {});
+
+			}
+		};
+		$(function () {
+			CNJS.PageControl.init();
+		});
+	</script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+
+	<header id="header">
+		<div class="header-inner">
+
+		</div>
+	</header>
+
+
+	<div id="main" class="">
+		<div class="main-inner">
+
+			<div id="content">
+
+				<h1>Tab Carousel</h1>
+
+				<div class="hr"><hr /></div>
+
+				<div id="carousel-container" class="carousel hero-carousel">
+					<div class="tabnav">
+						<ul>
+							<li><a href="#panel-1">1</a></li>
+							<li><a href="#panel-2">2</a></li>
+							<li><a href="#panel-3">3</a></li>
+							<li><a href="#panel-4">4</a></li>
+							<li><a href="#panel-5">5</a></li>
+						</ul>
+					</div>
+					<div class="hero-carousel-panels">
+
+						<ul>
+							<li id="panel-1">
+								<img src="media/images/hero/hero-01.jpg" alt="" />
+							</li>
+							<li id="panel-2">
+								<img src="media/images/hero/hero-02.jpg" alt="" />
+							</li>
+							<li id="panel-3">
+								<img src="media/images/hero/hero-03.jpg" alt="" />
+							</li>
+							<li id="panel-4">
+								<img src="media/images/hero/hero-04.jpg" alt="" />
+							</li>
+							<li id="panel-5">
+								<img src="media/images/hero/hero-05.jpg" alt="" />
+							</li>
+						</ul>
+
+					</div>
+					<a class="carousel-nav nav-prev" href="#prev"><span class="offscreen">Prev</span></a>
+					<a class="carousel-nav nav-next" href="#next"><span class="offscreen">Next</span></a>
+				</div>
+
+			</div>
+
+			<aside id="subcol">
+
+				<br />
+
+			</aside>
+
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+	<footer id="footer">
+		<div class="footer-inner">
+
+		</div>
+	</footer>
+
+
+</div>
+
+</body>
+</html>

@@ -57,9 +57,11 @@ CNJS.UI.ModalWindow = Class.extend({
 
 	},
 
+
 /**
 *	Private Methods
 **/
+
 	initDisplay: function() {
 
 		//create overlay
@@ -193,6 +195,7 @@ CNJS.UI.ModalWindow = Class.extend({
 		var targetID = this.$elActiveTrigger.data('targetid') || this.$elActiveTrigger.attr('href').replace('#','');
 		var targetEl = $('#' + targetID);
 		this.contentHTML = targetEl.html();
+		this.setContent();
 	},
 
 	// extend or override setContent in subclass to create custom modal
@@ -207,7 +210,7 @@ CNJS.UI.ModalWindow = Class.extend({
 
 		self.getContent();
 
-		this.setContent();
+		//this.setContent();
 
 		this.setPosition();
 

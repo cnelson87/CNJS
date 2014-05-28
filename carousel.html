@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+
+	<title>Carousel :: CNJS</title>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Fjalla+One" />
+	<link rel="stylesheet" href="_ui/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="_ui/css/base.css" />
+	<link rel="stylesheet" href="_ui/css/utility.css" />
+	<link rel="stylesheet" href="_ui/css/forms.css" />
+	<link rel="stylesheet" href="_ui/css/layout.css" />
+	<link rel="stylesheet" href="_ui/css/custom.css" />
+	<!--[if IE 9]><link rel="stylesheet" href="_ui/css/ie9.css" /><![endif]-->
+
+	<script src="_ui/js/lib/modernizr.custom.min.js"></script>
+	<script src="_ui/js/lib/jquery.min.js"></script>
+	<script src="_ui/js/lib/jquery-ui.min.js"></script>
+	<script src="_ui/js/lib/underscore.min.js"></script>
+	<script src="_ui/js/lib/backbone.min.js"></script>
+	<script src="_ui/js/lib/backbone-super.min.js"></script>
+	<script src="_ui/js/lib/class.js"></script>
+	<script src="_ui/js/cnjs.js"></script>
+	<script src="_ui/js/utils.js"></script>
+
+	<link rel="stylesheet" href="_ui/css/widgets/carousel.css" />
+	<script src="_ui/js/classes/Carousel.js"></script>
+
+	<script>
+		CNJS.PageControl = {
+			init: function () {
+
+				this.elCarousel = $('#carousel-container');
+
+				this.carousel = new CNJS.UI.Carousel(this.elCarousel, {
+					numVisibleItems: 4
+				});
+
+			}
+		};
+		$(function () {
+			CNJS.PageControl.init();
+		});
+	</script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+
+	<header id="header">
+		<div class="header-inner">
+
+		</div>
+	</header>
+
+
+	<div id="main" class="twocols">
+		<div class="main-inner">
+
+			<div id="content">
+
+				<h1>Carousel</h1>
+
+				<div class="hr"><hr /></div>
+
+				<div id="carousel-container" class="carousel">
+					<div class="carousel-outer-window">
+						<ul class="carousel-inner-track">
+							<li>
+								<a href="#"><img src="media/images/thumbs/thumb-01.jpg" alt="" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="media/images/thumbs/thumb-02.jpg" alt="" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="media/images/thumbs/thumb-03.jpg" alt="" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="media/images/thumbs/thumb-04.jpg" alt="" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="media/images/thumbs/thumb-05.jpg" alt="" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="media/images/thumbs/thumb-06.jpg" alt="" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="media/images/thumbs/thumb-07.jpg" alt="" /></a>
+							</li>
+							<li>
+								<a href="#"><img src="media/images/thumbs/thumb-08.jpg" alt="" /></a>
+							</li>
+						</ul>
+					</div>
+					<a class="carousel-nav nav-prev" href="#prev">
+						<span class="arrow"></span>
+						<span class="offscreen">Prev</span>
+					</a>
+					<a class="carousel-nav nav-next" href="#next">
+						<span class="arrow"></span>
+						<span class="offscreen">Next</span>
+					</a>
+				</div>
+
+			</div>
+
+			<aside id="subcol">
+
+				<br />
+
+			</aside>
+
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+	<footer id="footer">
+		<div class="footer-inner">
+
+		</div>
+	</footer>
+
+
+</div>
+
+</body>
+</html>

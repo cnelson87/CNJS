@@ -18,10 +18,9 @@
 
 CNJS.UI.Carousel = Class.extend({
 	init: function($el, objOptions) {
-		var self = this;
 
 		// defaults
-		this.$el = $element;
+		this.$el = $el;
 		this.options = $.extend({
 			initialIndex: 0,
 			numItemsPerGroup: 1,

@@ -196,7 +196,7 @@ CNJS.UTILS.getAjaxContent = function(url, dataType) {
 	return $.ajax({
 		type: 'GET',
 		url: url,
-		dataType: dataType || 'html'
+		dataType: dataType || 'json'
 	});
 };
 
@@ -209,7 +209,7 @@ CNJS.UTILS.performAjaxPost = function(url, data, dataType) {
 		type: 'POST',
 		url: url,
 		data: data,
-		dataType: dataType || 'html'
+		dataType: dataType || 'json'
 	});
 };
 
@@ -253,26 +253,28 @@ CNJS.UTILS.isElemInView = function($el, objOptions) {
 /**
 *	Universal Ajax loader
 **/
-CNJS.UTILS.AjaxLoader = function($target, objOptions) {
-	this.elTarget = $target;
+CNJS.UTILS.AjaxLoader = function($el, objOptions) {
+	this.$el = $el;
 	this.options = $.extend({
-		overlay: '<div class="overlay"></div>',
-		spinner: '<div class="spinner"></div>'
+		overlayTemplate: '<div class="overlay"></div>',
+		spinnerTemplate: '<div class="spinner"></div>'
 	}, objOptions || {});
-	this.elOverlay = $(this.options.overlay);
-	this.elSpinner = $(this.options.spinner);
+	this.$elOverlay = $(this.options.overlayTemplate);
+	this.$elSpinner = $(this.options.spinnerTemplate);
 };
 CNJS.UTILS.AjaxLoader.prototype = {
-	addAjaxLoader: function() {
+	addLoader: function() {
 		var self = this;
-		this.elTarget.append(this.elOverlay, this.elSpinner);
+
+		this.$el.append(this.$elOverlay, this.$elSpinner);
 		setTimeout(function() {
-			self.elSpinner.click(); //spinner gif gets 'stuck' and needs a click
+			self.$elSpinner.click(); //spinner gif gets 'stuck' and needs a click
 		}, 10);
+
 	},
-	removeAjaxLoader: function() {
-		this.elOverlay.remove();
-		this.elSpinner.remove();
+	removeLoader: function() {
+		this.$elOverlay.remove();
+		this.$elSpinner.remove();
 	}
 };
 /*** /AjaxLoader ***/

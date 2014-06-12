@@ -130,7 +130,7 @@ CNJS.UI.TabSwitcher = Class.extend({
 		} else {
 			this.prevIndex = this.currentIndex;
 			this.currentIndex = index;
-			this.switchPanel(e);
+			this.switchPanel();
 		}
 	},
 
@@ -139,27 +139,27 @@ CNJS.UI.TabSwitcher = Class.extend({
 *	Public Methods
 **/
 
-	switchPanel: function(e) {
+	switchPanel: function() {
 		var $elInactiveTab = $(this.$elTabs[this.prevIndex]);
 		var $elInactivePanel = $(this.$elPanels[this.prevIndex]);
 		var $elActiveTab = $(this.$elTabs[this.currentIndex]);
 		var $elActivePanel = $(this.$elPanels[this.currentIndex]);
-		var isEvent = !!e;
 
 		//update tabs
-		$elInactiveTab.removeClass(this.options.activeClass);
 		$elActiveTab.addClass(this.options.activeClass);
+		$elInactiveTab.removeClass(this.options.activeClass);
 
 		//update panels
-		$elInactivePanel.hide();
 		if (this.options.useFadeEffect) {
+			this.isAnimating = true;
 			$elActivePanel.fadeIn(this.options.animDuration, 'swing', function() {
-				if (isEvent) {$elActivePanel.focus();}
-			});
+				this.isAnimating = false;
+				$elActivePanel.focus();
+			}.bind(this));
 		} else {
-			$elActivePanel.show();
-			if (isEvent) {$elActivePanel.focus();}
+			$elActivePanel.show().focus();
 		}
+		$elInactivePanel.hide();
 
 		$.event.trigger(this.options.customEventPrfx + ':panelSwitched', [this.currentIndex]);
 

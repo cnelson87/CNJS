@@ -98,7 +98,6 @@ html, body {height: 100%;}
 	#content {
 		width: 920px;
 		min-height: 480px;
-		/*background: #efefef;*/
 		padding: 40px 0;
 		box-sizing: border-box;
 		position: relative;
@@ -106,7 +105,7 @@ html, body {height: 100%;}
 	#subcol {
 		width: 240px;
 		height: 100%;
-		background: #efefef;
+		background: #f9f9f9;
 		padding: 40px 20px;
 		box-sizing: border-box;
 		position: absolute;

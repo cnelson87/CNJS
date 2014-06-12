@@ -5,12 +5,14 @@
 
 div.tabswitcher-container {
 	width: 100%;
-	border-bottom: 1px solid #000;
 	margin: 0 0 18px 0;
 	position: relative;
 }
 
-	div.tabswitcher-container div.tabpanels {}
+	div.tabswitcher-container div.tabpanels {
+		border-top: 1px solid #000;
+		border-bottom: 1px solid #000;
+	}
 		div.tabswitcher-container div.tabpanels div.panel {
 			padding: 18px 15px 2px 15px;
 			position: relative;
@@ -21,8 +23,7 @@ div.tabswitcher-container {
 		}
 
 div.tabnav {
-	height: 24px;
-	margin: 0 0 4px 0;
+	margin: 0 0 1em 0;
 	position: relative;
 	overflow: auto;
 }
@@ -31,8 +32,9 @@ div.tabnav {
 		margin: 0;
 	}
 		div.tabnav ul > li {
-			float: left;
-			margin: 0 0 0 5px;
+			display: inline-block;
+			line-height: 16px;
+			margin: 0 0 0 8px;
 			border-top: 1px solid #000;
 			border-bottom: 1px solid #000;
 		}
@@ -41,11 +43,12 @@ div.tabnav {
 		}
 			div.tabnav ul > li > a {
 				display: block;
-				background: #ccc;
-				padding: 2px 15px;
 				color: #fff;
+				text-align: center;
 				text-decoration: none;
 				text-transform: uppercase;
+				background: #ccc;
+				padding: 5px 15px;
 			}
 			div.tabnav ul > li > a.active,
 			div.tabnav ul > li > a:hover {

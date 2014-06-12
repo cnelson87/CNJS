@@ -44,7 +44,7 @@ CNJS.UI.Accordion = Class.extend({
 		this._len = this.$elPanels.length;
 		if (this.options.initialIndex >= this._len) {this.options.initialIndex = 0;}
 		this.currentIndex = this.options.initialIndex;
-		this.nextIndex = false;
+		this.prevIndex = false;
 
 		// check url hash to override currentIndex
 		this.focusOnInit = false;
@@ -125,33 +125,41 @@ CNJS.UI.Accordion = Class.extend({
 	},
 
 	__clickTab: function(e) {
-		var $elTab = $(e.currentTarget);
-		var index = this.$elTabs.index($elTab);
+		var index = this.$elTabs.index(e.currentTarget);
 
-		this.nextIndex = index;
-
+		// if selfClosing then check various states of acordion
 		if (this.options.selfClosing) {
-			// if selfClosing then check various states of acordion
-			if ((!$elTab.hasClass(this.options.activeClass)) && (this.currentIndex !== this.nextIndex) && (this.currentIndex !== -1)) {
-				// default state, same behaviour as !selfClosing
-				this.animateAccordion();
+
+			// currentIndex is open
+			if (this.currentIndex === index) {
+				this.prevIndex = false;
+				this.currentIndex = -1;
+				this.animateSelfClosed(index);
+
+			// currentIndex is -1, all are closed
+			} else if (this.currentIndex === -1) {
+				this.prevIndex = false;
+				this.currentIndex = index;
+				this.animateSelfOpen(index);
+
+			// default behaviour
 			} else {
-				if (($elTab.hasClass(this.options.activeClass)) && (this.currentIndex === this.nextIndex)) {
-					// currentIndex is open
-					this.animateSelfClosed();
-				} else {
-					// currentIndex is -1, all are closed
-					this.animateSelfOpen();
-				}
+				this.prevIndex = this.currentIndex;
+				this.currentIndex = index;
+				this.animateAccordion();
 			}
 
+		// else accordion operates as normal
 		} else {
-			// else accordion operates as normal
-			if ($elTab.hasClass(this.options.activeClass)) {
-				$(this.$elPanels[this.nextIndex]).focus();
+
+			if (this.currentIndex === index) {
+				this.$elPanels[index].focus();
 			} else {
+				this.prevIndex = this.currentIndex;
+				this.currentIndex = index;
 				this.animateAccordion();
 			}
+
 		}
 
 	},
@@ -161,51 +169,56 @@ CNJS.UI.Accordion = Class.extend({
 *	Public Methods
 **/
 
-	animateSelfOpen: function() {
-		var $elTab = $(this.$elTabs[this.nextIndex]);
-		var $elPanel = $(this.$elPanels[this.nextIndex]);
+	animateSelfClosed: function(index) {
+		var $elTab = $(this.$elTabs[index]);
+		var $elPanel = $(this.$elPanels[index]);
 
-		$elTab.addClass(this.options.activeClass);
-		$elPanel.slideDown(this.options.animDuration, 'swing', function() {
-			$elPanel.focus();
-		});
-		this.currentIndex = this.nextIndex;
-
-		$.event.trigger(this.options.customEventPrfx + ':panelOpened', [this.currentIndex]);
-
-	},
-
-	animateSelfClosed: function() {
-		var $elTab = $(this.$elTabs[this.nextIndex]);
-		var $elPanel = $(this.$elPanels[this.nextIndex]);
+		this.isAnimating = true;
 
 		$elTab.removeClass(this.options.activeClass);
 		$elPanel.slideUp(this.options.animDuration, 'swing', function() {
+			this.isAnimating = false;
 			$elTab.focus();
-		});
-		this.currentIndex = -1;
+		}.bind(this));
 
 		$.event.trigger(this.options.customEventPrfx + ':panelClosed');
 
 	},
 
+	animateSelfOpen: function(index) {
+		var $elTab = $(this.$elTabs[index]);
+		var $elPanel = $(this.$elPanels[index]);
+
+		this.isAnimating = true;
+
+		$elTab.addClass(this.options.activeClass);
+		$elPanel.slideDown(this.options.animDuration, 'swing', function() {
+			this.isAnimating = false;
+			$elPanel.focus();
+		}.bind(this));
+
+		$.event.trigger(this.options.customEventPrfx + ':panelOpened', [this.currentIndex]);
+
+	},
+
 	animateAccordion: function() {
-		var $nextTab = $(this.$elTabs[this.nextIndex]);
-		var $nextPanel = $(this.$elPanels[this.nextIndex]);
-		var $currentTab = $(this.$elTabs[this.currentIndex]);
-		var $currentPanel = $(this.$elPanels[this.currentIndex]);
+		var $elInactiveTab = $(this.$elTabs[this.prevIndex]);
+		var $elInactivePanel = $(this.$elPanels[this.prevIndex]);
+		var $elActiveTab = $(this.$elTabs[this.currentIndex]);
+		var $elActivePanel = $(this.$elPanels[this.currentIndex]);
+
+		this.isAnimating = true;
 
 		//update tabs
-		$nextTab.addClass(this.options.activeClass);
-		$currentTab.removeClass(this.options.activeClass);
+		$elActiveTab.addClass(this.options.activeClass);
+		$elInactiveTab.removeClass(this.options.activeClass);
 
 		//update panels
-		$nextPanel.slideDown(this.options.animDuration, 'swing', function() {
-			$nextPanel.focus();
-		});
-		$currentPanel.slideUp(this.options.animDuration, 'swing');
-
-		this.currentIndex = this.nextIndex;
+		$elActivePanel.slideDown(this.options.animDuration, 'swing', function() {
+			this.isAnimating = false;
+			$elActivePanel.focus();
+		}.bind(this));
+		$elInactivePanel.slideUp(this.options.animDuration, 'swing');
 
 		$.event.trigger(this.options.customEventPrfx + ':panelOpened', [this.currentIndex]);
 

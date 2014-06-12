@@ -315,6 +315,24 @@ a.sm-btn:focus, a.sm-btn:hover, a.sm-btn:visited:hover {
 
 
 /**
+*	data table
+**/
+
+table.data-table {
+	width: 100%;
+}
+	table.data-table th {
+		background: #efefef;
+		padding: 5px 10px;
+	}
+	table.data-table td {
+		padding: 5px 10px;
+	}
+
+/* /data table */
+
+
+/**
 *	ajax overlay & spinner
 **/
 

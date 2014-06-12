@@ -294,7 +294,6 @@ CNJS.UTILS.HeightEqualizer = function($items, objOptions) {
 	this._len = this.$items.length;
 	if (this._len <= 1) {return;}
 
-	this.arrHeights = [];
 	this.maxHeight = 0;
 
 	this.getHeight();
@@ -303,9 +302,12 @@ CNJS.UTILS.HeightEqualizer = function($items, objOptions) {
 };
 CNJS.UTILS.HeightEqualizer.prototype = {
 	getHeight: function() {
+		var heightCheck = 0;
 		for (var i=0; i<this._len; i++) {
-			this.arrHeights.push($(this.$items[i]).height());
-			this.maxHeight = (this.arrHeights[i] > this.maxHeight) ? this.arrHeights[i] : this.maxHeight;
+			heightCheck = $(this.$items[i]).innerHeight();
+			if (heightCheck > this.maxHeight) {
+				this.maxHeight = heightCheck;
+			}
 		}
 	},
 	setHeight: function() {
@@ -315,11 +317,10 @@ CNJS.UTILS.HeightEqualizer.prototype = {
 		}
 	},
 	resetHeight: function() {
-		this.arrHeights.length = 0;
 		this.maxHeight = 0;
-		this.$items.css({height: 'auto'});
+		this.$items.css({height: ''});
 		if (this.options.setParentHeight) {
-			this.$elParent.css({height: 'auto'});
+			this.$elParent.css({height: ''});
 		}
 		this.getHeight();
 		this.setHeight();

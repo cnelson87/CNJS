@@ -5,21 +5,31 @@
 
 div.accordion-container {
 	width: 100%;
-	border-bottom: 1px solid #000;
 	margin: 0 0 18px 0;
 	position: relative;
 }
-	div.accordion-container h5.tab {
+
+	div.accordion-container ul {
+		list-style: none;
+		border-bottom: 1px solid #000;
 		margin: 0;
+	}
+		div.accordion-container ul > li {
+			margin: 0;
+		}
+
+	div.accordion-container h5.tab {
+		line-height: 16px;
 		border-top: 1px solid #000;
+		margin: 0;
 	}
 		div.accordion-container h5.tab > a {
 			display: block;
-			background: #ccc;
-			padding: 5px 15px;
 			color: #fff;
 			text-decoration: none;
 			text-transform: uppercase;
+			background: #ccc;
+			padding: 5px 15px;
 			position: relative;
 		}
 		div.accordion-container h5.tab > a.active,
@@ -29,17 +39,18 @@ div.accordion-container {
 		div.accordion-container h5.tab a:focus {
 			color: #000;
 		}
+
 	div.accordion-container div.panel {
-		position: relative;
+		border-top: 1px solid #000;
 		overflow: hidden;
+		position: relative;
 	}
+		div.accordion-container div.panel-inner {
+			padding: 18px 15px 2px 15px;
+		}
 	div.accordion-container div.panel:focus {
 		/* note: focus style for demo purposes only (not necessary to meet accessibility reqs) */
 		background: #fafafa;
 	}
-		div.accordion-container div.panel-inner {
-			padding: 18px 15px 2px 15px;
-			border-top: 1px solid #000;
-		}
 
 /*** /accordion ***/

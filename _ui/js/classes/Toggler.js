@@ -65,7 +65,6 @@ CNJS.UI.Toggler = Class.extend({
 **/
 
 	initDisplay: function() {
-		var self = this;
 
 		this.$el.attr({'role':'tablist'});
 		this.$elTrigger.attr({'role':'tab'});
@@ -87,8 +86,8 @@ CNJS.UI.Toggler = Class.extend({
 		if (this.focusOnInit) {
 			CNJS.$window.load(function() {
 				$('html, body').animate({scrollTop:0}, 1);
-				self.$elTarget.focus();
-			});
+				this.$elTarget.focus();
+			}.bind(this));
 		}
 
 		this.isInitialized = true;
@@ -98,6 +97,10 @@ CNJS.UI.Toggler = Class.extend({
 	},
 
 	bindEvents: function() {
+
+		CNJS.$window.on('resizeEnd', function(e) {
+			this.__onWindowResizeEnd(e);
+		}.bind(this));
 
 		this.$elTrigger.on('click', function(e) {
 			e.preventDefault();
@@ -113,6 +116,10 @@ CNJS.UI.Toggler = Class.extend({
 *	Event Handlers
 **/
 
+	__onWindowResizeEnd: function(e) {
+		//console.log('__onWindowResizeEnd');
+	},
+
 	__clickTrigger: function(e) {
 		if (this.isToggled) {
 			this.collapseContent();
@@ -127,14 +134,13 @@ CNJS.UI.Toggler = Class.extend({
 **/
 
 	revealContent: function() {
-		var self = this;
 
-		function contentRevealed() {
-			self.$elTarget.focus();
-			self.isToggled = true;
-			self.$el.addClass(self.options.activeClass);
-			$.event.trigger(self.options.customEventPrfx + ':contentRevealed', [self.$el]);
-		};
+		var contentRevealed = function contentRevealed() {
+			this.$elTarget.focus();
+			this.isToggled = true;
+			this.$el.addClass(this.options.activeClass);
+			$.event.trigger(this.options.customEventPrfx + ':contentRevealed', [this.$el]);
+		}.bind(this);
 
 		//update trigger
 		if (this.activeTriggerText) {
@@ -146,10 +152,10 @@ CNJS.UI.Toggler = Class.extend({
 		if (this.options.useAppearEffect) {
 
 			this.isAnimating = true;
-			this.$elTarget.fadeIn(self.options.animDuration, 'swing', function() {
-				self.isAnimating = false;
+			this.$elTarget.fadeIn(this.options.animDuration, 'swing', function() {
+				this.isAnimating = false;
 				contentRevealed();
-			});
+			}.bind(this));
 
 		} else {
 			this.$elTarget.show();
@@ -159,14 +165,13 @@ CNJS.UI.Toggler = Class.extend({
 	},
 
 	collapseContent: function() {
-		var self = this;
 
-		function contentCollapsed() {
-			self.$elAltTarget.focus();
-			self.isToggled = false;
-			self.$el.removeClass(self.options.activeClass);
-			$.event.trigger(self.options.customEventPrfx + ':contentCollapsed', [self.$el]);
-		};
+		var contentCollapsed = function contentCollapsed() {
+			this.$elAltTarget.focus();
+			this.isToggled = false;
+			this.$el.removeClass(this.options.activeClass);
+			$.event.trigger(this.options.customEventPrfx + ':contentCollapsed', [this.$el]);
+		}.bind(this);
 
 		//update trigger
 		if (this.activeTriggerText) {
@@ -179,10 +184,10 @@ CNJS.UI.Toggler = Class.extend({
 		if (this.options.useAppearEffect) {
 
 			this.isAnimating = true;
-			this.$elAltTarget.fadeIn(self.options.animDuration, 'swing', function() {
-				self.isAnimating = false;
+			this.$elAltTarget.fadeIn(this.options.animDuration, 'swing', function() {
+				this.isAnimating = false;
 				contentCollapsed();
-			});
+			}.bind(this));
 
 		} else {
 			this.$elAltTarget.show();

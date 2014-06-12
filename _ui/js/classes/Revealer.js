@@ -22,10 +22,10 @@ CNJS.UI.Revealer = Class.extend({
 		// defaults
 		this.$el = $el;
 		this.options = $.extend({
-			selectorTrigger: '.revealer-trigger',
-			selectorTarget: '.revealer-target',
+			selectorTab: '.revealer-trigger',
+			selectorPanel: '.revealer-target',
 			activeClass: 'active',
-			activeTriggerText: '',
+			activeTabText: '',
 			initRevealed: false,
 			useSlideEffect: true,
 			animDuration: 400,
@@ -33,20 +33,20 @@ CNJS.UI.Revealer = Class.extend({
 	    }, objOptions || {});
 
 		// element references
-		this.$elTrigger = this.$el.find(this.options.selectorTrigger);
-		this.$elTarget = this.$el.find(this.options.selectorTarget);
+		this.$elTab = this.$el.find(this.options.selectorTab);
+		this.$elPanel = this.$el.find(this.options.selectorPanel);
 
 		// setup & properties
 		this.isInitialized = false;
 		this.isAnimating = false;
-		this.inactiveTriggerText = this.$elTrigger.text();
-		this.activeTriggerText = this.$elTrigger.attr('data-activeText') || this.options.activeTriggerText || false;
-		this.isRevealed = this.$elTarget.attr('data-initRevealed') === 'true' || this.options.initRevealed ? true : false;
+		this.inactiveTabText = this.$elTab.text();
+		this.activeTabText = this.$elTab.attr('data-activeText') || this.options.activeTabText || false;
+		this.isRevealed = this.$elPanel.attr('data-initRevealed') === 'true' || this.options.initRevealed ? true : false;
 
 		// check url hash to override isRevealed
 		this.focusOnInit = false;
 		this.urlHash = window.location.hash.replace('#','') || false;
-		if (this.urlHash && this.urlHash === this.$elTarget.attr('id')) {
+		if (this.urlHash && this.urlHash === this.$elPanel.attr('id')) {
 			this.isRevealed = true;
 			this.focusOnInit = true;
 		}
@@ -63,26 +63,25 @@ CNJS.UI.Revealer = Class.extend({
 **/
 
 	initDisplay: function() {
-		var self = this;
 
 		this.$el.attr({'role':'tablist'});
-		this.$elTrigger.attr({'role':'tab'});
-		this.$elTarget.attr({'role':'tabpanel', 'tabindex':'-1'});
+		this.$elTab.attr({'role':'tab'});
+		this.$elPanel.attr({'role':'tabpanel', 'tabindex':'-1'});
 
 		if (this.isRevealed) {
 			this.$el.addClass(this.options.activeClass);
-			if (this.activeTriggerText) {
-				this.$elTrigger.html(this.activeTriggerText);
+			if (this.activeTabText) {
+				this.$elTab.html(this.activeTabText);
 			}
 		} else {
-			this.$elTarget.hide();
+			this.$elPanel.hide();
 		}
 
 		if (this.focusOnInit) {
 			CNJS.$window.load(function() {
 				$('html, body').animate({scrollTop:0}, 1);
-				self.$elTarget.focus();
-			});
+				this.$elPanel.focus();
+			}.bind(this));
 		}
 
 		this.isInitialized = true;
@@ -93,7 +92,11 @@ CNJS.UI.Revealer = Class.extend({
 
 	bindEvents: function() {
 
-		this.$elTrigger.on('click', function(e) {
+		CNJS.$window.on('resizeEnd', function(e) {
+			this.__onWindowResizeEnd(e);
+		}.bind(this));
+
+		this.$elTab.on('click', function(e) {
 			e.preventDefault();
 			if (!this.isAnimating) {
 				this.__clickTrigger(e);
@@ -106,6 +109,10 @@ CNJS.UI.Revealer = Class.extend({
 /**
 *	Event Handlers
 **/
+
+	__onWindowResizeEnd: function(e) {
+		//console.log('__onWindowResizeEnd');
+	},
 
 	__clickTrigger: function(e) {
 		if (this.isRevealed) {
@@ -121,62 +128,60 @@ CNJS.UI.Revealer = Class.extend({
 **/
 
 	revealContent: function() {
-		var self = this;
 
-		var contentRevealed = function() {
-			self.$elTarget.focus();
-			self.isRevealed = true;
-			self.$el.addClass(self.options.activeClass);
-			$.event.trigger(self.options.customEventPrfx + ':contentRevealed', [self.$el]);
-		};
+		var contentRevealed = function contentRevealed() {
+			this.isRevealed = true;
+			this.$elPanel.focus();
+			this.$el.addClass(this.options.activeClass);
+			$.event.trigger(this.options.customEventPrfx + ':contentRevealed', [this.$el]);
+		}.bind(this);
 
-		//update trigger
-		if (this.activeTriggerText) {
-			this.$elTrigger.html(this.activeTriggerText);
+		//update tab
+		if (this.activeTabText) {
+			this.$elTab.html(this.activeTabText);
 		}
 
-		//update target
+		//update panel
 		if (this.options.useSlideEffect) {
 
 			this.isAnimating = true;
-			this.$elTarget.slideDown(self.options.animDuration, 'swing', function() {
-				self.isAnimating = false;
+			this.$elPanel.slideDown(this.options.animDuration, 'swing', function() {
+				this.isAnimating = false;
 				contentRevealed();
-			});
+			}.bind(this));
 
 		} else {
-			this.$elTarget.show();
+			this.$elPanel.show();
 			contentRevealed();
 		}
 
 	},
 
 	collapseContent: function() {
-		var self = this;
 
-		var contentCollapsed = function() {
-			self.isRevealed = false;
-			self.$el.removeClass(self.options.activeClass);
-			$.event.trigger(self.options.customEventPrfx + ':contentCollapsed', [self.$el]);
-		};
+		var contentCollapsed = function contentCollapsed() {
+			this.isRevealed = false;
+			this.$elTab.focus();
+			this.$el.removeClass(this.options.activeClass);
+			$.event.trigger(this.options.customEventPrfx + ':contentCollapsed', [this.$el]);
+		}.bind(this);
 
-		//update trigger
-		if (this.activeTriggerText) {
-			this.$elTrigger.html(this.inactiveTriggerText);
+		//update tab
+		if (this.activeTabText) {
+			this.$elTab.html(this.inactiveTabText);
 		}
-		this.$elTrigger.focus();
 
-		//update target
+		//update panel
 		if (this.options.useSlideEffect) {
 
 			this.isAnimating = true;
-			this.$elTarget.slideUp(self.options.animDuration, 'swing', function() {
-				self.isAnimating = false;
+			this.$elPanel.slideUp(this.options.animDuration, 'swing', function() {
+				this.isAnimating = false;
 				contentCollapsed();
-			});
+			}.bind(this));
 
 		} else {
-			this.$elTarget.hide();
+			this.$elPanel.hide();
 			contentCollapsed();
 		}
 

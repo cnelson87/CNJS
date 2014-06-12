@@ -31,11 +31,15 @@
 		CNJS.PageControl = {
 			init: function() {
 
-				this.elAccordion = $('#accordion-container');
+				this.elAccordion1 = $('#accordion-container-1');
+				this.elAccordion2 = $('#accordion-container-2');
 
-				this.accordion = new CNJS.UI.Accordion(
-					this.elAccordion, {}
-				);
+				this.accordion1 = new CNJS.UI.Accordion(this.elAccordion1, {});
+				this.accordion2 = new CNJS.UI.Accordion(this.elAccordion2, {
+					initialIndex: -1,
+					selfClosing: false,
+					equalizeHeight: false
+				});
 
 			}
 		}
@@ -67,12 +71,14 @@
 
 				<div class="hr"><hr /></div>
 
-				<div id="accordion-container" class="accordion-container">
+				<h3>Accordion using Class defaults.</h3>
+
+				<div id="accordion-container-1" class="accordion-container">
 					<ul>
 						<li>
 
-							<h5 class="tab"><a href="#panel-1">Tab One</a></h5>
-							<div id="panel-1" class="panel">
+							<h5 class="tab"><a href="#panel-1-1">Tab One</a></h5>
+							<div id="panel-1-1" class="panel">
 								<div class="panel-inner">
 
 									<h2>Panel One</h2>
@@ -91,8 +97,8 @@
 						</li>
 						<li>
 
-							<h5 class="tab"><a href="#panel-2">Tab Two</a></h5>
-							<div id="panel-2" class="panel">
+							<h5 class="tab"><a href="#panel-1-2">Tab Two</a></h5>
+							<div id="panel-1-2" class="panel">
 								<div class="panel-inner">
 
 									<h2>Panel Two</h2>
@@ -118,8 +124,8 @@
 						</li>
 						<li>
 
-							<h5 class="tab"><a href="#panel-3">Tab Three</a></h5>
-							<div id="panel-3" class="panel">
+							<h5 class="tab"><a href="#panel-1-3">Tab Three</a></h5>
+							<div id="panel-1-3" class="panel">
 								<div class="panel-inner">
 
 									<h2>Panel Three</h2>
@@ -141,8 +147,148 @@
 						</li>
 						<li>
 
-							<h5 class="tab"><a href="#panel-4">Tab Four</a></h5>
-							<div id="panel-4" class="panel">
+							<h5 class="tab"><a href="#panel-1-4">Tab Four</a></h5>
+							<div id="panel-1-4" class="panel">
+								<div class="panel-inner">
+
+									<h2>Panel Four</h2>
+
+									<p>
+										Tab Four content. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+									</p>
+
+									<table class="data-table">
+										<thead>
+											<tr>
+												<th>Lorem ipsum</th>
+												<th>Dolor sit amet</th>
+												<th>Consectetuer adipiscing elit</th>
+												<th>Cras vitae ante</th>
+											</tr>
+										</thead>
+										<tfoot>
+											<tr>
+												<th>Lorem ipsum</th>
+												<th>Dolor sit amet</th>
+												<th>Consectetuer adipiscing elit</th>
+												<th>Cras vitae ante</th>
+											</tr>
+										</tfoot>
+										<tbody>
+											<tr>
+												<td>Cras accumsan augue</td>
+												<td>Sit amet velit</td>
+												<td>Morbi ac enim at libero</td>
+												<td>Sollicitudin varius</td>
+											</tr>
+											<tr>
+												<td>Vivamus dignissim</td>
+												<td>Sagittis lectus</td>
+												<td>Cras accumsan augue</td>
+												<td>Sit amet velit</td>
+											</tr>
+											<tr>
+												<td>Morbi ac enim at libero</td>
+												<td>Sollicitudin varius</td>
+												<td>Vivamus dignissim</td>
+												<td>Sagittis lectus</td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+
+						</li>
+					</ul>
+				</div>
+
+				<div class="hr"><hr /></div>
+
+				<h3>Accordion with custom options:</h3>
+				<p>
+					initialIndex: -1, //inits as closed<br />
+					selfClosing: false, //one panel must always be open<br />
+					equalizeHeight: false //panels are default height<br />
+					(initialIndex: -1 and selfClosing: false make a weird combination.)
+				</p>
+
+				<div id="accordion-container-2" class="accordion-container">
+					<ul>
+						<li>
+
+							<h5 class="tab"><a href="#panel-2-1">Tab One</a></h5>
+							<div id="panel-2-1" class="panel">
+								<div class="panel-inner">
+
+									<h2>Panel One</h2>
+
+									<p>
+										Tab One content. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+									</p>
+
+									<p>
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+									</p>
+
+								</div>
+							</div>
+
+						</li>
+						<li>
+
+							<h5 class="tab"><a href="#panel-2-2">Tab Two</a></h5>
+							<div id="panel-2-2" class="panel">
+								<div class="panel-inner">
+
+									<h2>Panel Two</h2>
+
+									<p>
+										Tab Two content. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+									</p>
+
+									<dl>
+										<dt>lorem ipsum dolor sit amet</dt>
+										<dd>consectetuer adipiscing elit</dd>
+										<dt>cras vitae ante</dt>
+										<dd>cras accumsan augue sit amet velit</dd>
+										<dt>morbi ac enim at</dt>
+										<dd>libero sollicitudin varius.</dd>
+										<dt>vivamus dignissim</dt>
+										<dd>sagittis lectus.</dd>
+									</dl>
+
+								</div>
+							</div>
+
+						</li>
+						<li>
+
+							<h5 class="tab"><a href="#panel-2-3">Tab Three</a></h5>
+							<div id="panel-2-3" class="panel">
+								<div class="panel-inner">
+
+									<h2>Panel Three</h2>
+
+									<p>
+										Tab Three content. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras vitae ante. Cras accumsan augue sit amet velit. Morbi ac enim at libero sollicitudin varius. Vivamus dignissim sagittis lectus.
+									</p>
+
+									<ol>
+										<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+										<li>Cras vitae ante. Cras accumsan augue sit amet velit.</li>
+										<li>Morbi ac enim at libero sollicitudin varius.</li>
+										<li>Vivamus dignissim sagittis lectus.</li>
+									</ol>
+
+								</div>
+							</div>
+
+						</li>
+						<li>
+
+							<h5 class="tab"><a href="#panel-2-4">Tab Four</a></h5>
+							<div id="panel-2-4" class="panel">
 								<div class="panel-inner">
 
 									<h2>Panel Four</h2>

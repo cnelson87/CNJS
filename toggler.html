@@ -17,7 +17,7 @@
 	<script src="_ui/js/lib/modernizr.custom.min.js"></script>
 	<script src="_ui/js/lib/jquery.min.js"></script>
 	<script src="_ui/js/lib/jquery-ui.min.js"></script>
-	<script src="_ui/js/lib/underscore.min.js"></script>
+	<script src="_ui/js/lib/lodash.min.js"></script>
 	<script src="_ui/js/lib/backbone.min.js"></script>
 	<script src="_ui/js/lib/backbone-super.min.js"></script>
 	<script src="_ui/js/lib/class.js"></script>
@@ -34,8 +34,8 @@
 				this.elToggler1 = $('#toggler-container-1');
 				this.elToggler2 = $('#toggler-container-2');
 
-				this.toggler1 = new CNJS.UI.Toggler(this.elToggler1);
-				this.toggler2 = new CNJS.UI.Toggler(this.elToggler2);
+				this.toggler1 = new CNJS.UI.Toggler(this.elToggler1, {});
+				this.toggler2 = new CNJS.UI.Toggler(this.elToggler2, {});
 
 			}
 		};

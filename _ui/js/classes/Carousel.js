@@ -47,7 +47,6 @@ CNJS.UI.Carousel = Class.extend({
 		this.$elItemLinks = this.$elInnerTrack.find('a');
 
 		// setup & properties
-		this.isInitialized = false;
 		this.isAnimating = false;
 		this._len = this.$elItems.length;
 		this.scrollAmt = this.$elItems.outerWidth(true) * -1;
@@ -60,9 +59,11 @@ CNJS.UI.Carousel = Class.extend({
 		this.lastIndex = this._len - this.numVisibleItems;
 		if (this.currentIndex >= this._len) {this.currentIndex = 0;}
 
-		this.initDisplay();
+		this.initDOM();
 
 		this.bindEvents();
+
+		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
@@ -71,7 +72,7 @@ CNJS.UI.Carousel = Class.extend({
 *	Private Methods
 **/
 
-	initDisplay: function() {
+	initDOM: function() {
 		var self = this;
 		var leftPos = this.scrollAmt * this.currentIndex;
 
@@ -100,10 +101,6 @@ CNJS.UI.Carousel = Class.extend({
 				self._autoRotation();
 			}, self.rotationInterval);
 		}
-
-		this.isInitialized = true;
-
-		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 

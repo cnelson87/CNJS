@@ -20,8 +20,6 @@
 CNJS.UI.ModalImage = CNJS.UI.ModalWindow.extend({
 	init: function($triggers, objOptions) {
 
-		// defaults
-		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			modalID: 'modalimage',
 			modalClass: 'modal-image',
@@ -31,21 +29,9 @@ CNJS.UI.ModalImage = CNJS.UI.ModalWindow.extend({
 		// setup & properties
 		this.imageSrc = null;
 
-		this._super(this.$elTriggers, this.options);
+		this._super($triggers, this.options);
 
 	},
-
-
-/**
-*	Private Methods
-**/
-
-/*	_bindEvents: function() {
-		var self = this;
-
-		this._super();
-
-	},*/
 
 
 /**

@@ -10,8 +10,9 @@
 	AUTHORS: CN
 
 	DEPENDENCIES:
-		- jQuery 1.8+
-		- class.js
+		- jQuery 1.10+
+		- jQuery.easing
+		- Class.js
 		- cnjs.js
 
 */
@@ -29,6 +30,7 @@ CNJS.UI.Accordion = Class.extend({
 			equalizeHeight: true,
 			selfClosing: true,
 			animDuration: 400,
+			animEasing: 'easeInQuad',
 			customEventPrfx: 'CNJS:UI:Accordion'
 		}, objOptions || {});
 
@@ -37,7 +39,6 @@ CNJS.UI.Accordion = Class.extend({
 		this.$elPanels = this.$el.find(this.options.selectorPanels);
 
 		// setup & properties
-		this.isInitialized = false;
 		this.isAnimating = false;
 		this._len = this.$elPanels.length;
 		if (this.options.initialIndex >= this._len) {this.options.initialIndex = 0;}
@@ -57,9 +58,11 @@ CNJS.UI.Accordion = Class.extend({
 			}
 		}
 
-		this.initDisplay();
+		this.initDOM();
 
 		this.bindEvents();
+
+		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
@@ -68,7 +71,7 @@ CNJS.UI.Accordion = Class.extend({
 *	Private Methods
 **/
 
-	initDisplay: function() {
+	initDOM: function() {
 		var $elActiveTab = $(this.$elTabs[this.currentIndex]);
 		var $elActivePanel = $(this.$elPanels[this.currentIndex]);
 
@@ -89,10 +92,6 @@ CNJS.UI.Accordion = Class.extend({
 				$elActivePanel.focus();
 			});
 		}
-
-		this.isInitialized = true;
-
-		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
@@ -174,7 +173,7 @@ CNJS.UI.Accordion = Class.extend({
 		this.isAnimating = true;
 
 		$elTab.removeClass(this.options.activeClass);
-		$elPanel.slideUp(this.options.animDuration, 'swing', function() {
+		$elPanel.slideUp(this.options.animDuration, this.options.animEasing, function() {
 			this.isAnimating = false;
 			$elTab.focus();
 		}.bind(this));
@@ -190,7 +189,7 @@ CNJS.UI.Accordion = Class.extend({
 		this.isAnimating = true;
 
 		$elTab.addClass(this.options.activeClass);
-		$elPanel.slideDown(this.options.animDuration, 'swing', function() {
+		$elPanel.slideDown(this.options.animDuration, this.options.animEasing, function() {
 			this.isAnimating = false;
 			$elPanel.focus();
 		}.bind(this));
@@ -212,11 +211,11 @@ CNJS.UI.Accordion = Class.extend({
 		$elInactiveTab.removeClass(this.options.activeClass);
 
 		//update panels
-		$elActivePanel.slideDown(this.options.animDuration, 'swing', function() {
+		$elActivePanel.slideDown(this.options.animDuration, this.options.animEasing, function() {
 			this.isAnimating = false;
 			$elActivePanel.focus();
 		}.bind(this));
-		$elInactivePanel.slideUp(this.options.animDuration, 'swing');
+		$elInactivePanel.slideUp(this.options.animDuration, this.options.animEasing);
 
 		$.event.trigger(this.options.customEventPrfx + ':panelOpened', [this.currentIndex]);
 

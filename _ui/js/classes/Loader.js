@@ -37,11 +37,10 @@ CNJS.UI.Loader = Class.extend({
 **/
 
 	addLoader: function() {
-		var self = this;
 		this.$el.append(this.$elOverlay, this.$elSpinner);
 		setTimeout(function() {
-			self.$elSpinner.click(); //spinner gif gets 'stuck' and needs a click
-		}, 10);
+			this.$elSpinner.click(); //spinner gif gets 'stuck' and needs a click
+		}.bind(this), 10);
 	},
 
 	removeLoader: function() {

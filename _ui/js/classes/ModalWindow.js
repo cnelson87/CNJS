@@ -51,7 +51,7 @@ CNJS.UI.ModalWindow = Class.extend({
 		this.isPosAbs = false; //position:absolute;
 		this.contentHTML = null;
 
-		this.initDisplay();
+		this.initDOM();
 
 		this.bindEvents();
 
@@ -62,7 +62,7 @@ CNJS.UI.ModalWindow = Class.extend({
 *	Private Methods
 **/
 
-	initDisplay: function() {
+	initDOM: function() {
 
 		//create overlay
 		this.$elOverlay = $('#' + this.options.overlayID);

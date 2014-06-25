@@ -11,7 +11,8 @@
 
 	DEPENDENCIES:
 		- jQuery 1.10+
-		- class.js
+		- jQuery.easing
+		- Class.js
 		- cnjs.js
 
 */
@@ -29,6 +30,7 @@ CNJS.UI.TabSwitcher = Class.extend({
 			equalizeHeight: true,
 			useFadeEffect: true,
 			animDuration: 400,
+			animEasing: 'easeInQuad',
 			customEventPrfx: 'CNJS:UI:TabSwitcher'
 		}, objOptions || {});
 
@@ -37,7 +39,6 @@ CNJS.UI.TabSwitcher = Class.extend({
 		this.$elPanels = this.$el.find(this.options.selectorPanels);
 
 		// setup & properties
-		this.isInitialized = false;
 		this.isAnimating = false;
 		this._len = this.$elPanels.length;
 		if (this.options.initialIndex >= this._len) {this.options.initialIndex = 0;}
@@ -57,9 +58,11 @@ CNJS.UI.TabSwitcher = Class.extend({
 			}
 		}
 
-		this.initDisplay();
+		this.initDOM();
 
 		this.bindEvents();
+
+		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
@@ -68,7 +71,7 @@ CNJS.UI.TabSwitcher = Class.extend({
 *	Private Methods
 **/
 
-	initDisplay: function() {
+	initDOM: function() {
 		var $elActiveTab = $(this.$elTabs[this.currentIndex]);
 		var $elActivePanel = $(this.$elPanels[this.currentIndex]);
 
@@ -89,10 +92,6 @@ CNJS.UI.TabSwitcher = Class.extend({
 				$elActivePanel.focus();
 			});
 		}
-
-		this.isInitialized = true;
-
-		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
@@ -152,7 +151,7 @@ CNJS.UI.TabSwitcher = Class.extend({
 		//update panels
 		if (this.options.useFadeEffect) {
 			this.isAnimating = true;
-			$elActivePanel.fadeIn(this.options.animDuration, 'swing', function() {
+			$elActivePanel.fadeIn(this.options.animDuration, this.options.animEasing, function() {
 				this.isAnimating = false;
 				$elActivePanel.focus();
 			}.bind(this));

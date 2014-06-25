@@ -22,8 +22,6 @@
 CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 	init: function($triggers, objOptions) {
 
-		// defaults
-		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			ajaxErrorMsg: CNJS.Config.defaultAjaxErrorMessage,
 			loaderDelay: 400,
@@ -34,7 +32,7 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 		this.getAjaxContent = CNJS.UTILS.getAjaxContent; //shortcut to getAjaxContent utility
 		this.ajaxLoader = null;
 
-		this._super(this.$elTriggers, this.options);
+		this._super($triggers, this.options);
 
 	},
 
@@ -43,7 +41,7 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 *	Private Methods
 **/
 
-	initDisplay: function() {
+	initDOM: function() {
 		this._super();
 		this.ajaxLoader = new CNJS.UI.Loader(this.$elContent);
 	},
@@ -61,7 +59,7 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 
 		this.ajaxLoader.addLoader();
 
-		$.when(self.getAjaxContent(ajaxUrl, 'html')).done(function(response) {
+		$.when(this.getAjaxContent(ajaxUrl, 'html')).done(function(response) {
 			//console.log(response);
 
 			if (targetID) {

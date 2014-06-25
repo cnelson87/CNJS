@@ -22,7 +22,6 @@
 
 CNJS.UI.TabCarousel = CNJS.UI.Carousel.extend({
 	init: function($el, objOptions) {
-		var self = this;
 
 		// defaults
 		this.$el = $el;
@@ -47,7 +46,7 @@ CNJS.UI.TabCarousel = CNJS.UI.Carousel.extend({
 *	Private Methods
 **/
 
-	initDisplay: function() {
+	initDOM: function() {
 		var $elActiveTab = $(this.$elTabs[this.currentIndex]);
 
 		this.$elTabs.attr({'role':'tab'});

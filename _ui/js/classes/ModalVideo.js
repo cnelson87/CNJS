@@ -20,8 +20,6 @@
 CNJS.UI.ModalVideo = CNJS.UI.ModalWindow.extend({
 	init: function($triggers, objOptions) {
 
-		// defaults
-		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			modalID: 'modalvideo',
 			modalClass: 'modal-video',
@@ -33,21 +31,9 @@ CNJS.UI.ModalVideo = CNJS.UI.ModalWindow.extend({
 		// setup & properties
 		this.videoID = null;
 
-		this._super(this.$elTriggers, this.options);
+		this._super($triggers, this.options);
 
 	},
-
-
-/**
-*	Private Methods
-**/
-
-/*	_bindEvents: function() {
-		var self = this;
-
-		this._super();
-
-	},*/
 
 
 /**

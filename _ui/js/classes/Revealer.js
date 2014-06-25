@@ -11,7 +11,8 @@
 
 	DEPENDENCIES:
 		- jQuery 1.10+
-		- class.js
+		- jQuery.easing
+		- Class.js
 		- cnjs.js
 
 */
@@ -29,6 +30,7 @@ CNJS.UI.Revealer = Class.extend({
 			initRevealed: false,
 			useSlideEffect: true,
 			animDuration: 400,
+			animEasing: 'easeInQuad',
 			customEventPrfx: 'CNJS:UI:Revealer'
 	    }, objOptions || {});
 
@@ -37,7 +39,6 @@ CNJS.UI.Revealer = Class.extend({
 		this.$elPanel = this.$el.find(this.options.selectorPanel);
 
 		// setup & properties
-		this.isInitialized = false;
 		this.isAnimating = false;
 		this.inactiveTabText = this.$elTab.text();
 		this.activeTabText = this.$elTab.attr('data-activeText') || this.options.activeTabText || false;
@@ -51,9 +52,11 @@ CNJS.UI.Revealer = Class.extend({
 			this.focusOnInit = true;
 		}
 
-		this.initDisplay();
+		this.initDOM();
 
 		this.bindEvents();
+
+		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
@@ -62,7 +65,7 @@ CNJS.UI.Revealer = Class.extend({
 *	Private Methods
 **/
 
-	initDisplay: function() {
+	initDOM: function() {
 
 		this.$el.attr({'role':'tablist'});
 		this.$elTab.attr({'role':'tab'});
@@ -83,10 +86,6 @@ CNJS.UI.Revealer = Class.extend({
 				this.$elPanel.focus();
 			}.bind(this));
 		}
-
-		this.isInitialized = true;
-
-		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
@@ -145,7 +144,7 @@ CNJS.UI.Revealer = Class.extend({
 		if (this.options.useSlideEffect) {
 
 			this.isAnimating = true;
-			this.$elPanel.slideDown(this.options.animDuration, 'swing', function() {
+			this.$elPanel.slideDown(this.options.animDuration, this.options.animEasing, function() {
 				this.isAnimating = false;
 				contentRevealed();
 			}.bind(this));
@@ -175,7 +174,7 @@ CNJS.UI.Revealer = Class.extend({
 		if (this.options.useSlideEffect) {
 
 			this.isAnimating = true;
-			this.$elPanel.slideUp(this.options.animDuration, 'swing', function() {
+			this.$elPanel.slideUp(this.options.animDuration, this.options.animEasing, function() {
 				this.isAnimating = false;
 				contentCollapsed();
 			}.bind(this));

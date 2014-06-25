@@ -39,7 +39,6 @@ CNJS.UI.Toggler = Class.extend({
 		this.$elAltTarget = this.$el.find(this.options.selectorAltTarget);
 
 		// setup & properties
-		this.isInitialized = false;
 		this.isAnimating = false;
 		this.inactiveTriggerText = this.$elTrigger.first().text();
 		this.activeTriggerText = this.$elTrigger.attr('data-activeText') || this.options.activeTriggerText || false;
@@ -53,9 +52,11 @@ CNJS.UI.Toggler = Class.extend({
 			this.focusOnInit = true;
 		}
 
-		this.initDisplay();
+		this.initDOM();
 
 		this.bindEvents();
+
+		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 
@@ -64,7 +65,7 @@ CNJS.UI.Toggler = Class.extend({
 *	Private Methods
 **/
 
-	initDisplay: function() {
+	initDOM: function() {
 
 		this.$el.attr({'role':'tablist'});
 		this.$elTrigger.attr({'role':'tab'});
@@ -89,10 +90,6 @@ CNJS.UI.Toggler = Class.extend({
 				this.$elTarget.focus();
 			}.bind(this));
 		}
-
-		this.isInitialized = true;
-
-		$.event.trigger(this.options.customEventPrfx + ':isInitialized', [this.$el]);
 
 	},
 

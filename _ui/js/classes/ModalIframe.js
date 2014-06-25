@@ -20,8 +20,6 @@
 CNJS.UI.ModalIframe = CNJS.UI.ModalWindow.extend({
 	init: function($triggers, objOptions) {
 
-		// defaults
-		this.$elTriggers = $triggers;
 		this.options = $.extend({
 			modalID: 'modaliframe',
 			modalClass: 'modaliframe',
@@ -31,19 +29,9 @@ CNJS.UI.ModalIframe = CNJS.UI.ModalWindow.extend({
 		// setup & properties
 		this.iframeSrc = null;
 
-		this._super(this.$elTriggers, this.options);
+		this._super($triggers, this.options);
 
 	},
-
-/**
-*	Private Methods
-**/
-/*	_bindEvents: function() {
-		var self = this;
-
-		this._super();
-
-	},*/
 
 
 /**

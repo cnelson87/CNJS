@@ -251,9 +251,9 @@ CNJS.UTILS.isElemInView = function($el, objOptions) {
 
 
 /**
-*	Universal Ajax loader
+*	Universal Ajax loader & spinner
 **/
-CNJS.UTILS.AjaxLoader = function($el, objOptions) {
+CNJS.UTILS.LoaderSpinner = function($el, objOptions) {
 	this.$el = $el;
 	this.options = $.extend({
 		overlayTemplate: '<div class="overlay"></div>',
@@ -262,26 +262,23 @@ CNJS.UTILS.AjaxLoader = function($el, objOptions) {
 	this.$elOverlay = $(this.options.overlayTemplate);
 	this.$elSpinner = $(this.options.spinnerTemplate);
 };
-CNJS.UTILS.AjaxLoader.prototype = {
+CNJS.UTILS.LoaderSpinner.prototype = {
 	addLoader: function() {
-		var self = this;
-
 		this.$el.append(this.$elOverlay, this.$elSpinner);
 		setTimeout(function() {
-			self.$elSpinner.click(); //spinner gif gets 'stuck' and needs a click
-		}, 10);
-
+			this.$elSpinner.click(); //spinner gif gets 'stuck' and needs a click
+		}.bind(this), 10);
 	},
 	removeLoader: function() {
 		this.$elOverlay.remove();
 		this.$elSpinner.remove();
 	}
 };
-/*** /AjaxLoader ***/
+/*** /LoaderSpinner ***/
 
 
 /**
-*	Sets equal height on a collection of DOM els
+*	Sets equal height on a collection of DOM ELs
 **/
 CNJS.UTILS.HeightEqualizer = function($items, objOptions) {
 	this.$items = $items;
@@ -289,7 +286,7 @@ CNJS.UTILS.HeightEqualizer = function($items, objOptions) {
 		setParentHeight: false
 	}, objOptions || {});
 
-	this.$elParent = this.options.setParentHeight ? this.$items.first().parent() : false;
+	this.$elParent = this.options.setParentHeight ? this.$items.first().parent() : null;
 
 	this._len = this.$items.length;
 	if (this._len <= 1) {return;}
@@ -326,7 +323,7 @@ CNJS.UTILS.HeightEqualizer.prototype = {
 		this.setHeight();
 	}
 };
-/*** /HeightAdjuster ***/
+/*** /HeightEqualizer ***/
 
 
 /**

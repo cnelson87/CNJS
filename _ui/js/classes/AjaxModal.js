@@ -43,7 +43,7 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 
 	initDOM: function() {
 		this._super();
-		this.ajaxLoader = new CNJS.UI.Loader(this.$elContent);
+		this.ajaxLoader = new CNJS.UTILS.LoaderSpinner(this.$elContent);
 	},
 
 
@@ -84,14 +84,9 @@ CNJS.UI.AjaxModal = CNJS.UI.ModalWindow.extend({
 		}).fail(function() {
 			//console.log(response);
 			self.contentHTML = '';
-
-			//add a small delay to show spinner
-			setTimeout(function() {
-				self.ajaxLoader.removeLoader();
-				self.$elContent.html(self.options.ajaxErrorMsg);
-				self.setPosition();
-			}, self.options.loaderDelay);
-
+			self.ajaxLoader.removeLoader();
+			self.$elContent.html(self.options.ajaxErrorMsg);
+			self.setPosition();
 		});
 
 	}

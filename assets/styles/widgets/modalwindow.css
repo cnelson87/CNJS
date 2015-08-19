@@ -37,7 +37,7 @@ div#spinner {
 	width: 400px;
 	height: 400px;
 	*/
-	background: transparent url('../../img/spinner.gif') no-repeat center center;
+	background: transparent url('../../images/spinner.gif') no-repeat center center;
 	display: none;
 }
 

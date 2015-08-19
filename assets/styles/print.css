@@ -1,0 +1,11 @@
+
+/***** PRINT CSS *****/
+
+body {
+	color: #000;
+	background: #fff;
+}
+
+div#header, div#footer, div#subcol {display: none;}
+
+div#content {float: none; display: block;}

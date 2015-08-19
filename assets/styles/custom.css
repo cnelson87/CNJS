@@ -44,14 +44,14 @@ ul.contentlist {
 	list-style: none;
 	margin: 0;
 	border-bottom: 1px dotted #999999;
-	/* background: transparent url('../img/hr.gif') repeat-x left bottom; */
+	/* background: transparent url('../images/hr.gif') repeat-x left bottom; */
 }
 	ul.contentlist li {
 		display: block;
 		margin: 0;
 		padding: 1.5em 0;
 		border-top: 1px dotted #999999;
-		/* background: transparent url('../img/hr.gif') repeat-x left top; */
+		/* background: transparent url('../images/hr.gif') repeat-x left top; */
 	}
 	ul.contentlist div.colA {
 		float: left;
@@ -84,12 +84,12 @@ table.contenttable {
 	table.contenttable td {
 		padding: 1.5em 0;
 		border-top: 1px dotted #999999;
-		/* background: transparent url('../img/hr.gif') repeat-x left top; */
+		/* background: transparent url('../images/hr.gif') repeat-x left top; */
 	}
 	table.contenttable tfoot th {
 		border-top: 1px dotted #999999;
 		background: #efefef;
-		/* background: #efefef url('../img/hr.gif') repeat-x left top; */
+		/* background: #efefef url('../images/hr.gif') repeat-x left top; */
 	}
 	table.contenttable th.colA,
 	table.contenttable td.colA {
@@ -122,12 +122,12 @@ table.thumbtable {
 	table.thumbtable td {
 		padding: 1.5em 10px;
 		border-top: 1px dotted #999999;
-		/* background: transparent url('../img/hr.gif') repeat-x left top; */
+		/* background: transparent url('../images/hr.gif') repeat-x left top; */
 	}
 	table.thumbtable tfoot th {
 		border-top: 1px dotted #999999;
 		background: #efefef;
-		/* background: #efefef url('../img/hr.gif') repeat-x left top; */
+		/* background: #efefef url('../images/hr.gif') repeat-x left top; */
 	}
 	table.thumbtable td {
 		width: 150px;
@@ -153,10 +153,10 @@ table.thumbtable {
 	}
 
 div#upperpaginav {
-	/* background: transparent url('../img/hr.gif') repeat-x left top; */
+	/* background: transparent url('../images/hr.gif') repeat-x left top; */
 }
 div#lowerpaginav {
-	/* background: transparent url('../img/hr.gif') repeat-x left bottom; */
+	/* background: transparent url('../images/hr.gif') repeat-x left bottom; */
 }
 div.pagi-nav {
 	padding: 0.5em 0;

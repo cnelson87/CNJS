@@ -68,7 +68,7 @@ div.carousel {
 			display: block;
 			width: 14px;
 			height: 26px;
-			background: transparent url('../../img/btns-prev-next.png') no-repeat;
+			background: transparent url('../../images/btns-prev-next.png') no-repeat;
 			margin-top: -13px;
 			position: absolute;
 			top: 50%;
@@ -203,7 +203,7 @@ div.fullwidth-carousel {
 				width: 14px;
 				height: 26px;
 				margin-top: -13px;
-				background: transparent url('../img/lnks-prev-next.gif') no-repeat;
+				background: transparent url('../images/lnks-prev-next.gif') no-repeat;
 				position: absolute;
 				top: 50%;
 			}
@@ -341,7 +341,7 @@ div.hero-carousel {
 		width: 8px;
 		height: 12px;
 		margin: 0 4px;
-		background: transparent url('../img/arrow_prev.gif') no-repeat center center;
+		background: transparent url('../images/arrow_prev.gif') no-repeat center center;
 	}
 	div.hero-carousel div.hero-carousel-nav a.nav-prev:hover {
 		background-color: #c00;
@@ -355,7 +355,7 @@ div.hero-carousel {
 		width: 8px;
 		height: 12px;
 		margin: 0 4px;
-		background: transparent url('../img/arrow_next.gif') no-repeat center center;
+		background: transparent url('../images/arrow_next.gif') no-repeat center center;
 	}
 	div.hero-carousel div.hero-carousel-nav a.nav-next:hover {
 		background-color: #c00;

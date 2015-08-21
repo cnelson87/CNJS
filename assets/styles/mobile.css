@@ -5,12 +5,30 @@
 
 	----------------------------------------------- */
 
+
 /**
 *	iPad - Landscape
 **/
 
-@media only screen and (max-device-width: 1024px) {}
 @media only screen and (max-width: 1024px) {
+
+	#wrapper {
+		min-width: 720px;
+	}
+	#header .header-inner,
+	#footer .footer-inner,
+	#main .main-inner {
+		width: 720px;
+	}
+	#main #content {
+		width: 680px;
+	}
+	#main.twocols #content {
+		width: 440px;
+	}
+	#main.twocols #subcol {
+		width: 220px;
+	}
 
 }
 
@@ -21,27 +39,24 @@
 *	iPad - Portrait
 **/
 
-@media only screen and (max-device-width: 768px) {}
 @media only screen and (max-width: 768px) {
 
 	#wrapper {
-		width: 768px;
-		min-width: 768px;
+		min-width: 480px;
 	}
-		#header ,#footer, #main {
-			width: 100%;
-		}
-		#header .header-inner,
-		#footer .footer-inner,
-		#main .main-inner {
-			width: 728px;
-		}
-		#main.twocols #content {
-			width: 428px;
-		}
-		#main.twocols #subcol {
-			width: 200px;
-		}
+	#header .header-inner,
+	#footer .footer-inner,
+	#main .main-inner {
+		width: 480px;
+	}
+	#main #content {
+		width: 440px;
+	}
+	#main.twocols #content,
+	#main.twocols #subcol {
+		float: none;
+		width: 440px;
+	}
 
 }
 
@@ -52,36 +67,26 @@
 *	iPhone
 **/
 
-/*
-@media only screen and (max-device-width: 480px), only screen and (min-device-width: 640px) and (max-device-width: 1136px) and (-webkit-min-device-pixel-ratio: 2) {
-*/
 @media only screen and (max-width: 480px) {
-/*
-	html, body, #wrapper {
-		max-width: 480px;
-	}
-*/
+
 	#wrapper {
-		/*
-		width: 480px;
-		min-width: 480px;
-		*/
-		max-width: 480px;
+		min-width: 320px;
 	}
-		#header .header-inner,
-		#footer .footer-inner,
-		#main .main-inner {
-			width: 280px;
-		}
-		#main #content {
-			width: 280px;
-		}
-		#main .twocols #content,
-		#main .twocols #subcol {
-			float: none;
-			width: 280px;
-		}
+	#header .header-inner,
+	#footer .footer-inner,
+	#main .main-inner {
+		width: 320px;
+	}
+	#main #content {
+		width: 280px;
+	}
+	#main.twocols #content,
+	#main.twocols #subcol {
+		float: none;
+		width: 280px;
+	}
 
 }
 
 /*** /iPhone ***/
+
